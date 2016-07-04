@@ -5,6 +5,8 @@ defmodule Streamex.Mixfile do
     [app: :streamex,
      version: "0.1.0",
      elixir: "~> 1.3",
+     description: description(),
+     package: package(),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
@@ -28,5 +30,20 @@ defmodule Streamex.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     []
+  end
+
+  defp description do
+    """
+    A GetStream client for the Elixir language
+    """
+  end
+
+  defp package do
+    [# These are the default files included in the package
+     name: :streamex,
+     maintainers: ["Ignazio Setti"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/sixFingers/streamex",
+              "Docs" => "http://sixfingers.github.io/streamex/"}]
   end
 end
