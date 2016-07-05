@@ -16,7 +16,7 @@ defmodule Streamex.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :httpoison]]
   end
 
   # Dependencies can be Hex packages:
@@ -29,7 +29,11 @@ defmodule Streamex.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:httpoison, "~> 0.9.0"},
+      {:poison, "~> 2.2"},
+      {:joken, git: "git://github.com/bryanjos/joken.git"}
+    ]
   end
 
   defp description do
