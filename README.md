@@ -1,6 +1,6 @@
 # Streamex
 
-**TODO: Add description**
+**Pre-pre-pre-alpha status: don't use this. Yet.**
 
 ## Installation
 
