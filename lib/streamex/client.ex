@@ -19,7 +19,15 @@ defmodule Streamex.Client do
       request_headers(client),
       request_options()
     )
+    |> handle_response
   end
+
+  defp handle_response({:ok, response}) do
+    {:ok, contents} = Poison.decode(response.body)
+    contents
+  end
+
+  defp handle_response({:error, body}), do: {:error, body}
 
   defp feed_token(slug, user_id) do
     Streamex.Token.new(slug, user_id)
@@ -32,7 +40,8 @@ defmodule Streamex.Client do
   defp request_headers(client) do
     [
       {"Authorization", client.token},
-      {"stream-auth-type", "jwt"}
+      {"stream-auth-type", "jwt"},
+      {"content-type", "application/json"}
     ]
   end
 
