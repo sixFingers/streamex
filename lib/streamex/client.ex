@@ -11,8 +11,14 @@ defmodule Streamex.Client do
     %__MODULE__{slug: slug, user_id: user_id, token: feed_token(slug, user_id)}
   end
 
-  def jwt_request(url, client, method) do
-    request(method, api_url(url), "", request_headers(client), [])
+  def jwt_request(url, client, method, body \\ "") do
+    request(
+      method,
+      api_url(url),
+      body,
+      request_headers(client),
+      request_options()
+    )
   end
 
   defp feed_token(slug, user_id) do
@@ -28,5 +34,9 @@ defmodule Streamex.Client do
       {"Authorization", client.token},
       {"stream-auth-type", "jwt"}
     ]
+  end
+
+  defp request_options() do
+    [{:timeout, 3000}]
   end
 end
