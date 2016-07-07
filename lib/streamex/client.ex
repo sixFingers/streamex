@@ -19,15 +19,15 @@ defmodule Streamex.Client do
       request_headers(client),
       request_options()
     )
-    |> handle_response
+    |> parse_response
   end
 
-  defp handle_response({:ok, response}) do
+  defp parse_response({:ok, response}) do
     {:ok, contents} = Poison.decode(response.body)
     contents
   end
 
-  defp handle_response({:error, body}), do: {:error, body}
+  defp parse_response({:error, body}), do: {:error, body}
 
   defp feed_token(slug, user_id) do
     Streamex.Token.new(slug, user_id)
