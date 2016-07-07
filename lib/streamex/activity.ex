@@ -1,5 +1,13 @@
 defmodule Streamex.Activity do
-  defstruct actor: nil, verb: nil, object: nil, target: "", time: "", to: [], foreign_id: "", custom_fields: %{}
+  defstruct id: nil,
+            actor: nil,
+            verb: nil,
+            object: nil,
+            target: nil,
+            time: nil,
+            to: [],
+            foreign_id: nil,
+            custom_fields: %{}
 
   @doc """
   Flattens an Activity struct into a plain map
@@ -11,6 +19,7 @@ defmodule Streamex.Activity do
       case k do
         :__struct__ -> acc
         :custom_fields -> acc ++ Map.to_list(v)
+        :id -> acc
         _ -> [{k, v} | acc]
       end
     end)
@@ -22,16 +31,11 @@ defmodule Streamex.Activity do
   an Activity struct
   """
   def to_struct(%{} = attrs) do
-    struct = struct(%Streamex.Activity{})
+    {standard, custom} = Map.split(attrs, Enum.map(Map.keys(%Streamex.Activity{}), &(Atom.to_string(&1))))
+    struct = struct(%Streamex.Activity{custom_fields: custom})
 
-    attrs
-    |> Map.to_list
-    |> Enum.reduce(struct, fn({k, v}, acc) ->
-      atom = String.to_atom(k)
-      case Map.has_key?(struct, atom) do
-        true -> %{acc | atom => v}
-        false -> %{acc | :custom_fields => Map.update(struct.custom_fields, k, v, &(&1))}
-      end
-    end)
+    Enum.reduce Map.to_list(standard), struct, fn {k, v}, acc ->
+      %{acc | String.to_atom(k) => v}
+    end
   end
 end

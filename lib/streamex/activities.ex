@@ -15,7 +15,10 @@ defmodule Streamex.Activities do
     url = endpoint_activities(client)
     {:ok, body} = encode_activities(activities)
     jwt_request(url, client, :post, body)
+    |> handle_response
   end
+
+  def remove()
 
   defp encode_activities(activities) do
     %{activities: Enum.map(activities, &encode_activity(&1))}
@@ -25,6 +28,10 @@ defmodule Streamex.Activities do
   defp encode_activity(activity) do
     activity
     |> Streamex.Activity.to_map
+  end
+
+  defp handle_response(%{"activities" => results}) do
+    Enum.map(results, &Streamex.Activity.to_struct(&1))
   end
 
   defp handle_response(%{"results" => results}) do
