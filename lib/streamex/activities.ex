@@ -1,6 +1,5 @@
 defmodule Streamex.Activities do
   import Streamex.Client
-  import Streamex.Helpers
 
   def get(client) do
     endpoint_activities(client)
@@ -19,12 +18,17 @@ defmodule Streamex.Activities do
   end
 
   defp encode_activities(activities) do
-    %{activities: activities}
+    %{activities: Enum.map(activities, &encode_activity(&1))}
     |> Poison.encode
   end
 
+  defp encode_activity(activity) do
+    activity
+    |> Streamex.Activity.to_map
+  end
+
   defp handle_response(%{"results" => results}) do
-    Enum.map(results, fn(result) -> to_struct(%Streamex.Activity{}, result) end)
+    Enum.map(results, &Streamex.Activity.to_struct(&1))
   end
 
   defp handle_response(%{"status_code" => _, "detail" => detail}), do: {:error, detail}
