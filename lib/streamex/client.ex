@@ -5,18 +5,12 @@ defmodule Streamex.Client do
   @api_key Application.get_env(:streamex, :key)
   @api_url "api.getstream.io/api/v1.0"
 
-  defstruct slug: "", user_id: "", token: nil
-
-  def new(slug, user_id) do
-    %__MODULE__{slug: slug, user_id: user_id, token: feed_token(slug, user_id)}
-  end
-
-  def jwt_request(url, client, method, body \\ "", params \\ %{}) do
+  def jwt_request(url, method, token, body \\ "", params \\ %{}) do
     request(
       method,
       api_url(url, params),
       body,
-      request_headers(client),
+      request_headers(token),
       request_options()
     )
     |> parse_response
@@ -29,10 +23,6 @@ defmodule Streamex.Client do
 
   defp parse_response({:error, body}), do: {:error, body}
 
-  defp feed_token(slug, user_id) do
-    Streamex.Token.new(slug, user_id)
-  end
-
   defp api_url(url, params) when params == %{} do
     "https://#{@api_region}-#{@api_url}/#{url}?api_key=#{@api_key}"
   end
@@ -41,9 +31,9 @@ defmodule Streamex.Client do
     "https://#{@api_region}-#{@api_url}/#{url}?api_key=#{@api_key}&#{URI.encode_query(params)}"
   end
 
-  defp request_headers(client) do
+  defp request_headers(token) do
     [
-      {"Authorization", client.token},
+      {"Authorization", token},
       {"stream-auth-type", "jwt"},
       {"content-type", "application/json"}
     ]

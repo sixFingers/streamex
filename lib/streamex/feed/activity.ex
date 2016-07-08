@@ -1,4 +1,4 @@
-defmodule Streamex.Activity do
+defmodule Streamex.Feed.Activity do
   defstruct id: nil,
             actor: nil,
             verb: nil,
@@ -12,7 +12,7 @@ defmodule Streamex.Activity do
   @doc """
   Flattens an Activity struct into a plain map
   """
-  def to_map(%Streamex.Activity{} = activity) do
+  def to_map(%__MODULE__{} = activity) do
     activity
     |> Map.to_list
     |> Enum.reduce([], fn({k, v}, acc) ->
@@ -31,11 +31,20 @@ defmodule Streamex.Activity do
   an Activity struct
   """
   def to_struct(%{} = attrs) do
-    {standard, custom} = Map.split(attrs, Enum.map(Map.keys(%Streamex.Activity{}), &(Atom.to_string(&1))))
-    struct = struct(%Streamex.Activity{custom_fields: custom})
+    {standard, custom} = Map.split(attrs, Enum.map(Map.keys(%__MODULE__{}), &(Atom.to_string(&1))))
+    struct = struct(%__MODULE__{custom_fields: custom})
 
     Enum.reduce Map.to_list(standard), struct, fn {k, v}, acc ->
       %{acc | String.to_atom(k) => v}
     end
+  end
+
+  def to_json([%__MODULE__{} | _] = activities) do
+    %{activities: Enum.map(activities, &to_json(&1))}
+    |> Poison.encode
+  end
+
+  def to_json(%__MODULE__{} = activity) do
+    to_map(activity)
   end
 end
