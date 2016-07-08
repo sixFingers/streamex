@@ -20,8 +20,7 @@ defmodule Streamex.Activities do
 
   def remove(id, client, foreign_id \\ 0) do
     url = endpoint_feed_detail(id, client)
-    {:ok, body} = Poison.encode(%{foreign_id: foreign_id})
-    jwt_request(url, client, :delete, body)
+    jwt_request(url, client, :delete, "", %{"foreign_id" => foreign_id})
   end
 
   defp encode_activities(activities) do

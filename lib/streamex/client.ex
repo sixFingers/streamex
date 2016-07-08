@@ -11,10 +11,10 @@ defmodule Streamex.Client do
     %__MODULE__{slug: slug, user_id: user_id, token: feed_token(slug, user_id)}
   end
 
-  def jwt_request(url, client, method, body \\ "") do
+  def jwt_request(url, client, method, body \\ "", params \\ %{}) do
     request(
       method,
-      api_url(url),
+      api_url(url, params),
       body,
       request_headers(client),
       request_options()
@@ -33,8 +33,12 @@ defmodule Streamex.Client do
     Streamex.Token.new(slug, user_id)
   end
 
-  defp api_url(url) do
+  defp api_url(url, params) when params == %{} do
     "https://#{@api_region}-#{@api_url}/#{url}?api_key=#{@api_key}"
+  end
+
+  defp api_url(url, params) do
+    "https://#{@api_region}-#{@api_url}/#{url}?api_key=#{@api_key}&#{URI.encode_query(params)}"
   end
 
   defp request_headers(client) do
