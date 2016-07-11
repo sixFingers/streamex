@@ -29,7 +29,6 @@ defmodule Streamex.Client do
 
   defp api_url(url, params) do
     <<api_url(url, []) :: binary, "&", URI.encode_query(params) :: binary>>
-    # "https://#{@api_region}-#{@api_url}/#{url}?api_key=#{@api_key}&#{URI.encode_query(params)}"
   end
 
   defp request_headers(token) do

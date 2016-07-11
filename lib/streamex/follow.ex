@@ -10,7 +10,7 @@ defmodule Streamex.Follow do
 
   @doc """
   Converts a map coming from the API into
-  an Activity struct
+  an Activity struct.
   """
   def to_struct(%{} = attrs) do
     attrs
@@ -20,16 +20,11 @@ defmodule Streamex.Follow do
     end)
   end
 
-  # def to_json([%__MODULE__{} | _] = activities) do
-  #   {:ok, body} = %{activities: Enum.map(activities, &to_map(&1))}
-  #   |> Poison.encode
-
-  #   body
-  # end
-
+  @doc """
+  Converts an Activity struct into a json payload.
+  """
   def to_json(%__MODULE__{} = follow) do
     {:ok, body} = Poison.encode(follow)
-
     body
   end
 end
