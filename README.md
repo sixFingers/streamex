@@ -2,6 +2,46 @@
 
 **Pre-pre-pre-alpha status: don't use this. Yet.**
 
+# Usage
+
+  ```elixir
+  # Create a new feed
+  f = Streamex.Feed.new("user", "eric")
+
+  # Get activities
+  Streamex.Activities.get(f)
+  Streamex.Activities.get(f, limit: 5, offset: 5)
+
+  # Create activity
+  basic = Streamex.Activity.new("Ignazio", "like", "Elixir")
+  optional = Streamex.Activity.new("Gregorio", "like", "Ruby", [foreign_id: "like:1"])
+  custom = Streamex.Activity.new("Edoardo", "like", "AfterEffects", [foreign_id: "like:1"], %{"age" => 23})
+
+  # Add activity to stream
+  Streamex.Activities.add(f, basic)
+  Streamex.Activities.add(f, [basic, optional, custom])
+
+  # Update activity
+  optional = %{optional | verb: "dislikes"}
+  Streamex.Activities.update(f, optional)
+
+  # Remove activity by id
+  Streamex.Activities.remove(f, [id returned from string])
+  # Remove activity by foreign_id
+  Streamex.Activities.remove(f, "like:1", true)
+
+  # Get followers
+  Streamex.Feed.followers(f)
+  # Get following
+  Streamex.Feed.following(f)
+
+  # Start following another feed
+  Streamex.Feed.follow(f, "user", "jessica")
+  # Stop following another feed
+  Streamex.Feed.unfollow(f, "user", "jessica")
+  ```
+
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
