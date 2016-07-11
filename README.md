@@ -26,7 +26,7 @@
   Streamex.Activities.update(f, optional)
 
   # Remove activity by id
-  Streamex.Activities.remove(f, [id returned from string])
+  Streamex.Activities.remove(f, [id returned from api])
   # Remove activity by foreign_id
   Streamex.Activities.remove(f, "like:1", true)
 
