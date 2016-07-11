@@ -1,4 +1,4 @@
-defmodule Streamex.Feed.Activity do
+defmodule Streamex.Activity do
   defstruct id: nil,
             actor: nil,
             verb: nil,
@@ -6,8 +6,28 @@ defmodule Streamex.Feed.Activity do
             target: nil,
             time: nil,
             to: [],
+            origin: nil,
             foreign_id: nil,
             custom_fields: %{}
+
+  @doc """
+  Initializes an Activity struct from supplied fields
+  """
+  def new(actor, verb, object, optional \\ [], custom \\ %{}) do
+    struct = %__MODULE__{actor: actor, verb: verb, object: object, custom_fields: custom}
+    optional = optional_fields(optional)
+
+    Enum.reduce(optional, struct, fn({k, v}, acc) ->
+      %{acc | k => v}
+    end)
+  end
+
+  defp optional_fields(optional) do
+    defaults = [target: nil, time: nil, to: nil, foreign_id: nil]
+
+    Enum.filter_map(optional, fn({k, _}) -> Keyword.has_key?(defaults, k) end, &(&1))
+    |> Enum.filter(fn({_, v}) -> v !== nil end)
+  end
 
   @doc """
   Flattens an Activity struct into a plain map
@@ -40,11 +60,15 @@ defmodule Streamex.Feed.Activity do
   end
 
   def to_json([%__MODULE__{} | _] = activities) do
-    %{activities: Enum.map(activities, &to_json(&1))}
+    {:ok, body} = %{activities: Enum.map(activities, &to_map(&1))}
     |> Poison.encode
+
+    body
   end
 
   def to_json(%__MODULE__{} = activity) do
-    to_map(activity)
+    {:ok, body} = Poison.encode(activity)
+
+    body
   end
 end

@@ -23,12 +23,13 @@ defmodule Streamex.Client do
 
   defp parse_response({:error, body}), do: {:error, body}
 
-  defp api_url(url, params) when params == %{} do
+  defp api_url(url, params) when params == [] do
     "https://#{@api_region}-#{@api_url}/#{url}?api_key=#{@api_key}"
   end
 
   defp api_url(url, params) do
-    "https://#{@api_region}-#{@api_url}/#{url}?api_key=#{@api_key}&#{URI.encode_query(params)}"
+    <<api_url(url, []) :: binary, "&", URI.encode_query(params) :: binary>>
+    # "https://#{@api_region}-#{@api_url}/#{url}?api_key=#{@api_key}&#{URI.encode_query(params)}"
   end
 
   defp request_headers(token) do

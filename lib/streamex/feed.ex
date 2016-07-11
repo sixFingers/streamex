@@ -1,5 +1,6 @@
 defmodule Streamex.Feed do
   import Streamex.Client
+  alias Streamex.Follow, as: Follow
 
   defstruct slug: nil, user_id: nil, id: nil
 
@@ -7,90 +8,79 @@ defmodule Streamex.Feed do
     %__MODULE__{slug: slug, user_id: user_id, id: "#{slug}#{user_id}"}
   end
 
-  def get(%__MODULE__{} = feed) do
-    url = endpoint_get_activities(feed)
-    token = Streamex.Token.new(feed, "feed", "read")
+  def followers(%__MODULE__{} = feed, opts \\ []) do
+    defaults = [limit: 25, offset: 0]
+    opts = Keyword.merge(defaults, opts)
+    url = endpoint_get_followers(feed)
+    token = Streamex.Token.new(feed, "follower", "read")
 
-    jwt_request(url, :get, token)
+    jwt_request(url, :get, token, "", opts)
     |> handle_response
   end
 
-  def create(%__MODULE__{} = feed, %Streamex.Feed.Activity{} = activity) do
-    create(feed, [activity])
-  end
+  def following(%__MODULE__{} = feed, opts \\ []) do
+    defaults = [limit: 25, offset: 0]
+    opts = Keyword.merge(defaults, opts)
+    url = endpoint_get_following(feed)
+    token = Streamex.Token.new(feed, "follower", "read")
 
-  def create(%__MODULE__{} = feed, [%Streamex.Feed.Activity{} | _] = activities) do
-    url = endpoint_create_activities(feed)
-    token = Streamex.Token.new(feed, "feed", "write")
-    {:ok, body} = Streamex.Feed.Activity.to_json(activities)
-
-    jwt_request(url, :post, token, body)
+    jwt_request(url, :get, token, "", opts)
     |> handle_response
   end
 
-  def update(%__MODULE__{} = feed, %Streamex.Feed.Activity{} = activity) do
-    update(feed, [activity])
-  end
+  def follow(%__MODULE__{} = feed, target_feed, target_user, opts \\ []) do
+    defaults = [activity_copy_limit: 300]
+    opts = Keyword.merge(defaults, opts)
+    url = endpoint_create_following(feed)
+    token = Streamex.Token.new(feed, "follower", "write")
+    target = get_follow_target_string(target_feed, target_user)
+    {:ok, body} = Poison.encode(%{"target" => target})
 
-  def update(%__MODULE__{} = feed, [%Streamex.Feed.Activity{} | _] = activities) do
-    url = endpoint_update_activities()
-    token = Streamex.Token.new(feed, "activities", "write")
-    {:ok, body} = Streamex.Feed.Activity.to_json(activities)
-
-    jwt_request(url, :post, token, body)
+    jwt_request(url, :post, token, body, opts)
     |> handle_response
   end
 
-  def remove(%__MODULE__{} = feed, id, foreign_id \\ false) do
-    url = endpoint_remove_activities(feed, id)
-    token = Streamex.Token.new(feed, "feed", "delete")
+  def unfollow(%__MODULE__{} = feed, target_feed, target_user, opts \\ []) do
+    target = get_follow_target_string(target_feed, target_user)
+    url = endpoint_remove_following(feed, target)
+    token = Streamex.Token.new(feed, "follower", "delete")
 
-    do_remove(url, token, foreign_id)
+    jwt_request(url, :delete, token, "", opts)
     |> handle_response
   end
 
-  defp do_remove(url, token, foreign_id) do
-    case foreign_id do
-      false -> jwt_request(url, :delete, token)
-      true -> jwt_request(url, :delete, token, "", %{"foreign_id" => 1})
-    end
+  defp get_follow_target_string(target_feed, target_user) do
+    "#{target_feed}:#{target_user}"
   end
 
-  # defp do_remove(url, token, foreign_id) when foreign_id == true do
-  #   jwt_request(url, :delete, token, "", %{"foreign_id" => 1})
-  # end
+  # Error response
+  # THIS SHOULD THROW EXCEPTION
+  defp handle_response(%{"status_code" => _, "detail" => detail}), do: {:error, detail}
 
-  # Response from get request
+  # Successful get response
   defp handle_response(%{"results" => results}) do
-    Enum.map(results, &Streamex.Feed.Activity.to_struct(&1))
+    results
+    |> Enum.map(&Follow.to_struct(&1))
   end
 
-  # Response from create request
-  defp handle_response(%{"activities" => results}) do
-    Enum.map(results, &Streamex.Feed.Activity.to_struct(&1))
-  end
-
-  # Response from update requests
-  defp handle_response(%{"duration" => _}) do
+  # Successful post response
+  defp handle_response(_) do
     {:ok, nil}
   end
 
-  # Response with error
-  defp handle_response(%{"status_code" => _, "detail" => detail}), do: {:error, detail}
-
-  defp endpoint_get_activities(%__MODULE__{} = feed) do
-    <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/">>
+  defp endpoint_get_followers(%__MODULE__{} = feed) do
+    <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/followers/">>
   end
 
-  defp endpoint_create_activities(%__MODULE__{} = feed) do
-    endpoint_get_activities(feed)
+   defp endpoint_get_following(%__MODULE__{} = feed) do
+    <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/following/">>
   end
 
-  defp endpoint_update_activities() do
-    "activities/"
+  defp endpoint_create_following(%__MODULE__{} = feed) do
+    endpoint_get_following(feed)
   end
 
-  defp endpoint_remove_activities(%__MODULE__{} = feed, id) do
-    <<endpoint_get_activities(feed) :: binary, id :: binary, "/">>
+  defp endpoint_remove_following(%__MODULE__{} = feed, target) do
+    <<endpoint_get_following(feed) :: binary, target :: binary, "/">>
   end
 end
