@@ -13,9 +13,9 @@
   Streamex.Activities.get(f, limit: 5, offset: 5)
 
   # Create activity
-  basic = Streamex.Activity.new("Ignazio", "like", "Elixir")
-  optional = Streamex.Activity.new("Gregorio", "like", "Ruby", [foreign_id: "like:1"])
-  custom = Streamex.Activity.new("Edoardo", "like", "AfterEffects", [foreign_id: "like:1"], %{"age" => 23})
+  basic = Streamex.Activity.new("Tony", "like", "Elixir")
+  optional = Streamex.Activity.new("Linda", "like", "Ruby", [foreign_id: "like:1"])
+  custom = Streamex.Activity.new("Jack", "like", "AfterEffects", [foreign_id: "like:1"], %{"age" => 23})
 
   # Add activity to stream
   Streamex.Activities.add(f, basic)
