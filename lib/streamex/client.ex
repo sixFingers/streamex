@@ -1,7 +1,5 @@
 defmodule Streamex.Client do
   use HTTPoison.Base
-  import Timex
-  alias Timex.DateTime, as: DateTime
   alias Streamex.Request
 
   @api_region Application.get_env(:streamex, :region)
@@ -9,63 +7,76 @@ defmodule Streamex.Client do
   @api_secret Application.get_env(:streamex, :secret)
   @api_url "api.getstream.io/api/v1.0"
 
-  def jwt_request(url, method, token, body \\ "", params \\ %{}) do
+  def with_method(%Request{} = r, method) do
+    %{r | method: method}
+  end
+
+  def with_path(%Request{} = r, path) do
+    %{r | path: path}
+  end
+
+  def with_body(%Request{} = r, body) do
+    %{r | body: body}
+  end
+
+  def with_token(%Request{} = r, feed, resource, actions) do
+    %{r | token: Streamex.Token.new(@api_secret, feed, resource, actions)}
+  end
+
+  def with_params(%Request{} = r, params) do
+    %{r | params: params}
+  end
+
+  def execute(%Request{} = r) do
+    case r.token do
+      nil -> execute_signed(r)
+      _ -> execute_jwt(r)
+    end
+  end
+
+  defp execute_jwt(%Request{} = r) do
+    r = Request.sign(r)
+
     request(
-      method,
-      api_url(url, params),
-      body,
-      jwt_request_headers(token),
-      request_options()
+      r.method,
+      full_url(r.path, r.params),
+      r.body,
+      r.headers,
+      r.options
     )
     |> parse_response
   end
 
-  def signed_request(url, method, body \\ "", params \\ %{}) do
-    algoritm = "hmac-sha256"
-    {_, now} = DateTime.local() |> format("{RFC822}")
-    api_key_header = {"X-Api-Key", @api_key}
-    date_header = {"Date", now}
-    content_type_header = {"content-type", "application/json"}
-
-    headers_value = "date"
-    header_field_string = "date: #{now}"
-    signature = :crypto.hmac(:sha256, @api_secret, header_field_string) |> Base.encode64
-    auth_header = {"Authorization", "Signature keyId=\"#{@api_key}\",algorithm=\"#{algoritm}\",headers=\"#{headers_value}\",signature=\"#{signature}\""}
-    headers = [api_key_header, date_header, auth_header, content_type_header]
+  defp execute_signed(%Request{} = r) do
+    r = Request.sign(r, @api_key, @api_secret)
 
     request!(
-      method,
-      api_url(url, params),
-      body,
-      headers,
-      request_options()
+      r.method,
+      full_url(r.path, r.params),
+      r.body,
+      r.headers,
+      r.options
     )
+    |> parse_response
   end
+
+  defp parse_response({:error, body}), do: {:error, body}
 
   defp parse_response({:ok, response}) do
     {:ok, contents} = Poison.decode(response.body)
     contents
   end
 
-  defp parse_response({:error, body}), do: {:error, body}
+  defp parse_response(response) do
+    {:ok, contents} = Poison.decode(response.body)
+    contents
+  end
 
-  defp api_url(url, params) when params == %{} do
+  defp full_url(url, params) when params == %{} do
     "https://#{@api_region}-#{@api_url}/#{url}?api_key=#{@api_key}"
   end
 
-  defp api_url(url, params) do
-    <<api_url(url, %{}) :: binary, "&", URI.encode_query(params) :: binary>>
-  end
-
-  defp jwt_request_headers(token) do
-    [
-      {"Authorization", token},
-      {"stream-auth-type", "jwt"},
-      {"content-type", "application/json"}
-    ]
-  end
-
-  defp request_options() do
-    [{:timeout, 3000}]
+  defp full_url(url, params) do
+    <<full_url(url, %{}) :: binary, "&", URI.encode_query(params) :: binary>>
   end
 end
