@@ -41,6 +41,9 @@ Streamex is a [GetStream](https://getstream.io) client library for the Elixir la
   Streamex.Feed.follow(f, "user", "jessica")
   # Stop following another feed
   Streamex.Feed.unfollow(f, "user", "jessica")
+
+  # Batch add an activity to many feeds
+  Streamex.Activities.add_to_many(basic, ["user:jessica"])
   ```
 
 
