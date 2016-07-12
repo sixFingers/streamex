@@ -1,8 +1,7 @@
 # Streamex
 
 Streamex is a [GetStream](https://getstream.io) client library for the Elixir language.
-
-**Pre-pre-pre-alpha status: don't use this. Yet.**
+This is beta status, see below.
 
 # Usage
 
@@ -47,6 +46,8 @@ Streamex is a [GetStream](https://getstream.io) client library for the Elixir la
 
   ```
 
+## Missing features
+The client allows the above operations, but still misses batch operation on followers, and a number of improvements to the api. Nothing is tested yet. Any help appreciated!
 
 ## Installation
 
