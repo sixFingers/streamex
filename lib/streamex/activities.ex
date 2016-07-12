@@ -4,11 +4,12 @@ defmodule Streamex.Activities do
   alias Streamex.Activity, as: Activity
 
   def get(%Feed{} = feed, opts \\ []) do
-    url = endpoint_get(feed)
-    token = Streamex.Token.new(feed, "feed", "read")
-    params = activity_get_params(opts)
-
-    jwt_request(url, :get, token, "", params)
+    %Streamex.Request{}
+    |> with_method(:get)
+    |> with_path(endpoint_get(feed))
+    |> with_token(feed, "feed", "read")
+    |> with_params(activity_get_params(opts))
+    |> execute
     |> handle_response
   end
 
@@ -17,11 +18,21 @@ defmodule Streamex.Activities do
   end
 
   def add(%Feed{} = feed, [%Activity{} | _] = activities) do
-    url = endpoint_create(feed)
-    token = Streamex.Token.new(feed, "feed", "write")
-    body = Activity.to_json(activities)
+    %Streamex.Request{}
+    |> with_method(:post)
+    |> with_path(endpoint_create(feed))
+    |> with_token(feed, "feed", "write")
+    |> with_body(Activity.to_json(activities))
+    |> execute
+    |> handle_response
+  end
 
-    jwt_request(url, :post, token, body)
+  def add_to_many(%Activity{} = activity, [_] = feeds) do
+    %Streamex.Request{}
+    |> with_method(:post)
+    |> with_path(endpoint_add_to_many())
+    |> with_body(body_create(feeds, activity))
+    |> execute
     |> handle_response
   end
 
@@ -30,32 +41,31 @@ defmodule Streamex.Activities do
   end
 
   def update(%Feed{} = feed, [%Activity{} | _] = activities) do
-    url = endpoint_update()
-    token = Streamex.Token.new(feed, "activities", "write")
-    body = Activity.to_json(activities)
-
-    jwt_request(url, :post, token, body)
+    %Streamex.Request{}
+    |> with_method(:post)
+    |> with_path(endpoint_update())
+    |> with_token(feed, "activities", "write")
+    |> with_body(Activity.to_json(activities))
+    |> execute
+    # we may append updated id here?
     |> handle_response
   end
 
   def remove(%Feed{} = feed, id, foreign_id \\ false) do
-    url = endpoint_remove(feed, id)
-    token = Streamex.Token.new(feed, "feed", "delete")
+    params = foreign_id && %{"foreign_id" => 1} || %{}
 
-    do_remove(url, token, foreign_id)
+    %Streamex.Request{}
+    |> with_method(:delete)
+    |> with_path(endpoint_remove(feed, id))
+    |> with_token(feed, "feed", "delete")
+    |> with_params(params)
+    |> execute
     |> handle_response
-  end
-
-  defp do_remove(url, token, foreign_id) do
-    case foreign_id do
-      false -> jwt_request(url, :delete, token)
-      true -> jwt_request(url, :delete, token, "", %{"foreign_id" => 1})
-    end
   end
 
   defp activity_get_params(opts) do
     defaults = [limit: 25, offset: nil, id_gte: nil, id_gt: nil, id_lte: nil, id_lt: nil]
-    Keyword.merge(defaults, opts) |> Enum.filter(fn({_, v}) -> v != nil end)
+    Keyword.merge(defaults, opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
   end
 
   # Error response
@@ -94,5 +104,15 @@ defmodule Streamex.Activities do
 
   defp endpoint_remove(%Feed{} = feed, id) do
     <<endpoint_get(feed) :: binary, id :: binary, "/">>
+  end
+
+  defp endpoint_add_to_many() do
+    "feed/add_to_many/"
+  end
+
+  defp body_create(feeds, activity) do
+    payload = %{"feeds" => feeds, "activity" => activity}
+    {:ok, body} = Poison.encode(payload)
+    body
   end
 end

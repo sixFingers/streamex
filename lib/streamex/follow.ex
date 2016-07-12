@@ -4,10 +4,6 @@ defmodule Streamex.Follow do
             created_at: nil,
             updated_at: nil
 
-  def new(feed, target_id) do
-
-  end
-
   @doc """
   Converts a map coming from the API into
   an Activity struct.

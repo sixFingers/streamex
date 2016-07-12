@@ -9,43 +9,44 @@ defmodule Streamex.Feed do
   end
 
   def followers(%__MODULE__{} = feed, opts \\ []) do
-    defaults = [limit: 25, offset: 0]
-    opts = Keyword.merge(defaults, opts)
-    url = endpoint_get_followers(feed)
-    token = Streamex.Token.new(feed, "follower", "read")
-
-    jwt_request(url, :get, token, "", opts)
+    %Streamex.Request{}
+    |> with_method(:get)
+    |> with_path(endpoint_get_followers(feed))
+    |> with_token(feed, "follower", "read")
+    |> with_params(params_get_followers(opts))
+    |> execute
     |> handle_response
   end
 
   def following(%__MODULE__{} = feed, opts \\ []) do
-    defaults = [limit: 25, offset: 0]
-    opts = Keyword.merge(defaults, opts)
-    url = endpoint_get_following(feed)
-    token = Streamex.Token.new(feed, "follower", "read")
-
-    jwt_request(url, :get, token, "", opts)
+    %Streamex.Request{}
+    |> with_method(:get)
+    |> with_path(endpoint_get_following(feed))
+    |> with_token(feed, "follower", "read")
+    |> with_params(params_get_following(opts))
+    |> execute
     |> handle_response
   end
 
   def follow(%__MODULE__{} = feed, target_feed, target_user, opts \\ []) do
-    defaults = [activity_copy_limit: 300]
-    opts = Keyword.merge(defaults, opts)
-    url = endpoint_create_following(feed)
-    token = Streamex.Token.new(feed, "follower", "write")
-    target = get_follow_target_string(target_feed, target_user)
-    {:ok, body} = Poison.encode(%{"target" => target})
-
-    jwt_request(url, :post, token, body, opts)
+    %Streamex.Request{}
+    |> with_method(:post)
+    |> with_path(endpoint_create_following(feed))
+    |> with_token(feed, "follower", "write")
+    |> with_body(body_create_following(target_feed, target_user))
+    |> with_params(params_create_following(opts))
+    |> execute
     |> handle_response
   end
 
-  def unfollow(%__MODULE__{} = feed, target_feed, target_user, opts \\ []) do
+  def unfollow(%__MODULE__{} = feed, target_feed, target_user, _) do
     target = get_follow_target_string(target_feed, target_user)
-    url = endpoint_remove_following(feed, target)
-    token = Streamex.Token.new(feed, "follower", "delete")
 
-    jwt_request(url, :delete, token, "", opts)
+    %Streamex.Request{}
+    |> with_method(:delete)
+    |> with_path(endpoint_remove_following(feed, target))
+    |> with_token(feed, "follower", "delete")
+    |> execute
     |> handle_response
   end
 
@@ -82,5 +83,25 @@ defmodule Streamex.Feed do
 
   defp endpoint_remove_following(%__MODULE__{} = feed, target) do
     <<endpoint_get_following(feed) :: binary, target :: binary, "/">>
+  end
+
+  defp params_get_followers(opts) do
+    defaults = [limit: 25, offset: 0]
+    Keyword.merge(defaults, opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
+  end
+
+  defp params_get_following(opts) do
+    params_get_followers(opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
+  end
+
+  defp params_create_following(opts) do
+    defaults = [activity_copy_limit: 300]
+    Keyword.merge(defaults, opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
+  end
+
+  defp body_create_following(target_feed, target_user) do
+    target = get_follow_target_string(target_feed, target_user)
+    {:ok, body} = Poison.encode(%{"target" => target})
+    body
   end
 end
