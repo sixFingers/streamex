@@ -44,6 +44,7 @@ Streamex is a [GetStream](https://getstream.io) client library for the Elixir la
 
   # Batch add an activity to many feeds
   Streamex.Activities.add_to_many(basic, ["user:jessica"])
+
   ```
 
 
