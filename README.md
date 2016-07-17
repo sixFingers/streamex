@@ -44,6 +44,9 @@ This is beta status, see below.
   # Batch add an activity to many feeds
   Streamex.Activities.add_to_many(basic, ["user:jessica"])
 
+  # Batch follow
+  followings = [%{"source" => "user:eric", "target" => "user:1"}, %{"source" => "user:eric", "target" => "user:9"}]
+  Streamex.Feed.follow_many(followings)
   ```
 
 ## Missing features

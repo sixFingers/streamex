@@ -39,6 +39,16 @@ defmodule Streamex.Feed do
     |> handle_response
   end
 
+  def follow_many(followings, opts \\ []) do
+    %Streamex.Request{}
+    |> with_method(:post)
+    |> with_path(endpoint_create_following_many())
+    |> with_body(body_create_following_many(followings))
+    |> with_params(params_create_following_many(opts))
+    |> execute
+    |> handle_response
+  end
+
   def unfollow(%__MODULE__{} = feed, target_feed, target_user, _) do
     target = get_follow_target_string(target_feed, target_user)
 
@@ -85,6 +95,10 @@ defmodule Streamex.Feed do
     <<endpoint_get_following(feed) :: binary, target :: binary, "/">>
   end
 
+  defp endpoint_create_following_many() do
+    "follow_many/"
+  end
+
   defp params_get_followers(opts) do
     defaults = [limit: 25, offset: 0]
     Keyword.merge(defaults, opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
@@ -99,9 +113,19 @@ defmodule Streamex.Feed do
     Keyword.merge(defaults, opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
   end
 
+  defp params_create_following_many(opts) do
+    defaults = [activity_copy_limit: 300]
+    Keyword.merge(defaults, opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
+  end
+
   defp body_create_following(target_feed, target_user) do
     target = get_follow_target_string(target_feed, target_user)
     {:ok, body} = Poison.encode(%{"target" => target})
+    body
+  end
+
+  defp body_create_following_many(followings) do
+    {:ok, body} = Poison.encode(followings)
     body
   end
 end
