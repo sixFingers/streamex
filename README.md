@@ -50,7 +50,7 @@ This is beta status, see below.
   ```
 
 ## Missing features
-The client allows the above operations, but still misses batch operation on followers, and a number of improvements to the api. Nothing is tested yet. Any help appreciated!
+The client still needs a number of improvements to the api. Nothing is tested yet. Any help appreciated!
 
 ## Installation
 
