@@ -32,7 +32,7 @@ defmodule Streamex.Mixfile do
     [
       {:httpoison, "~> 0.9.0"},
       {:poison, "~> 2.2"},
-      {:joken, "~> 1.2"}
+      {:joken, "~> 1.2"},
       {:timex, "~> 2.2"}
     ]
   end
