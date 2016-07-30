@@ -7,6 +7,10 @@ defmodule Streamex.Client do
   @api_secret Application.get_env(:streamex, :secret)
   @api_url "api.getstream.io/api/v1.0"
 
+  def new_request() do
+    %Request{}
+  end
+
   def with_method(%Request{} = r, method) do
     %{r | method: method}
   end

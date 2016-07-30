@@ -9,7 +9,7 @@ defmodule Streamex.Feed do
   end
 
   def followers(%__MODULE__{} = feed, opts \\ []) do
-    %Streamex.Request{}
+    new_request
     |> with_method(:get)
     |> with_path(endpoint_get_followers(feed))
     |> with_token(feed, "follower", "read")
@@ -19,7 +19,7 @@ defmodule Streamex.Feed do
   end
 
   def following(%__MODULE__{} = feed, opts \\ []) do
-    %Streamex.Request{}
+    new_request
     |> with_method(:get)
     |> with_path(endpoint_get_following(feed))
     |> with_token(feed, "follower", "read")
@@ -29,7 +29,7 @@ defmodule Streamex.Feed do
   end
 
   def follow(%__MODULE__{} = feed, target_feed, target_user, opts \\ []) do
-    %Streamex.Request{}
+    new_request
     |> with_method(:post)
     |> with_path(endpoint_create_following(feed))
     |> with_token(feed, "follower", "write")
@@ -40,7 +40,7 @@ defmodule Streamex.Feed do
   end
 
   def follow_many(followings, opts \\ []) do
-    %Streamex.Request{}
+    new_request
     |> with_method(:post)
     |> with_path(endpoint_create_following_many())
     |> with_body(body_create_following_many(followings))
@@ -52,7 +52,7 @@ defmodule Streamex.Feed do
   def unfollow(%__MODULE__{} = feed, target_feed, target_user, _) do
     target = get_follow_target_string(target_feed, target_user)
 
-    %Streamex.Request{}
+    new_request
     |> with_method(:delete)
     |> with_path(endpoint_remove_following(feed, target))
     |> with_token(feed, "follower", "delete")
