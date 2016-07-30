@@ -64,8 +64,8 @@ defmodule Streamex.Activities do
   end
 
   defp activity_get_params(opts) do
-    defaults = [limit: 25, offset: nil, id_gte: nil, id_gt: nil, id_lte: nil, id_lt: nil]
-    Keyword.merge(defaults, opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
+    defaults = [limit: 25, offset: 0]
+    Keyword.merge(defaults, opts) |> Enum.into(%{})
   end
 
   # Error response

@@ -101,21 +101,21 @@ defmodule Streamex.Feed do
 
   defp params_get_followers(opts) do
     defaults = [limit: 25, offset: 0]
-    Keyword.merge(defaults, opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
+    Keyword.merge(defaults, opts) |> Enum.into(%{})
   end
 
   defp params_get_following(opts) do
-    params_get_followers(opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
+    params_get_followers(opts)
   end
 
   defp params_create_following(opts) do
     defaults = [activity_copy_limit: 300]
-    Keyword.merge(defaults, opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
+    Keyword.merge(defaults, opts) |> Enum.into(%{})
   end
 
   defp params_create_following_many(opts) do
     defaults = [activity_copy_limit: 300]
-    Keyword.merge(defaults, opts) |> Enum.filter(fn({_, v}) -> v != nil end) |> Enum.into(%{})
+    Keyword.merge(defaults, opts) |> Enum.into(%{})
   end
 
   defp body_create_following(target_feed, target_user) do
