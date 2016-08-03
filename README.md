@@ -1,4 +1,5 @@
-# Streamex
+# Streamex [![Build Status](https://travis-ci.org/sixFingers/streamex.svg?branch=master)](https://travis-ci.org/sixFingers/streamex)
+============
 
 Streamex is a [GetStream](https://getstream.io) client library for the Elixir language.
 
