@@ -113,7 +113,7 @@ defmodule Streamex.Feed do
     <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/followers/">>
   end
 
-   defp endpoint_get_following(%__MODULE__{} = feed) do
+  defp endpoint_get_following(%__MODULE__{} = feed) do
     <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/following/">>
   end
 

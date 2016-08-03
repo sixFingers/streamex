@@ -8,7 +8,7 @@ defmodule Streamex.Helpers do
 
   def validate([]), do: true
 
-  def validate({source, target} = t) do
+  def validate({_, __} = t) do
     validate(Tuple.to_list(t))
   end
 
