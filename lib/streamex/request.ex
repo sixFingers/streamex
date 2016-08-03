@@ -1,6 +1,5 @@
 defmodule Streamex.Request do
-  import Timex
-  alias Timex.DateTime, as: DateTime
+  alias Streamex.Token
 
   @default_options [
     {:timeout, 3000}
@@ -10,7 +9,8 @@ defmodule Streamex.Request do
     {"content-type", "application/json"}
   ]
 
-  defstruct path: "",
+  defstruct url: "",
+            path: "",
             method: :get,
             headers: @default_headers,
             params: %{},
@@ -18,28 +18,23 @@ defmodule Streamex.Request do
             options: @default_options,
             token: nil
 
-  def sign(%__MODULE__{} = r) do
-    headers = [
-      {"Authorization", r.token},
-      {"stream-auth-type", "jwt"},
-    ] ++ r.headers
-    r = %{r | headers: headers}
-    r
+  def with_method(%__MODULE__{} = r, method) do
+    %{r | method: method}
   end
 
-  def sign(%__MODULE__{} = r, key, secret) do
-    algoritm = "hmac-sha256"
-    {_, now} = DateTime.local() |> format("{RFC822}")
+  def with_path(%__MODULE__{} = r, path) do
+    %{r | path: path}
+  end
 
-    api_key_header = {"X-Api-Key", key}
-    date_header = {"Date", now}
-    headers_value = "date"
-    header_field_string = "#{headers_value}: #{now}"
-    signature = :crypto.hmac(:sha256, secret, header_field_string) |> Base.encode64
-    auth_header = {"Authorization", "Signature keyId=\"#{key}\",algorithm=\"#{algoritm}\",headers=\"#{headers_value}\",signature=\"#{signature}\""}
+  def with_body(%__MODULE__{} = r, body) do
+    %{r | body: body}
+  end
 
-    headers = [api_key_header, date_header, auth_header] ++ r.headers
-    r = %{r | headers: headers}
-    r
+  def with_token(%__MODULE__{} = r, feed, resource, action) do
+    %{r | token: %Token{feed_id: feed.id, resource: resource, action: action}}
+  end
+
+  def with_params(%__MODULE__{} = r, params) do
+    %{r | params: params}
   end
 end
