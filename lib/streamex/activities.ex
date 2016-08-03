@@ -1,38 +1,47 @@
 defmodule Streamex.Activities do
-  import Streamex.Client
-  alias Streamex.Feed, as: Feed
-  alias Streamex.Activity, as: Activity
+  import Streamex.Request
+  alias Streamex.{Request, Client, Feed, Activity}
 
   def get(%Feed{} = feed, opts \\ []) do
-    new_request
+    %Request{}
     |> with_method(:get)
     |> with_path(endpoint_get(feed))
     |> with_token(feed, "feed", "read")
     |> with_params(activity_get_params(opts))
-    |> execute
+    |> Client.prepare_request
+    |> Client.sign_request
+    |> Client.execute_request
+    |> Client.parse_response
     |> handle_response
   end
 
   def add(%Feed{} = feed, %Activity{} = activity) do
     add(feed, [activity])
+    |> Enum.at(0)
   end
 
   def add(%Feed{} = feed, [%Activity{} | _] = activities) do
-    new_request
+    %Request{}
     |> with_method(:post)
     |> with_path(endpoint_create(feed))
     |> with_token(feed, "feed", "write")
     |> with_body(Activity.to_json(activities))
-    |> execute
+    |> Client.prepare_request
+    |> Client.sign_request
+    |> Client.execute_request
+    |> Client.parse_response
     |> handle_response
   end
 
-  def add_to_many(%Activity{} = activity, [_] = feeds) do
-    new_request
+  def add_to_many(%Activity{} = activity, feeds) do
+    %Request{}
     |> with_method(:post)
     |> with_path(endpoint_add_to_many())
-    |> with_body(body_create(feeds, activity))
-    |> execute
+    |> with_body(body_create_activities(feeds, activity))
+    |> Client.prepare_request
+    |> Client.sign_request
+    |> Client.execute_request
+    |> Client.parse_response
     |> handle_response
   end
 
@@ -41,25 +50,30 @@ defmodule Streamex.Activities do
   end
 
   def update(%Feed{} = feed, [%Activity{} | _] = activities) do
-    new_request
+    %Request{}
     |> with_method(:post)
     |> with_path(endpoint_update())
     |> with_token(feed, "activities", "write")
     |> with_body(Activity.to_json(activities))
-    |> execute
-    # we may append updated id here?
+    |> Client.prepare_request
+    |> Client.sign_request
+    |> Client.execute_request
+    |> Client.parse_response
     |> handle_response
   end
 
   def remove(%Feed{} = feed, id, foreign_id \\ false) do
     params = foreign_id && %{"foreign_id" => 1} || %{}
 
-    new_request
+    %Request{}
     |> with_method(:delete)
     |> with_path(endpoint_remove(feed, id))
     |> with_token(feed, "feed", "delete")
     |> with_params(params)
-    |> execute
+    |> Client.prepare_request
+    |> Client.sign_request
+    |> Client.execute_request
+    |> Client.parse_response
     |> handle_response
   end
 
@@ -110,7 +124,9 @@ defmodule Streamex.Activities do
     "feed/add_to_many/"
   end
 
-  defp body_create(feeds, activity) do
+  defp body_create_activities(feeds, activity) do
+    feeds = Enum.map(feeds, fn({slug, user_id}) -> "#{slug}:#{user_id}" end)
+
     payload = %{"feeds" => feeds, "activity" => activity}
     {:ok, body} = Poison.encode(payload)
     body

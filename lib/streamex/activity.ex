@@ -1,13 +1,13 @@
 defmodule Streamex.Activity do
   defstruct id: nil,
+            foreign_id: nil,
             actor: nil,
             verb: nil,
             object: nil,
-            target: nil,
             time: nil,
             to: [],
             origin: nil,
-            foreign_id: nil,
+            target: nil,
             custom_fields: %{}
 
   @doc """

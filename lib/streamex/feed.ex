@@ -1,63 +1,94 @@
 defmodule Streamex.Feed do
-  import Streamex.Client
-  alias Streamex.Follow, as: Follow
+  import Streamex.Helpers
+  import Streamex.Request
+  alias Streamex.{Client, Request, Follow}
 
   defstruct slug: nil, user_id: nil, id: nil
 
   def new(slug, user_id) do
-    %__MODULE__{slug: slug, user_id: user_id, id: "#{slug}#{user_id}"}
+    case validate([slug, user_id]) do
+      true -> {:ok, %__MODULE__{slug: slug, user_id: user_id, id: "#{slug}#{user_id}"}}
+      false -> validate_error
+    end
   end
 
   def followers(%__MODULE__{} = feed, opts \\ []) do
-    new_request
+    %Request{}
     |> with_method(:get)
     |> with_path(endpoint_get_followers(feed))
     |> with_token(feed, "follower", "read")
     |> with_params(params_get_followers(opts))
-    |> execute
+    |> Client.prepare_request
+    |> Client.sign_request
+    |> Client.execute_request
+    |> Client.parse_response
     |> handle_response
   end
 
   def following(%__MODULE__{} = feed, opts \\ []) do
-    new_request
+    %Request{}
     |> with_method(:get)
     |> with_path(endpoint_get_following(feed))
     |> with_token(feed, "follower", "read")
     |> with_params(params_get_following(opts))
-    |> execute
+    |> Client.prepare_request
+    |> Client.sign_request
+    |> Client.execute_request
+    |> Client.parse_response
     |> handle_response
   end
 
   def follow(%__MODULE__{} = feed, target_feed, target_user, opts \\ []) do
-    new_request
-    |> with_method(:post)
-    |> with_path(endpoint_create_following(feed))
-    |> with_token(feed, "follower", "write")
-    |> with_body(body_create_following(target_feed, target_user))
-    |> with_params(params_create_following(opts))
-    |> execute
-    |> handle_response
+    if validate([target_feed, target_user]) do
+      %Request{}
+      |> with_method(:post)
+      |> with_path(endpoint_create_following(feed))
+      |> with_token(feed, "follower", "write")
+      |> with_body(body_create_following(target_feed, target_user))
+      |> with_params(params_create_following(opts))
+      |> Client.prepare_request
+      |> Client.sign_request
+      |> Client.execute_request
+      |> Client.parse_response
+      |> handle_response
+    else
+      validate_error
+    end
   end
 
   def follow_many(followings, opts \\ []) do
-    new_request
-    |> with_method(:post)
-    |> with_path(endpoint_create_following_many())
-    |> with_body(body_create_following_many(followings))
-    |> with_params(params_create_following_many(opts))
-    |> execute
-    |> handle_response
+    if validate(followings) do
+      %Request{}
+      |> with_method(:post)
+      |> with_path(endpoint_create_following_many())
+      |> with_body(body_create_following_many(followings))
+      |> with_params(params_create_following_many(opts))
+      |> Client.prepare_request
+      |> Client.sign_request
+      |> Client.execute_request
+      |> Client.parse_response
+      |> handle_response
+    else
+      validate_error
+    end
   end
 
-  def unfollow(%__MODULE__{} = feed, target_feed, target_user, _) do
-    target = get_follow_target_string(target_feed, target_user)
+  def unfollow(%__MODULE__{} = feed, target_feed, target_user) do
+    if validate(target_feed) && validate(target_user) do
+      target = get_follow_target_string(target_feed, target_user)
 
-    new_request
-    |> with_method(:delete)
-    |> with_path(endpoint_remove_following(feed, target))
-    |> with_token(feed, "follower", "delete")
-    |> execute
-    |> handle_response
+      %Request{}
+      |> with_method(:delete)
+      |> with_path(endpoint_remove_following(feed, target))
+      |> with_token(feed, "follower", "delete")
+      |> Client.prepare_request
+      |> Client.sign_request
+      |> Client.execute_request
+      |> Client.parse_response
+      |> handle_response
+    else
+      validate_error
+    end
   end
 
   defp get_follow_target_string(target_feed, target_user) do
@@ -70,8 +101,7 @@ defmodule Streamex.Feed do
 
   # Successful get response
   defp handle_response(%{"results" => results}) do
-    results
-    |> Enum.map(&Follow.to_struct(&1))
+    Enum.map(results, &Follow.to_struct(&1))
   end
 
   # Successful post response
@@ -125,6 +155,13 @@ defmodule Streamex.Feed do
   end
 
   defp body_create_following_many(followings) do
+    followings = Enum.map(followings, fn({source, target}) ->
+      %{
+        "source" => "#{elem(source, 0)}:#{elem(source, 1)}",
+        "target" => "#{elem(target, 0)}:#{elem(target, 1)}"
+      }
+    end)
+
     {:ok, body} = Poison.encode(followings)
     body
   end
