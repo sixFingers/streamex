@@ -1,17 +1,19 @@
 # Streamex
 
 Streamex is a [GetStream](https://getstream.io) client library for the Elixir language.
-This is beta status, see below.
 
 # Usage
 
   ```elixir
+  # Configure the client
+  Streamex.Config.configure("key", "secret", "region")
+
   # Create a new feed
-  f = Streamex.Feed.new("user", "eric")
+  {status, feed} = Streamex.Feed.new("user", "eric")
 
   # Get activities
-  Streamex.Activities.get(f)
-  Streamex.Activities.get(f, limit: 5, offset: 5)
+  activities = Streamex.Activities.get(feed)
+  activities = Streamex.Activities.get(feed, limit: 5, offset: 5)
 
   # Create activity
   basic = Streamex.Activity.new("Tony", "like", "Elixir")
@@ -19,38 +21,44 @@ This is beta status, see below.
   custom = Streamex.Activity.new("Jack", "like", "AfterEffects", [foreign_id: "like:1"], %{"age" => 23})
 
   # Add activity to stream
-  Streamex.Activities.add(f, basic)
-  Streamex.Activities.add(f, [basic, optional, custom])
+  activity = Streamex.Activities.add(feed, basic)
+  activity = Streamex.Activities.add(feed, [basic, optional, custom])
 
   # Update activity
   optional = %{optional | verb: "dislikes"}
-  Streamex.Activities.update(f, optional)
+  Streamex.Activities.update(feed, optional)
 
   # Remove activity by id
-  Streamex.Activities.remove(f, [id returned from api])
+  Streamex.Activities.remove(feed, [id returned from api])
   # Remove activity by foreign_id
-  Streamex.Activities.remove(f, "like:1", true)
+  Streamex.Activities.remove(feed, "like:1", true)
 
   # Get followers
-  Streamex.Feed.followers(f)
+  Streamex.Feed.followers(feed)
   # Get following
-  Streamex.Feed.following(f)
+  Streamex.Feed.following(feed)
 
   # Start following another feed
-  Streamex.Feed.follow(f, "user", "jessica")
+  Streamex.Feed.follow(feed, "user", "jessica")
   # Stop following another feed
-  Streamex.Feed.unfollow(f, "user", "jessica")
+  Streamex.Feed.unfollow(feed, "user", "jessica")
 
   # Batch add an activity to many feeds
-  Streamex.Activities.add_to_many(basic, ["user:jessica"])
+  Streamex.Activities.add_to_many(basic, [{"user", "jessica"}, {"user", "deborah"}])
 
   # Batch follow
-  followings = [%{"source" => "user:eric", "target" => "user:1"}, %{"source" => "user:eric", "target" => "user:9"}]
+  followings = [
+    {
+      #source
+      {"user:", "eric"},
+      #target
+      {"user", "jessica"}
+    }, {
+      {"user", "eric"},
+      {"user", "deborah"}
+    }]
   Streamex.Feed.follow_many(followings)
   ```
-
-## Missing features
-The client still needs a number of improvements to the api. Nothing is tested yet. Any help appreciated!
 
 ## Installation
 
@@ -60,7 +68,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
     ```elixir
     def deps do
-      [{:streamex, "~> 0.2.0"}]
+      [{:streamex, "~> 0.3.0"}]
     end
     ```
 
