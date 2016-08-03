@@ -22,16 +22,16 @@ Streamex is a [GetStream](https://getstream.io) client library for the Elixir la
 
   # Add activity to stream
   activity = Streamex.Activities.add(feed, basic)
-  activity = Streamex.Activities.add(feed, [basic, optional, custom])
+  activities = Streamex.Activities.add(feed, [basic, optional, custom])
 
   # Update activity
   optional = %{optional | verb: "dislikes"}
   Streamex.Activities.update(feed, optional)
 
   # Remove activity by id
-  Streamex.Activities.remove(feed, [id returned from api])
+  Streamex.Activities.remove(feed, id)
   # Remove activity by foreign_id
-  Streamex.Activities.remove(feed, "like:1", true)
+  Streamex.Activities.remove(feed, foreign_id, true)
 
   # Get followers
   Streamex.Feed.followers(feed)
@@ -47,16 +47,15 @@ Streamex is a [GetStream](https://getstream.io) client library for the Elixir la
   Streamex.Activities.add_to_many(basic, [{"user", "jessica"}, {"user", "deborah"}])
 
   # Batch follow
-  followings = [
-    {
-      #source
-      {"user:", "eric"},
-      #target
-      {"user", "jessica"}
-    }, {
-      {"user", "eric"},
-      {"user", "deborah"}
-    }]
+  followings = [{
+    #source
+    {"user:", "eric"},
+    #target
+    {"user", "jessica"}
+  }, {
+    {"user", "eric"},
+    {"user", "deborah"}
+  }]
   Streamex.Feed.follow_many(followings)
   ```
 
