@@ -2,14 +2,19 @@ defmodule Streamex.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :streamex,
-     version: "0.2.0",
-     elixir: "~> 1.3",
-     description: description(),
-     package: package(),
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :streamex,
+      version: "0.3.0",
+      elixir: "~> 1.3",
+      description: description(),
+      package: package(),
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      preferred_cli_env: [
+        vcr: :test, "vcr.delete": :test, "vcr.check": :test, "vcr.show": :test
+      ],
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
@@ -33,7 +38,8 @@ defmodule Streamex.Mixfile do
       {:httpoison, "~> 0.9.0"},
       {:poison, "~> 2.2"},
       {:joken, "~> 1.2"},
-      {:timex, "~> 2.2"}
+      {:timex, "~> 2.2"},
+      {:exvcr, "~> 0.7", only: :test}
     ]
   end
 
