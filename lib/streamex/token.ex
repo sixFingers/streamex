@@ -1,8 +1,10 @@
 defmodule Streamex.Token do
   import Joken
 
-  def new(secret, %Streamex.Feed{} = feed, resource, action) do
-    %{resource: resource, action: action, feed_id: feed.id}
+  defstruct resource: "", action: "", feed_id: ""
+
+  def compact(%__MODULE__{} = token, secret) do
+    %{resource: token.resource, action: token.action, feed_id: token.feed_id}
     |> token
     |> with_signer(hs256(secret))
     |> sign
