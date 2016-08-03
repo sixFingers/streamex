@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "{\"activities\":[{\"verb\":\"like\",\"to\":[],\"time\":null,\"target\":null,\"origin\":null,\"object\":\"Elixir\",\"foreign_id\":null,\"actor\":\"Tony\"},{\"verb\":\"dislike\",\"to\":[],\"time\":null,\"target\":null,\"origin\":null,\"object\":\"PHP\",\"foreign_id\":null,\"actor\":\"Tony\"}]}",
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZmVlZCJ9.0po3WeNjEsAok5-QmQw_vsERHICquYYo4wA7FXTKfjQ",
+        "stream-auth-type": "jwt",
+        "content-type": "application/json"
+      },
+      "method": "post",
+      "options": {
+        "connect_timeout": 3000
+      },
+      "request_body": "",
+      "url": "https://api.getstream.io/api/feed/user/eric/?api_key=9xup4y9pydw6"
+    },
+    "response": {
+      "body": "{\"activities\": [{\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"9711b4a4-598a-11e6-8080-80015e0d756c\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-03T14:57:25.625770\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"9712b688-598a-11e6-8080-80003ddb4213\", \"object\": \"PHP\", \"origin\": null, \"target\": null, \"time\": \"2016-08-03T14:57:25.632372\", \"to\": [], \"verb\": \"dislike\"}], \"duration\": \"31ms\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": "438",
+        "Connection": "keep-alive",
+        "Allow": "GET, POST, DELETE, HEAD, OPTIONS",
+        "Date": "Wed, 03 Aug 2016 14:57:25 GMT",
+        "Server": "nginx",
+        "Vary": "Accept",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 4cc922a6afdeaddab6cfb7bbbbd8d5bf.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "Xwy6Ay9S2rH_M_CU3yNU_5A9ff4nlNQKDQ3rQbTW2N0ghnQd6EkjpA=="
+      },
+      "status_code": 201,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InVzZXJlcmljIiwicmVzb3VyY2UiOiJmb2xsb3dlciJ9.E_WboPQWqt9i7MsfUU_ifIDCh4rxbfUU_2ckPdfvtkg",
+        "stream-auth-type": "jwt",
+        "content-type": "application/json"
+      },
+      "method": "get",
+      "options": {
+        "connect_timeout": 3000
+      },
+      "request_body": "",
+      "url": "https://api.getstream.io/api/feed/user/eric/followers/?limit=25&offset=0&api_key=9xup4y9pydw6"
+    },
+    "response": {
+      "body": "{\"duration\": \"11ms\", \"results\": [{\"created_at\": \"2016-08-03T11:47:28.614Z\", \"feed_id\": \"user:jessica\", \"target_id\": \"user:eric\", \"updated_at\": \"2016-08-03T11:47:28.614Z\"}]}",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": "172",
+        "Connection": "keep-alive",
+        "Allow": "GET, HEAD, OPTIONS",
+        "Cache-Control": "max-age=0",
+        "Date": "Wed, 03 Aug 2016 11:48:33 GMT",
+        "Server": "nginx",
+        "Vary": "Accept",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 f1b8c7bb47bd1046d2b618be40e810f4.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "XZFekk_u3Ia6gYK5m6PNdZtcxMKh5xfFSpKIM2r9BhRZH6Rk7LRUyQ=="
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

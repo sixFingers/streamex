@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InVzZXJlcmljIiwicmVzb3VyY2UiOiJmZWVkIn0.RB16hhVuV5r6WsvRmHKk4F-StmkMx2Abf6oHNgzqrCw",
+        "stream-auth-type": "jwt",
+        "content-type": "application/json"
+      },
+      "method": "get",
+      "options": {
+        "connect_timeout": 3000
+      },
+      "request_body": "",
+      "url": "https://api.getstream.io/api/feed/user/eric/?limit=25&offset=0&api_key=9xup4y9pydw6"
+    },
+    "response": {
+      "body": "{\"duration\": \"14ms\", \"next\": \"\", \"results\": [{\"actor\": \"Tony:\", \"foreign_id\": null, \"id\": \"4ece4366-5989-11e6-8080-800100a161a4\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-03T14:48:14.891095\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Linda\", \"foreign_id\": \"like:1\", \"id\": \"31f85f06-5989-11e6-8080-80006a77ff54\", \"object\": \"Ruby\", \"origin\": null, \"target\": null, \"time\": \"2016-08-03T14:47:26.513127\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony:\", \"foreign_id\": null, \"id\": \"31f85600-5989-11e6-8080-800100a161a4\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-03T14:47:26.512896\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony:\", \"foreign_id\": null, \"id\": \"0f65453a-5989-11e6-8080-800100a161a4\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-03T14:46:28.506553\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Linda\", \"foreign_id\": \"like:1\", \"id\": \"9c1204f0-565f-11e6-8080-80006a77ff54\", \"object\": \"Ruby\", \"origin\": null, \"target\": null, \"time\": \"2016-07-30T14:12:12.168728\", \"to\": [], \"verb\": \"dislikes\"}, {\"actor\": \"Linda\", \"foreign_id\": \"like:1\", \"id\": \"8b6462ba-565f-11e6-8080-80006a77ff54\", \"object\": \"Ruby\", \"origin\": null, \"target\": null, \"time\": \"2016-07-30T14:11:44.187257\", \"to\": [], \"verb\": \"like\"}]}",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": "1267",
+        "Connection": "keep-alive",
+        "Allow": "GET, POST, DELETE, HEAD, OPTIONS",
+        "Cache-Control": "max-age=0",
+        "Date": "Wed, 03 Aug 2016 14:52:52 GMT",
+        "Server": "nginx",
+        "Vary": "Accept",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 a3fcfba3880bfa2744f8dc329465e037.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "NKpJQXoaHMeDNfPFEozdgNbSM3DwUpzuujQOuqqe1b9x5qBkxzeP3Q=="
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
