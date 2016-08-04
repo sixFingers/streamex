@@ -52,7 +52,8 @@ defmodule Streamex.Activity do
   """
   def to_struct(%{} = attrs) do
     {standard, custom} = Map.split(attrs, Enum.map(Map.keys(%__MODULE__{}), &(Atom.to_string(&1))))
-    struct = struct(%__MODULE__{custom_fields: custom})
+    custom_fields = if custom == nil, do: %{}, else: custom
+    struct = struct(%__MODULE__{custom_fields: custom_fields})
 
     Enum.reduce Map.to_list(standard), struct, fn {k, v}, acc ->
       %{acc | String.to_atom(k) => v}
@@ -60,14 +61,14 @@ defmodule Streamex.Activity do
   end
 
   def to_json([%__MODULE__{} | _] = activities) do
-    {:ok, body} = %{activities: Enum.map(activities, &to_map(&1))}
+    {:ok, body} = %{activities: Enum.map(activities, &to_json(&1))}
     |> Poison.encode
 
     body
   end
 
   def to_json(%__MODULE__{} = activity) do
-    {:ok, body} = Poison.encode(activity)
+    {:ok, body} = Poison.encode(to_map(activity))
 
     body
   end
