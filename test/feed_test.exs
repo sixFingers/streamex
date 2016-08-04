@@ -22,14 +22,23 @@ defmodule FeedTest do
     assert status_c == :ok
   end
 
-  test "Feed follow request validates input" do
+  test "Feed follow request with invalid input returns error" do
     {_, feed} = new("user", "eric")
 
     assert follow(feed, "user:", "jessica") == validate_error
     assert follow(feed, "user", ":jessica") == validate_error
   end
 
-  test "Feed follow batch request validates input" do
+  test "Feed follow request with valid input returns ok" do
+    use_cassette "feed_post_follow" do
+      {_, feed} = new("user", "eric")
+      {status, _} = follow(feed, "user", "jessica")
+
+      assert status == :ok
+    end
+  end
+
+  test "Feed follow batch request with invalid input returns error" do
     mistyped_a = [{{"user:", "eric"}, {"user", "jessica"}}, {{"user", "eric"}, {"user", "deborah"}}]
     mistyped_b = [{{"user", "eric"}, {"user", "jessica"}}, {{"user", "eric"}, {"user", ":deborah"}}]
 
@@ -37,11 +46,29 @@ defmodule FeedTest do
     assert follow_many(mistyped_b) == validate_error
   end
 
-  test "Feed unfollow request validates input" do
+  test "Feed follow batch request with valid input returns ok" do
+    use_cassette "feed_post_batch_follow" do
+      follows = [{{"user", "eric"}, {"user", "jessica"}}, {{"user", "eric"}, {"user", "deborah"}}]
+      {status, _} = follow_many(follows)
+
+      assert status == :ok
+    end
+  end
+
+  test "Feed unfollow request with invalid input returns error" do
     {_, feed} = new("user", "eric")
 
     assert unfollow(feed, "user:", "jessica") == validate_error
     assert unfollow(feed, "user", ":jessica") == validate_error
+  end
+
+  test "Feed unfollow request with valid input returns ok" do
+    use_cassette "feed_delete_follow" do
+      {_, feed} = new("user", "eric")
+      {status, _} = unfollow(feed, "user", "jessica")
+
+      assert status == :ok
+    end
   end
 
   test "Feed followers return a list of follow structs" do
