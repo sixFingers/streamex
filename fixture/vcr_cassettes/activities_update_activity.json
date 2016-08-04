@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "{\"activities\":[{\"verb\":\"like\",\"to\":[],\"time\":\"2016-08-03T14:48:14.891095\",\"target\":null,\"origin\":null,\"object\":\"Elixir\",\"foreign_id\":\"eric:elixir\",\"actor\":\"Eric\"}]}",
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiYWN0aXZpdGllcyJ9.A8dz4R8PvG6jQL9H1YhPeO_8aAqA-2x8Aipri2LjAQA",
+        "stream-auth-type": "jwt",
+        "content-type": "application/json"
+      },
+      "method": "post",
+      "options": {
+        "connect_timeout": 3000
+      },
+      "request_body": "",
+      "url": "https://api.getstream.io/api/activities/?api_key=9xup4y9pydw6"
+    },
+    "response": {
+      "body": "{\"duration\": \"15ms\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": "20",
+        "Connection": "keep-alive",
+        "Allow": "POST, OPTIONS",
+        "Date": "Thu, 04 Aug 2016 16:15:01 GMT",
+        "Server": "nginx",
+        "Vary": "Accept",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 57e855a81b6b79cd2e209713f1da7845.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "NV0kL73zeqe6BEaf2MYu3BXmrO2hSuHh1Bifo5XZb9ZW4HoXarQxFw=="
+      },
+      "status_code": 201,
+      "type": "ok"
+    }
+  }
+]

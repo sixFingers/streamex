@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJkZWxldGUiLCJmZWVkX2lkIjoidXNlcmVyaWMiLCJyZXNvdXJjZSI6ImZlZWQifQ.4Pu_3Iau2E-n5L5Py8BaL5B82Q9Iskxv30QP8gVRvpQ",
+        "stream-auth-type": "jwt",
+        "content-type": "application/json"
+      },
+      "method": "delete",
+      "options": {
+        "connect_timeout": 3000
+      },
+      "request_body": "",
+      "url": "https://api.getstream.io/api/feed/user/eric/4ece4366-5989-11e6-8080-800100a161a4/?api_key=9xup4y9pydw6"
+    },
+    "response": {
+      "body": "{\"duration\": \"8ms\", \"removed\": \"4ece4366-5989-11e6-8080-800100a161a4\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": "70",
+        "Connection": "keep-alive",
+        "Allow": "DELETE, OPTIONS",
+        "Date": "Thu, 04 Aug 2016 16:19:08 GMT",
+        "Server": "nginx/1.4.6 (Ubuntu)",
+        "Vary": "Accept",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 98156a801d83959662001f06a375d7c7.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "ESVoDCn-valYpXIyYnXlcAZDwHIjeCMsqbmJBBKSPQbLvMUtk_T-3Q=="
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "[{\"target\":\"user:jessica\",\"source\":\"user:eric\"},{\"target\":\"user:deborah\",\"source\":\"user:eric\"}]",
+      "headers": {
+        "X-Api-Key": "9xup4y9pydw6",
+        "Date": "Thu, 04 Aug 16 17:46:51 +0200",
+        "Authorization": "Signature keyId=\"9xup4y9pydw6\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"Oxz5ACMDwje9n0enIZAn3CKhm4NRgFQt+K3cZhe7myU=\"",
+        "content-type": "application/json"
+      },
+      "method": "post",
+      "options": {
+        "connect_timeout": 3000
+      },
+      "request_body": "",
+      "url": "https://api.getstream.io/api/follow_many/?activity_copy_limit=300&api_key=9xup4y9pydw6"
+    },
+    "response": {
+      "body": "{\"duration\": \"11ms\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": "20",
+        "Connection": "keep-alive",
+        "Allow": "GET, POST, HEAD, OPTIONS",
+        "Date": "Thu, 04 Aug 2016 15:46:52 GMT",
+        "Server": "nginx",
+        "Vary": "Accept",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 501a2b2908fbd806aaea3a22dce3b5f9.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "hY-kn7qSz0vMQiMArB1EqTQbZEmcXiwoC6IPmgsz4s3UbF28zVITYA=="
+      },
+      "status_code": 201,
+      "type": "ok"
+    }
+  }
+]
