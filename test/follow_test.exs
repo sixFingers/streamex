@@ -4,7 +4,7 @@ defmodule FollowTest do
 
   doctest Streamex
 
-  test "the truth" do
+  test "Follow struct get correctly converted to json" do
     struct = %Streamex.Follow{
       created_at: "2016-08-03T11:47:28.614Z",
       feed_id: "user:jessica",
