@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "{\"activities\":[{\"verb\":\"like\",\"object\":\"Elixir\",\"custom_field\":\"custom_value\",\"actor\":\"Tony\"}]}",
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZmVlZCJ9.YKChwNGeudze1rX0mIFI_gFnCFUB74_rTD3X1sa1iL0",
+        "stream-auth-type": "jwt",
+        "content-type": "application/json"
+      },
+      "method": "post",
+      "options": {
+        "connect_timeout": 3000
+      },
+      "request_body": "",
+      "url": "https://api.getstream.io/api/feed/user/eric/?api_key=q8v3a7aurm9s"
+    },
+    "response": {
+      "body": "{\"activities\": [{\"actor\": \"Tony\", \"custom_field\": \"custom_value\", \"foreign_id\": null, \"id\": \"50f9831c-5b14-11e6-8080-800113716b92\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-05T13:55:49.738166\", \"to\": [], \"verb\": \"like\"}], \"duration\": \"45ms\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": "269",
+        "Connection": "keep-alive",
+        "Allow": "GET, POST, DELETE, HEAD, OPTIONS",
+        "Date": "Fri, 05 Aug 2016 13:55:49 GMT",
+        "Server": "nginx/1.4.6 (Ubuntu)",
+        "Vary": "Accept",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 505bf3e965f93ab910511da92d7dc259.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "7lBO_PgwInB-gesg7H-ndnji7Ua859bdReosyltBnJL3Ojo-0j3HEw=="
+      },
+      "status_code": 201,
+      "type": "ok"
+    }
+  }
+]

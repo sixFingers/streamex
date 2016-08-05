@@ -33,6 +33,16 @@ defmodule ActivityTest do
     end
   end
 
+  test "Adding an activity custom fields to feed returns a single activity struct with custom fields" do
+    use_cassette "activities_post_activity_with_custom_fields" do
+      {_, feed} = new("user", "eric")
+      activity = %{"actor" => "Tony", "verb" => "like", "object" => "Elixir", "custom_field" => "custom_value"}
+      activity = Streamex.Activities.add(feed, activity)
+
+      assert %Activity{custom_fields: %{"custom_field" => "custom_value"}} = activity
+    end
+  end
+
   test "Adding multiple activities to feed returns a list of activity structs" do
     use_cassette "activities_post_activities" do
       {_, feed} = new("user", "eric")
