@@ -14,7 +14,7 @@ defmodule ActivityTest do
   test "Feed activities return a list of Activity structs" do
     use_cassette "activities_get_activities" do
       {_, feed} = new("user", "eric")
-      activities = Streamex.Activities.get(feed)
+      {__, activities} = Streamex.Activities.get(feed)
 
       assert Enum.count(activities) == 6
       Enum.each(activities, fn(activity) ->
@@ -38,7 +38,7 @@ defmodule ActivityTest do
       {_, feed} = new("user", "eric")
       activity_a = Streamex.Activity.new("Tony", "like", "Elixir")
       activity_b = Streamex.Activity.new("Tony", "dislike", "PHP")
-      activities = Streamex.Activities.add(feed, [activity_a, activity_b])
+      {__, activities} = Streamex.Activities.add(feed, [activity_a, activity_b])
 
       assert Enum.count(activities) == 2
       Enum.each(activities, fn(activity) ->

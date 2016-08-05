@@ -74,7 +74,7 @@ defmodule FeedTest do
   test "Feed followers return a list of follow structs" do
     use_cassette "feed_get_followers" do
       {_, feed} = new("user", "eric")
-      followers = Streamex.Feed.followers(feed)
+      {__, followers} = Streamex.Feed.followers(feed)
 
       assert Enum.count(followers) == 1
       assert %Follow{feed_id: "user:jessica"} = Enum.at(followers, 0)
@@ -84,7 +84,7 @@ defmodule FeedTest do
   test "Feed followings return a list of follow structs" do
     use_cassette "feed_get_following" do
       {_, feed} = new("user", "eric")
-      following = Streamex.Feed.following(feed)
+      {__, following} = Streamex.Feed.following(feed)
 
       assert Enum.count(following) == 2
     end

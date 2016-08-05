@@ -101,7 +101,7 @@ defmodule Streamex.Feed do
 
   # Successful get response
   defp handle_response(%{"results" => results}) do
-    Enum.map(results, &Follow.to_struct(&1))
+    {:ok, Enum.map(results, &Follow.to_struct(&1))}
   end
 
   # Successful post response

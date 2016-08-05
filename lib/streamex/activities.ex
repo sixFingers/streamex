@@ -16,8 +16,12 @@ defmodule Streamex.Activities do
   end
 
   def add(%Feed{} = feed, %Activity{} = activity) do
-    add(feed, [activity])
-    |> Enum.at(0)
+    {status, results} = add(feed, [activity])
+
+    case status do
+      :ok -> Enum.at(results, 0)
+      :error -> {status, results}
+    end
   end
 
   def add(%Feed{} = feed, [%Activity{} | _] = activities) do
@@ -88,12 +92,12 @@ defmodule Streamex.Activities do
 
   # Successful get response
   defp handle_response(%{"results" => results}) do
-    Enum.map(results, &Activity.to_struct(&1))
+    {:ok, Enum.map(results, &Activity.to_struct(&1))}
   end
 
   # Successful add response
   defp handle_response(%{"activities" => results}) do
-    Enum.map(results, &Activity.to_struct(&1))
+    {:ok, Enum.map(results, &Activity.to_struct(&1))}
   end
 
   # Successful update response
