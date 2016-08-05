@@ -1,9 +1,5 @@
 defmodule Streamex.Request do
-  alias Streamex.Token
-
-  @default_options [
-    {:timeout, 3000}
-  ]
+  alias Streamex.{Config, Token}
 
   @default_headers [
     {"content-type", "application/json"}
@@ -15,8 +11,12 @@ defmodule Streamex.Request do
             headers: @default_headers,
             params: %{},
             body: "",
-            options: @default_options,
+            options: [],
             token: nil
+
+  def new do
+    struct(%__MODULE__{options: default_options})
+  end
 
   def with_method(%__MODULE__{} = r, method) do
     %{r | method: method}
@@ -36,5 +36,11 @@ defmodule Streamex.Request do
 
   def with_params(%__MODULE__{} = r, params) do
     %{r | params: params}
+  end
+
+  defp default_options do
+    [
+      {:timeout, Config.timeout}
+    ]
   end
 end

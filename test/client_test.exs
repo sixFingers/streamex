@@ -6,7 +6,7 @@ defmodule ClientTest do
   alias Joken
 
   setup_all do
-    Config.configure("KEY", "SECRET", "eu-west")
+    Config.configure("KEY", "SECRET", region: "eu-west")
   end
 
   test "client builds requests with correct full url" do

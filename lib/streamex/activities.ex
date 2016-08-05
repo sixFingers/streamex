@@ -3,7 +3,7 @@ defmodule Streamex.Activities do
   alias Streamex.{Request, Client, Feed, Activity}
 
   def get(%Feed{} = feed, opts \\ []) do
-    %Request{}
+    Request.new
     |> with_method(:get)
     |> with_path(endpoint_get(feed))
     |> with_token(feed, "feed", "read")
@@ -21,7 +21,7 @@ defmodule Streamex.Activities do
   end
 
   def add(%Feed{} = feed, [%Activity{} | _] = activities) do
-    %Request{}
+    Request.new
     |> with_method(:post)
     |> with_path(endpoint_create(feed))
     |> with_token(feed, "feed", "write")
@@ -34,7 +34,7 @@ defmodule Streamex.Activities do
   end
 
   def add_to_many(%Activity{} = activity, feeds) do
-    %Request{}
+    Request.new
     |> with_method(:post)
     |> with_path(endpoint_add_to_many())
     |> with_body(body_create_activities(feeds, activity))
@@ -50,7 +50,7 @@ defmodule Streamex.Activities do
   end
 
   def update(%Feed{} = feed, [%Activity{} | _] = activities) do
-    %Request{}
+    Request.new
     |> with_method(:post)
     |> with_path(endpoint_update())
     |> with_token(feed, "activities", "write")
@@ -65,7 +65,7 @@ defmodule Streamex.Activities do
   def remove(%Feed{} = feed, id, foreign_id \\ false) do
     params = foreign_id && %{"foreign_id" => 1} || %{}
 
-    %Request{}
+    Request.new
     |> with_method(:delete)
     |> with_path(endpoint_remove(feed, id))
     |> with_token(feed, "feed", "delete")

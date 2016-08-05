@@ -5,7 +5,7 @@ defmodule ConfigTest do
   alias Streamex.Config
 
   setup_all do
-    Config.configure("KEY", "SECRET", "eu-west")
+    Config.configure("KEY", "SECRET", region: "eu-west")
   end
 
   test "client handles empty region" do
