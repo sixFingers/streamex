@@ -17,7 +17,7 @@ defmodule Streamex.Activities do
   end
 
   @spec add(Feed.t, Activity.t) :: {:ok, Activity.t} | {:error, String.t}
-  def add(%Feed{} = feed, %Activity{} = activity) do
+  def add(%Feed{} = feed, %{} = activity) do
     {status, results} = add(feed, [activity])
 
     case status do
@@ -27,12 +27,12 @@ defmodule Streamex.Activities do
   end
 
   @spec add(Feed.t, [Activity.t, ...]) :: {:ok, [Activity.t, ...]} | {:error, String.t}
-  def add(%Feed{} = feed, [%Activity{} | _] = activities) do
+  def add(%Feed{} = feed, [%{} | _] = activities) do
     Request.new
     |> with_method(:post)
     |> with_path(endpoint_create(feed))
     |> with_token(feed, "feed", "write")
-    |> with_body(Activity.to_json(activities))
+    |> with_body(body_create_update_activities(activities))
     |> Client.prepare_request
     |> Client.sign_request
     |> Client.execute_request
@@ -41,11 +41,11 @@ defmodule Streamex.Activities do
   end
 
   @spec add_to_many(Activity.t, [tuple(), ...]) :: {:ok, nil} | {:error, String.t}
-  def add_to_many(%Activity{} = activity, feeds) do
+  def add_to_many(%{} = activity, feeds) do
     Request.new
     |> with_method(:post)
     |> with_path(endpoint_add_to_many())
-    |> with_body(body_create_activities(feeds, activity))
+    |> with_body(body_create_batch_activities(feeds, activity))
     |> Client.prepare_request
     |> Client.sign_request
     |> Client.execute_request
@@ -54,17 +54,17 @@ defmodule Streamex.Activities do
   end
 
   @spec update(Feed.t, Activity.t) :: {:ok, nil} | {:error, String.t}
-  def update(%Feed{} = feed, %Activity{} = activity) do
+  def update(%Feed{} = feed, %{} = activity) do
     update(feed, [activity])
   end
 
   @spec update(Feed.t, [Activity.t, ...]) :: {:ok, nil} | {:error, String.t}
-  def update(%Feed{} = feed, [%Activity{} | _] = activities) do
+  def update(%Feed{} = feed, [%{} | _] = activities) do
     Request.new
     |> with_method(:post)
     |> with_path(endpoint_update())
     |> with_token(feed, "activities", "write")
-    |> with_body(Activity.to_json(activities))
+    |> with_body(body_create_update_activities(activities))
     |> Client.prepare_request
     |> Client.sign_request
     |> Client.execute_request
@@ -129,10 +129,13 @@ defmodule Streamex.Activities do
     "feed/add_to_many/"
   end
 
-  defp body_create_activities(feeds, activity) do
+  defp body_create_batch_activities(feeds, activity) do
     feeds = Enum.map(feeds, fn({slug, user_id}) -> "#{slug}:#{user_id}" end)
     payload = %{"feeds" => feeds, "activity" => activity}
-    {:ok, body} = Poison.encode(payload)
-    body
+    Poison.encode!(payload)
+  end
+
+  defp body_create_update_activities(activities) do
+    Poison.encode!(%{"activities" => activities})
   end
 end

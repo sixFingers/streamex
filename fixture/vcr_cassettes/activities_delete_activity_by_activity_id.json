@@ -3,7 +3,7 @@
     "request": {
       "body": "",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJkZWxldGUiLCJmZWVkX2lkIjoidXNlcmVyaWMiLCJyZXNvdXJjZSI6ImZlZWQifQ.4Pu_3Iau2E-n5L5Py8BaL5B82Q9Iskxv30QP8gVRvpQ",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJkZWxldGUiLCJmZWVkX2lkIjoidXNlcmVyaWMiLCJyZXNvdXJjZSI6ImZlZWQifQ.03aRPZ_1Ngkg0uU2sNZdTVsdTg3fGjt2fFVea_fA0qE",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
@@ -12,21 +12,21 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/4ece4366-5989-11e6-8080-800100a161a4/?api_key=9xup4y9pydw6"
+      "url": "https://api.getstream.io/api/feed/user/eric/4ece4366-5989-11e6-8080-800100a161a4/?api_key=q8v3a7aurm9s"
     },
     "response": {
-      "body": "{\"duration\": \"8ms\", \"removed\": \"4ece4366-5989-11e6-8080-800100a161a4\"}",
+      "body": "{\"duration\": \"10ms\", \"removed\": \"4ece4366-5989-11e6-8080-800100a161a4\"}",
       "headers": {
         "Content-Type": "application/json",
-        "Content-Length": "70",
+        "Content-Length": "71",
         "Connection": "keep-alive",
         "Allow": "DELETE, OPTIONS",
-        "Date": "Thu, 04 Aug 2016 16:19:08 GMT",
+        "Date": "Fri, 05 Aug 2016 13:48:58 GMT",
         "Server": "nginx/1.4.6 (Ubuntu)",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 98156a801d83959662001f06a375d7c7.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "ESVoDCn-valYpXIyYnXlcAZDwHIjeCMsqbmJBBKSPQbLvMUtk_T-3Q=="
+        "Via": "1.1 3a1ecc9dcd42c75121657572bf7b2d34.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "9hIrxmEbUVAYRFS09MofE2bheuM6U9k3L9SoVAy7RvAbYN2TGyZrtQ=="
       },
       "status_code": 200,
       "type": "ok"

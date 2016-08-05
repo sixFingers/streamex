@@ -1,11 +1,11 @@
 [
   {
     "request": {
-      "body": "{\"feeds\":[\"user:jessica\",\"user:deborah\"],\"activity\":{\"verb\":\"like\",\"to\":[],\"time\":null,\"target\":null,\"origin\":null,\"object\":\"Elixir\",\"id\":null,\"foreign_id\":null,\"custom_fields\":{},\"actor\":\"Tony\"}}",
+      "body": "{\"feeds\":[\"user:jessica\",\"user:deborah\"],\"activity\":{\"verb\":\"like\",\"object\":\"Elixir\",\"actor\":\"Tony\"}}",
       "headers": {
-        "X-Api-Key": "9xup4y9pydw6",
-        "Date": "Thu, 04 Aug 16 17:54:20 +0200",
-        "Authorization": "Signature keyId=\"9xup4y9pydw6\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"E0/1zFGGOX+v4t5HrBHakUSbicrGsOih9OM28VQafJw=\"",
+        "X-Api-Key": "q8v3a7aurm9s",
+        "Date": "Fri, 05 Aug 16 15:48:56 +0200",
+        "Authorization": "Signature keyId=\"q8v3a7aurm9s\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"fV3dMjY6e0e47Nw75p9H4eBkp/0tdVG6PnUq8zWlUy4=\"",
         "content-type": "application/json"
       },
       "method": "post",
@@ -13,21 +13,21 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/add_to_many/?api_key=9xup4y9pydw6"
+      "url": "https://api.getstream.io/api/feed/add_to_many/?api_key=q8v3a7aurm9s"
     },
     "response": {
-      "body": "{\"duration\": \"20ms\"}",
+      "body": "{\"duration\": \"45ms\"}",
       "headers": {
         "Content-Type": "application/json",
         "Content-Length": "20",
         "Connection": "keep-alive",
         "Allow": "POST, OPTIONS",
-        "Date": "Thu, 04 Aug 2016 15:54:21 GMT",
-        "Server": "nginx/1.4.6 (Ubuntu)",
+        "Date": "Fri, 05 Aug 2016 13:48:57 GMT",
+        "Server": "nginx",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 aa1759f53a366480675b4378501c20e0.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "G1MDjH_WGQuNlRk_-zS7uw6iQFvVYDnKNI6eHmvzxyfiZnz11eeqXQ=="
+        "Via": "1.1 3a1ecc9dcd42c75121657572bf7b2d34.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "Su0ymk67-S7WPzqh42LpYji4YfRu6IRUgtjEGHvb8xtlRlAnrLFZtA=="
       },
       "status_code": 201,
       "type": "ok"
