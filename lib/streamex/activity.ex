@@ -10,9 +10,9 @@ defmodule Streamex.Activity do
             target: nil,
             custom_fields: %{}
 
-  @doc """
-  Initializes an Activity struct from supplied fields
-  """
+  @type t :: %__MODULE__{}
+
+  @spec new(String.t, String.t, String.t, [...], %{}) :: Activity.t
   def new(actor, verb, object, optional \\ [], custom \\ %{}) do
     struct = %__MODULE__{actor: actor, verb: verb, object: object, custom_fields: custom}
     optional = optional_fields(optional)
@@ -29,9 +29,6 @@ defmodule Streamex.Activity do
     |> Enum.filter(fn({_, v}) -> v !== nil end)
   end
 
-  @doc """
-  Flattens an Activity struct into a plain map
-  """
   def to_map(%__MODULE__{} = activity) do
     activity
     |> Map.to_list
@@ -46,10 +43,6 @@ defmodule Streamex.Activity do
     |> Enum.into(%{})
   end
 
-  @doc """
-  Converts a map coming from the API into
-  an Activity struct
-  """
   def to_struct(%{} = attrs) do
     {standard, custom} = Map.split(attrs, Enum.map(Map.keys(%__MODULE__{}), &(Atom.to_string(&1))))
     custom_fields = if custom == nil, do: %{}, else: custom
@@ -63,13 +56,11 @@ defmodule Streamex.Activity do
   def to_json([%__MODULE__{} | _] = activities) do
     {:ok, body} = %{activities: Enum.map(activities, &to_json(&1))}
     |> Poison.encode
-
     body
   end
 
   def to_json(%__MODULE__{} = activity) do
     {:ok, body} = Poison.encode(to_map(activity))
-
     body
   end
 end

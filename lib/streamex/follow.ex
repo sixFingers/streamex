@@ -4,10 +4,9 @@ defmodule Streamex.Follow do
             created_at: nil,
             updated_at: nil
 
-  @doc """
-  Converts a map coming from the API into
-  an Activity struct.
-  """
+  @type t :: %__MODULE__{}
+
+  @spec to_struct(%{}) :: __MODULE__.t
   def to_struct(%{} = attrs) do
     attrs
     |> Map.to_list
@@ -16,9 +15,7 @@ defmodule Streamex.Follow do
     end)
   end
 
-  @doc """
-  Converts an Activity struct into a json payload.
-  """
+  @spec to_json(__MODULE__.t) :: %{}
   def to_json(%__MODULE__{} = follow) do
     {:ok, body} = Poison.encode(follow)
     body

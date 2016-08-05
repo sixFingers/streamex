@@ -5,6 +5,9 @@ defmodule Streamex.Feed do
 
   defstruct slug: nil, user_id: nil, id: nil
 
+  @type t :: %__MODULE__{}
+
+  @spec new(String.t, String.t) :: {:ok, __MODULE__.t} | {:error, String.t}
   def new(slug, user_id) do
     case validate([slug, user_id]) do
       true -> {:ok, %__MODULE__{slug: slug, user_id: user_id, id: "#{slug}#{user_id}"}}
@@ -12,6 +15,7 @@ defmodule Streamex.Feed do
     end
   end
 
+  @spec followers(__MODULE__.t, [...]) :: [__MODULE__.t, ...]
   def followers(%__MODULE__{} = feed, opts \\ []) do
     Request.new
     |> with_method(:get)
@@ -25,6 +29,7 @@ defmodule Streamex.Feed do
     |> handle_response
   end
 
+  @spec following(__MODULE__.t, [...]) :: [__MODULE__.t, ...]
   def following(%__MODULE__{} = feed, opts \\ []) do
     Request.new
     |> with_method(:get)
@@ -38,6 +43,7 @@ defmodule Streamex.Feed do
     |> handle_response
   end
 
+  @spec follow(__MODULE__.t, String.t, String.t, [...]) :: {:ok, nil} | {:error, String.t}
   def follow(%__MODULE__{} = feed, target_feed, target_user, opts \\ []) do
     if validate([target_feed, target_user]) do
       Request.new
@@ -56,6 +62,7 @@ defmodule Streamex.Feed do
     end
   end
 
+  @spec follow_many([tuple(), ...], [...]) :: {:ok, nil} | {:error, String.t}
   def follow_many(followings, opts \\ []) do
     if validate(followings) do
       Request.new
@@ -73,6 +80,7 @@ defmodule Streamex.Feed do
     end
   end
 
+  @spec unfollow(__MODULE__.t, String.t, String.t) :: {:ok, nil} | {:error, String.t}
   def unfollow(%__MODULE__{} = feed, target_feed, target_user) do
     if validate(target_feed) && validate(target_user) do
       target = get_follow_target_string(target_feed, target_user)
