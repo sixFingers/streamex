@@ -5,14 +5,16 @@ defmodule Streamex.Request do
     {"content-type", "application/json"}
   ]
 
-  defstruct url: "",
-            path: "",
-            method: :get,
-            headers: @default_headers,
-            params: %{},
-            body: "",
-            options: [],
-            token: nil
+  defstruct [
+    url: "",
+    path: "",
+    method: :get,
+    headers: @default_headers,
+    params: %{},
+    body: "",
+    options: [],
+    token: nil
+  ]
 
   @type t :: %__MODULE__{}
 
