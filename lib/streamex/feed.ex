@@ -15,7 +15,7 @@ defmodule Streamex.Feed do
     end
   end
 
-  @spec followers(__MODULE__.t, [...]) :: [__MODULE__.t, ...]
+  @spec followers(__MODULE__.t, [...]) :: {:ok, [__MODULE__.t, ...]}
   def followers(%__MODULE__{} = feed, opts \\ []) do
     Request.new
     |> with_method(:get)
@@ -29,7 +29,7 @@ defmodule Streamex.Feed do
     |> handle_response
   end
 
-  @spec following(__MODULE__.t, [...]) :: [__MODULE__.t, ...]
+  @spec following(__MODULE__.t, [...]) :: {:ok, [__MODULE__.t, ...]}
   def following(%__MODULE__{} = feed, opts \\ []) do
     Request.new
     |> with_method(:get)
