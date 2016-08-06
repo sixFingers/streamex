@@ -36,8 +36,7 @@ defmodule Streamex.Client do
 
   @spec parse_response({:ok, String.t}) :: {:ok, [...]} | {:ok, %{}}
   def parse_response({:ok, response}) do
-    {:ok, contents} = Poison.decode(response.body)
-    contents
+    Poison.decode!(response.body)
   end
 
   defp sign_request_with_token(%Request{} = req, secret) do
