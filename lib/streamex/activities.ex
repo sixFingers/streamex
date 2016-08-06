@@ -26,7 +26,7 @@ defmodule Streamex.Activities do
     end
   end
 
-  @spec add(Feed.t, [Activity.t, ...]) :: {:ok, [Activity.t, ...]} | {:error, String.t}
+  @spec add(Feed.t, [%{}, ...]) :: {:ok, [%{}, ...]} | {:error, String.t}
   def add(%Feed{} = feed, [%{} | _] = activities) do
     Request.new
     |> with_method(:post)
@@ -40,7 +40,7 @@ defmodule Streamex.Activities do
     |> handle_response
   end
 
-  @spec add_to_many(Activity.t, [tuple(), ...]) :: {:ok, nil} | {:error, String.t}
+  @spec add_to_many(%{}, [tuple(), ...]) :: {:ok, nil} | {:error, String.t}
   def add_to_many(%{} = activity, feeds) do
     Request.new
     |> with_method(:post)
@@ -53,12 +53,12 @@ defmodule Streamex.Activities do
     |> handle_response
   end
 
-  @spec update(Feed.t, Activity.t) :: {:ok, nil} | {:error, String.t}
+  @spec update(Feed.t, %{}) :: {:ok, nil} | {:error, String.t}
   def update(%Feed{} = feed, %{} = activity) do
     update(feed, [activity])
   end
 
-  @spec update(Feed.t, [Activity.t, ...]) :: {:ok, nil} | {:error, String.t}
+  @spec update(Feed.t, [%{}, ...]) :: {:ok, nil} | {:error, String.t}
   def update(%Feed{} = feed, [%{} | _] = activities) do
     Request.new
     |> with_method(:post)
