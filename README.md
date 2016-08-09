@@ -67,7 +67,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
     ```elixir
     def deps do
-      [{:streamex, "~> 0.3.0"}]
+      [{:streamex, "~> 0.2.0"}]
     end
     ```
 
