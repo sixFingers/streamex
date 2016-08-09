@@ -3,28 +3,30 @@
     "request": {
       "body": "{\"activities\":[{\"verb\":\"like\",\"object\":\"Ruby\",\"actor\":\"Tony\"},{\"verb\":\"dislike\",\"object\":\"PHP\",\"actor\":\"Tony\"}]}",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZmVlZCJ9.QVjTm7VsPPOenLT8iOhxZ4jLrfVCG8EzVoohEy2OraQ",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZmVlZCJ9.yy2xnxZDKkaxSarHiPG8WPUm5SlPAlwVTlAezD4WopM",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": [],
+      "options": {
+        "connect_timeout": 3000
+      },
       "request_body": "",
-      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/?api_key=wtdezwkw7uk3"
+      "url": "https://api.getstream.io/api/feed/user/eric/?api_key=8andj8c67ycp"
     },
     "response": {
-      "body": "{\"activities\": [{\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"d25a7760-5e5a-11e6-8080-80017ce9f8a0\", \"object\": \"Ruby\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T17:58:05.059056\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"d25aa4ba-5e5a-11e6-8080-8000470b1282\", \"object\": \"PHP\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T17:58:05.060217\", \"to\": [], \"verb\": \"dislike\"}], \"duration\": \"28ms\"}",
+      "body": "{\"activities\": [{\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"cfaae60e-5e68-11e6-8080-800043f34a24\", \"object\": \"Ruby\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:13.507227\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"cfabe3a6-5e68-11e6-8080-80003cc41130\", \"object\": \"PHP\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:13.513719\", \"to\": [], \"verb\": \"dislike\"}], \"duration\": \"38ms\"}",
       "headers": {
         "Content-Type": "application/json",
         "Content-Length": "436",
         "Connection": "keep-alive",
         "Allow": "GET, POST, DELETE, HEAD, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 17:58:05 GMT",
+        "Date": "Tue, 09 Aug 2016 19:38:13 GMT",
         "Server": "nginx",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 3199bad28fcb76e5ee8d85447ef291ef.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "kq3tq5JPBuMbxtHNEq1zvjfFmelyf76i6mGG7E8-Fh-3YfrM-1ZeQA=="
+        "Via": "1.1 5298d14814ac28e02807dcd709261cca.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "zL2AES6UTHtRLftm2po3KqV3iBQx0zofduO08iU0sfBych3LOVUSWw=="
       },
       "status_code": 201,
       "type": "ok"

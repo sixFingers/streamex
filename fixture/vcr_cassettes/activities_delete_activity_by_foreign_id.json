@@ -3,28 +3,30 @@
     "request": {
       "body": "",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJkZWxldGUiLCJmZWVkX2lkIjoidXNlcmVyaWMiLCJyZXNvdXJjZSI6ImZlZWQifQ.C41IrI2-oB3o-Dxw63I8oGIvP3hWGIqDC3oT3J_kWGo",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJkZWxldGUiLCJmZWVkX2lkIjoidXNlcmVyaWMiLCJyZXNvdXJjZSI6ImZlZWQifQ.Wygs-bxGX-oXRCeFSDgoy6jBvix3CcFEN-7QPTCqwVs",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "delete",
-      "options": [],
+      "options": {
+        "connect_timeout": 3000
+      },
       "request_body": "",
-      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/tony:elixir/?api_key=wtdezwkw7uk3&foreign_id=1"
+      "url": "https://api.getstream.io/api/feed/user/eric/tony:elixir/?api_key=8andj8c67ycp&foreign_id=1"
     },
     "response": {
-      "body": "{\"duration\": \"8ms\", \"removed\": \"tony:elixir\"}",
+      "body": "{\"duration\": \"10ms\", \"removed\": \"tony:elixir\"}",
       "headers": {
         "Content-Type": "application/json",
-        "Content-Length": "45",
+        "Content-Length": "46",
         "Connection": "keep-alive",
         "Allow": "DELETE, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 18:16:36 GMT",
-        "Server": "nginx",
+        "Date": "Tue, 09 Aug 2016 19:38:13 GMT",
+        "Server": "nginx/1.4.6 (Ubuntu)",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 67ef07cc068b16f1f266900a193618b3.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "bOJslYm6A_7_KhBQyoLyzz8P5F8QfinlmtZZk4g_xSYw-Ts9KnTVuQ=="
+        "Via": "1.1 5298d14814ac28e02807dcd709261cca.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "gM7awn-2ohHuljD7FCB8rYpsTWvcEjb_-z95uxAe7EFyUML98lEYMQ=="
       },
       "status_code": 200,
       "type": "ok"

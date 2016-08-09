@@ -3,28 +3,30 @@
     "request": {
       "body": "{\"target\":\"alien:jessica\"}",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJhbGllbmVyaWMiLCJyZXNvdXJjZSI6ImZvbGxvd2VyIn0.pfgn5ol_wF5ZBuJbwPDlPfkkP74yt1isrtQpmKx5dEg",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJhbGllbmVyaWMiLCJyZXNvdXJjZSI6ImZvbGxvd2VyIn0.bsto_9kuDX5ym5DyXpWJNBunEP0hOrnuYLTah7cIHX8",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": [],
+      "options": {
+        "connect_timeout": 3000
+      },
       "request_body": "",
-      "url": "https://eu-west-api.getstream.io/api/feed/alien/eric/following/?activity_copy_limit=300&api_key=wtdezwkw7uk3"
+      "url": "https://api.getstream.io/api/feed/alien/eric/following/?activity_copy_limit=300&api_key=8andj8c67ycp"
     },
     "response": {
-      "body": "{\"code\": 6, \"detail\": \"The following feeds are not configured: 'alien'\", \"duration\": \"4ms\", \"exception\": \"FeedConfigException\", \"status_code\": 400}",
+      "body": "{\"code\": 6, \"detail\": \"The following feeds are not configured: 'alien'\", \"duration\": \"8ms\", \"exception\": \"FeedConfigException\", \"status_code\": 400}",
       "headers": {
         "Content-Type": "application/json",
         "Content-Length": "147",
         "Connection": "keep-alive",
         "Allow": "GET, POST, HEAD, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 17:14:15 GMT",
+        "Date": "Tue, 09 Aug 2016 19:41:54 GMT",
         "Server": "nginx/1.4.6 (Ubuntu)",
         "Vary": "Accept",
         "X-Cache": "Error from cloudfront",
-        "Via": "1.1 3a1ecc9dcd42c75121657572bf7b2d34.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "VS6rQ4eeu-qqXuaalXfnCvG9F78ecwWMJj0t6hB1faIqmsMjhcSQ5A=="
+        "Via": "1.1 2e54f1e2282ced619ee458e0ab9d0c49.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "FopBc5V1Cmcc_Gj61KWBffTBm0v3bLygcx-yFUCF25BEqrGF_NXRMA=="
       },
       "status_code": 400,
       "type": "ok"

@@ -3,29 +3,31 @@
     "request": {
       "body": "{\"feeds\":[\"user::jessica\"],\"activity\":{\"verb\":\"like\",\"object\":\"Elixir\",\"foreign_id\":\"tony:elixir\",\"actor\":\"Tony\"}}",
       "headers": {
-        "X-Api-Key": "wtdezwkw7uk3",
-        "Date": "Tue, 09 Aug 16 19:58:04 +0200",
-        "Authorization": "Signature keyId=\"wtdezwkw7uk3\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"l669KAIdwmizcZdwaJU3+cZAoSv787wsKtfTU1dlaTo=\"",
+        "X-Api-Key": "8andj8c67ycp",
+        "Date": "Tue, 09 Aug 16 21:38:12 +0200",
+        "Authorization": "Signature keyId=\"8andj8c67ycp\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"4HJ5WW/vcvVGbERxo8dx0sGoGXm/ZbD2W6xaw4O76yY=\"",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": [],
+      "options": {
+        "connect_timeout": 3000
+      },
       "request_body": "",
-      "url": "https://eu-west-api.getstream.io/api/feed/add_to_many/?api_key=wtdezwkw7uk3"
+      "url": "https://api.getstream.io/api/feed/add_to_many/?api_key=8andj8c67ycp"
     },
     "response": {
-      "body": "{\"code\": 4, \"detail\": \"Errors for fields 'feeds'\", \"duration\": \"6ms\", \"exception\": \"InputException\", \"exception_fields\": {\"feeds\": [{\"0\": [\"Invalid value.\"]}]}, \"status_code\": 400}",
+      "body": "{\"code\": 4, \"detail\": \"Errors for fields 'feeds'\", \"duration\": \"7ms\", \"exception\": \"InputException\", \"exception_fields\": {\"feeds\": [{\"0\": [\"Invalid value.\"]}]}, \"status_code\": 400}",
       "headers": {
         "Content-Type": "application/json",
         "Content-Length": "180",
         "Connection": "keep-alive",
         "Allow": "POST, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 17:58:04 GMT",
-        "Server": "nginx",
+        "Date": "Tue, 09 Aug 2016 19:38:12 GMT",
+        "Server": "nginx/1.4.6 (Ubuntu)",
         "Vary": "Accept",
         "X-Cache": "Error from cloudfront",
-        "Via": "1.1 3199bad28fcb76e5ee8d85447ef291ef.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "V9-uyWo6udkBFeuBk9yY-KvDrl3OgaDL-VdVpbl7Xi6-ciKZviUznw=="
+        "Via": "1.1 5298d14814ac28e02807dcd709261cca.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "ahpS8Kr7CrTs8bBeIip1QJnn8mZ4loEp4Z3uEDRKTEbA3NihyEBJrw=="
       },
       "status_code": 400,
       "type": "ok"

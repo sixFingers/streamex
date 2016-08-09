@@ -3,14 +3,16 @@
     "request": {
       "body": "{\"activities\":[{\"verb\":\"like\",\"object\":\"Elixir\",\"foreign_id\":\"tony:elixir\",\"actor\":\"Tony\"}]}",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyOmplc3NpY2EiLCJyZXNvdXJjZSI6ImZlZWQifQ.n3iEaZh-wm5y1sitQPjyKn6CMlRaEVGs7c6U1GAXlSk",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyOmplc3NpY2EiLCJyZXNvdXJjZSI6ImZlZWQifQ.syz5y9Hqw5mi-8GvRcgk8zrprhAAW9JxqbI_1jk_BTs",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": [],
+      "options": {
+        "connect_timeout": 3000
+      },
       "request_body": "",
-      "url": "https://eu-west-api.getstream.io/api/feed/user:/jessica/?api_key=wtdezwkw7uk3"
+      "url": "https://api.getstream.io/api/feed/user:/jessica/?api_key=8andj8c67ycp"
     },
     "response": {
       "body": "{\"exception\": \"GetStreamAPI404\", \"detail\": \"sorry you've hit a 404\"}",
@@ -18,11 +20,11 @@
         "Content-Type": "application/json",
         "Content-Length": "68",
         "Connection": "keep-alive",
-        "Date": "Tue, 09 Aug 2016 17:58:06 GMT",
+        "Date": "Tue, 09 Aug 2016 19:38:10 GMT",
         "Server": "nginx",
         "X-Cache": "Error from cloudfront",
-        "Via": "1.1 3199bad28fcb76e5ee8d85447ef291ef.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "fkKLDmpZLe40fssowsAVwyCIGikoK4iaMoPUX84AcK8HaPRKuWNtAQ=="
+        "Via": "1.1 5298d14814ac28e02807dcd709261cca.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "Ansd4vTzJFKmu5Um_0e9JDZz5lK3Hos8HmhvncimNZFEojJ6fYtVZA=="
       },
       "status_code": 404,
       "type": "ok"

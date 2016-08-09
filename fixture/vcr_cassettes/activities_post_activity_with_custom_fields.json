@@ -3,28 +3,30 @@
     "request": {
       "body": "{\"activities\":[{\"verb\":\"like\",\"object\":\"Elixir\",\"foreign_id\":\"tony:elixir\",\"custom_field\":\"custom_value\",\"actor\":\"Tony\"}]}",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZmVlZCJ9.QVjTm7VsPPOenLT8iOhxZ4jLrfVCG8EzVoohEy2OraQ",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZmVlZCJ9.yy2xnxZDKkaxSarHiPG8WPUm5SlPAlwVTlAezD4WopM",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": [],
+      "options": {
+        "connect_timeout": 3000
+      },
       "request_body": "",
-      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/?api_key=wtdezwkw7uk3"
+      "url": "https://api.getstream.io/api/feed/user/eric/?api_key=8andj8c67ycp"
     },
     "response": {
-      "body": "{\"activities\": [{\"actor\": \"Tony\", \"custom_field\": \"custom_value\", \"foreign_id\": \"tony:elixir\", \"id\": \"d3082fae-5e5a-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T17:58:06.197547\", \"to\": [], \"verb\": \"like\"}], \"duration\": \"24ms\"}",
+      "body": "{\"activities\": [{\"actor\": \"Tony\", \"custom_field\": \"custom_value\", \"foreign_id\": \"tony:elixir\", \"id\": \"ce825654-5e68-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:11.563682\", \"to\": [], \"verb\": \"like\"}], \"duration\": \"26ms\"}",
       "headers": {
         "Content-Type": "application/json",
         "Content-Length": "278",
         "Connection": "keep-alive",
         "Allow": "GET, POST, DELETE, HEAD, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 17:58:06 GMT",
+        "Date": "Tue, 09 Aug 2016 19:38:11 GMT",
         "Server": "nginx",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 3199bad28fcb76e5ee8d85447ef291ef.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "r4qyKbW8n11g8HReW8JC1jtqPqilyLb4Jc7VyLc6hmUXL0w42DD4uw=="
+        "Via": "1.1 5298d14814ac28e02807dcd709261cca.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "xvcrbzN4177izT8NL7kc52iPFoqR8aPOQ2PXo9wZmcM_REawyPPEgw=="
       },
       "status_code": 201,
       "type": "ok"

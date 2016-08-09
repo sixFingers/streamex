@@ -3,29 +3,31 @@
     "request": {
       "body": "",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InVzZXJlcmljIiwicmVzb3VyY2UiOiJmZWVkIn0.GVWfLUEB919C0ii-257f85J-EAr2Ro3Bw84qZh4CKgI",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InVzZXJlcmljIiwicmVzb3VyY2UiOiJmZWVkIn0.ehYzwgLbXQnWGbYywDuC820JFJcIOsYQmXJH_MFGoEg",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "get",
-      "options": [],
+      "options": {
+        "connect_timeout": 3000
+      },
       "request_body": "",
-      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/?limit=25&offset=0&api_key=wtdezwkw7uk3"
+      "url": "https://api.getstream.io/api/feed/user/eric/?limit=25&offset=0&api_key=8andj8c67ycp"
     },
     "response": {
-      "body": "{\"duration\": \"15ms\", \"next\": \"\", \"results\": [{\"actor\": \"Tony\", \"custom_field\": \"custom_value\", \"foreign_id\": \"tony:elixir\", \"id\": \"d3082fae-5e5a-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T17:58:06.197547\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony\", \"custom_field\": null, \"foreign_id\": \"tony:elixir\", \"id\": \"d2d6fc2c-5e5a-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T17:58:05.875102\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony\", \"custom_field\": null, \"foreign_id\": null, \"id\": \"d25aa4ba-5e5a-11e6-8080-8000470b1282\", \"object\": \"PHP\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T17:58:05.060217\", \"to\": [], \"verb\": \"dislike\"}, {\"actor\": \"Tony\", \"custom_field\": null, \"foreign_id\": null, \"id\": \"d25a7760-5e5a-11e6-8080-80017ce9f8a0\", \"object\": \"Ruby\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T17:58:05.059056\", \"to\": [], \"verb\": \"like\"}]}",
+      "body": "{\"duration\": \"15ms\", \"next\": \"\", \"results\": [{\"actor\": \"Tony\", \"foreign_id\": \"tony:elixir\", \"id\": \"cee9cdac-5e68-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:12.241758\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony\", \"custom_field\": \"custom_value\", \"foreign_id\": \"tony:elixir\", \"id\": \"ce825654-5e68-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:11.563682\", \"to\": [], \"verb\": \"like\"}]}",
       "headers": {
         "Content-Type": "application/json",
-        "Content-Length": "963",
+        "Content-Length": "497",
         "Connection": "keep-alive",
         "Allow": "GET, POST, DELETE, HEAD, OPTIONS",
         "Cache-Control": "max-age=0",
-        "Date": "Tue, 09 Aug 2016 18:02:26 GMT",
-        "Server": "nginx",
+        "Date": "Tue, 09 Aug 2016 19:38:13 GMT",
+        "Server": "nginx/1.4.6 (Ubuntu)",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 6d9633d9024b849422cdf585733e69aa.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "o2WrDuLtg3oSdvOaKHzNmaKf4LL5CudTLk9zCwE8e_zEnznhmHU2vg=="
+        "Via": "1.1 5298d14814ac28e02807dcd709261cca.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "WZ44TFWup30YAaC89b5GdtIJKu5iZZBfb4c2CYzP9_TdBloArliT4A=="
       },
       "status_code": 200,
       "type": "ok"

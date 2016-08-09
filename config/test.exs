@@ -3,8 +3,8 @@
 use Mix.Config
 
 config :streamex, region: "eu-west",
-                  key: "wtdezwkw7uk3",
-                  secret: "3da76dgqe6sutmf694ntqypbe87rwnj66taqs34b8ttbmuwyrgk3k2chqxwfaa5m"
+                  key: "8andj8c67ycp",
+                  secret: "6anbcfx3a5awa62ehtmjfnzdn74shg9tcbbwrpfrdmeaf2t5f3pddfsj9ewpjnv7"
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

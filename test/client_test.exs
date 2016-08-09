@@ -6,7 +6,7 @@ defmodule ClientTest do
   doctest Streamex
 
   setup_all do
-    Config.configure("KEY", "SECRET", region: "eu-west")
+    Config.configure()
   end
 
   test "client builds requests with correct full url" do

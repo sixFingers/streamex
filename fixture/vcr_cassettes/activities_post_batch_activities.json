@@ -3,29 +3,31 @@
     "request": {
       "body": "{\"feeds\":[\"user:erika\"],\"activity\":{\"verb\":\"like\",\"object\":\"Elixir\",\"foreign_id\":\"tony:elixir\",\"actor\":\"Tony\"}}",
       "headers": {
-        "X-Api-Key": "wtdezwkw7uk3",
-        "Date": "Tue, 09 Aug 16 19:58:04 +0200",
-        "Authorization": "Signature keyId=\"wtdezwkw7uk3\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"l669KAIdwmizcZdwaJU3+cZAoSv787wsKtfTU1dlaTo=\"",
+        "X-Api-Key": "8andj8c67ycp",
+        "Date": "Tue, 09 Aug 16 21:38:11 +0200",
+        "Authorization": "Signature keyId=\"8andj8c67ycp\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"tvmxCTKBTqT1V4v/O92ijAsoRMlcS+c4es0oB14wlAM=\"",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": [],
+      "options": {
+        "connect_timeout": 3000
+      },
       "request_body": "",
-      "url": "https://eu-west-api.getstream.io/api/feed/add_to_many/?api_key=wtdezwkw7uk3"
+      "url": "https://api.getstream.io/api/feed/add_to_many/?api_key=8andj8c67ycp"
     },
     "response": {
-      "body": "{\"duration\": \"19ms\"}",
+      "body": "{\"duration\": \"25ms\"}",
       "headers": {
         "Content-Type": "application/json",
         "Content-Length": "20",
         "Connection": "keep-alive",
         "Allow": "POST, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 17:58:04 GMT",
+        "Date": "Tue, 09 Aug 2016 19:38:11 GMT",
         "Server": "nginx/1.4.6 (Ubuntu)",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 3199bad28fcb76e5ee8d85447ef291ef.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "8SZXA_TJ7hKPEEMTzt6PA9kERkVA-XRIfzR4jV7pcFBaQKdS0xaytA=="
+        "Via": "1.1 5298d14814ac28e02807dcd709261cca.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "Fps1zBubhGMhVfQotTf6rhJS_sVnwJclTgLs-EsKWoWYMmg8oHPChw=="
       },
       "status_code": 201,
       "type": "ok"

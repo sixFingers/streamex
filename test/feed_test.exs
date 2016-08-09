@@ -1,11 +1,12 @@
 defmodule FeedTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
-  alias Streamex.{Feed, Follow, ErrorInput, ErrorFeedNotFound}
+  alias Streamex.{Config, Feed, Follow, ErrorInput, ErrorFeedNotFound}
 
   doctest Streamex
 
   setup_all do
+    Config.configure()
     ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes")
   end
 
@@ -96,11 +97,11 @@ defmodule FeedTest do
 
   test "Feed followers return a list of follow structs" do
     use_cassette "feed_get_followers" do
-      {_, feed} = Feed.new("user", "eric")
+      {_, feed} = Feed.new("user", "jessica")
       {__, followers} = Feed.followers(feed)
 
       assert Enum.count(followers) == 1
-      assert [%Follow{feed_id: "user:jessica"} | _] = followers
+      assert [%Follow{feed_id: "user:eric"} | _] = followers
     end
   end
 

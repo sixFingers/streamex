@@ -3,29 +3,31 @@
     "request": {
       "body": "",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InVzZXJlcmljIiwicmVzb3VyY2UiOiJmb2xsb3dlciJ9.9XFeafRxF8o-aecU_JIGLcA2ub93EnAwRXikVWBhU2k",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InVzZXJlcmljIiwicmVzb3VyY2UiOiJmb2xsb3dlciJ9.5Ep31IgT8NHVjYaeIbYmI_QnzicqbUuwmIHIJDNBZ44",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "get",
-      "options": [],
+      "options": {
+        "connect_timeout": 3000
+      },
       "request_body": "",
-      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/following/?limit=25&offset=0&api_key=wtdezwkw7uk3"
+      "url": "https://api.getstream.io/api/feed/user/eric/following/?limit=25&offset=0&api_key=8andj8c67ycp"
     },
     "response": {
-      "body": "{\"duration\": \"17ms\", \"results\": [{\"created_at\": \"2016-08-09T17:20:17.787Z\", \"feed_id\": \"user:eric\", \"target_id\": \"user:deborah\", \"updated_at\": \"2016-08-09T17:20:17.787Z\"}]}",
+      "body": "{\"duration\": \"14ms\", \"results\": [{\"created_at\": \"2016-08-09T19:38:14.672Z\", \"feed_id\": \"user:eric\", \"target_id\": \"user:deborah\", \"updated_at\": \"2016-08-09T19:38:14.672Z\"}]}",
       "headers": {
         "Content-Type": "application/json",
         "Content-Length": "172",
         "Connection": "keep-alive",
         "Allow": "GET, POST, HEAD, OPTIONS",
         "Cache-Control": "max-age=0",
-        "Date": "Tue, 09 Aug 2016 17:23:26 GMT",
+        "Date": "Tue, 09 Aug 2016 19:41:56 GMT",
         "Server": "nginx",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 67ef07cc068b16f1f266900a193618b3.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "VVCaXBgwK6vOB1xVsODHiM6s9UO8xM3nuSY_QCsIe4tXCCBB-dmyGA=="
+        "Via": "1.1 2e54f1e2282ced619ee458e0ab9d0c49.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "r3oLf-c4eJqXHIvRGdMdG_b_LXLP9gwd9qRW4wiEA_lGuiXzteqY0w=="
       },
       "status_code": 200,
       "type": "ok"

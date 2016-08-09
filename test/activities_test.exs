@@ -2,11 +2,12 @@ defmodule ActivityTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
   import Streamex.Feed
-  alias Streamex.{Feed, Activity, Activities, ErrorNotFound, ErrorInput}
+  alias Streamex.{Config, Feed, Activity, Activities, ErrorNotFound, ErrorInput}
 
   doctest Streamex
 
   setup_all do
+    Config.configure()
     ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes")
   end
 
@@ -15,7 +16,7 @@ defmodule ActivityTest do
       {_, feed} = new("user", "eric")
       {__, activities} = Streamex.Activities.get(feed)
 
-      assert Enum.count(activities) == 4
+      assert Enum.count(activities) == 2
       assert [%Activity{} | _] = activities
     end
   end

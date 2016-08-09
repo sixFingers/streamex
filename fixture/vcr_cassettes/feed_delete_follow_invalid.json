@@ -3,28 +3,30 @@
     "request": {
       "body": "",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJkZWxldGUiLCJmZWVkX2lkIjoidXNlcmVyaWMiLCJyZXNvdXJjZSI6ImZvbGxvd2VyIn0.EzC2k5JGGdXC6PSaZOzaoBzifIO5ZhLzLVK9j8nxoyE",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJkZWxldGUiLCJmZWVkX2lkIjoidXNlcmVyaWMiLCJyZXNvdXJjZSI6ImZvbGxvd2VyIn0.LJyB--cqLkAQuNYlmNNsD76az-vbmikin8lzg2gcidY",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "delete",
-      "options": [],
+      "options": {
+        "connect_timeout": 3000
+      },
       "request_body": "",
-      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/following/user::jessica/?api_key=wtdezwkw7uk3"
+      "url": "https://api.getstream.io/api/feed/user/eric/following/user::jessica/?api_key=8andj8c67ycp"
     },
     "response": {
-      "body": "{\"code\": 4, \"detail\": \"Broken feed specification, please specify as flat:42\", \"duration\": \"5ms\", \"exception\": \"InputException\", \"status_code\": 400}",
+      "body": "{\"code\": 4, \"detail\": \"Broken feed specification, please specify as flat:42\", \"duration\": \"7ms\", \"exception\": \"InputException\", \"status_code\": 400}",
       "headers": {
         "Content-Type": "application/json",
         "Content-Length": "147",
         "Connection": "keep-alive",
         "Allow": "DELETE, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 17:22:25 GMT",
-        "Server": "nginx/1.4.6 (Ubuntu)",
+        "Date": "Tue, 09 Aug 2016 19:41:56 GMT",
+        "Server": "nginx",
         "Vary": "Accept",
         "X-Cache": "Error from cloudfront",
-        "Via": "1.1 cc980cac3e56c16db01c2190d04a9154.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "TgTNFOLMg0iU9qA4Mqd1E6cgXkA9GlJqKfJ5oF5kJ50oWpdSsCGtPw=="
+        "Via": "1.1 2e54f1e2282ced619ee458e0ab9d0c49.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "L4Z-rqjFzaQ4BscU_FmgD9lZbTuvUxLZH9T7MFtueatzRUiUBDrcqw=="
       },
       "status_code": 400,
       "type": "ok"
