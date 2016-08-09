@@ -6,7 +6,6 @@ defmodule Streamex.Follow do
 
   @type t :: %__MODULE__{}
 
-  @spec to_struct(%{}) :: __MODULE__.t
   def to_struct(%{} = attrs) do
     attrs
     |> Map.to_list
@@ -15,7 +14,6 @@ defmodule Streamex.Follow do
     end)
   end
 
-  @spec to_json(__MODULE__.t) :: %{}
   def to_json(%__MODULE__{} = follow) do
     {:ok, body} = Poison.encode(follow)
     body

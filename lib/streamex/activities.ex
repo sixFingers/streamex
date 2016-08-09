@@ -2,7 +2,6 @@ defmodule Streamex.Activities do
   import Streamex.Request
   alias Streamex.{Request, Client, Feed, Activity}
 
-  @spec get(Feed.t, []) :: {:ok, [Activity.t, ...]} | {:error, String.t}
   def get(%Feed{} = feed, opts \\ []) do
     Request.new
     |> with_method(:get)
@@ -16,7 +15,6 @@ defmodule Streamex.Activities do
     |> handle_response
   end
 
-  @spec add(Feed.t, Activity.t) :: {:ok, Activity.t} | {:error, String.t}
   def add(%Feed{} = feed, %{} = activity) do
     {status, results} = add(feed, [activity])
 
@@ -26,7 +24,6 @@ defmodule Streamex.Activities do
     end
   end
 
-  @spec add(Feed.t, [%{}, ...]) :: {:ok, [%{}, ...]} | {:error, String.t}
   def add(%Feed{} = feed, [%{} | _] = activities) do
     Request.new
     |> with_method(:post)
@@ -40,7 +37,6 @@ defmodule Streamex.Activities do
     |> handle_response
   end
 
-  @spec add_to_many(%{}, [tuple(), ...]) :: {:ok, nil} | {:error, String.t}
   def add_to_many(%{} = activity, feeds) do
     Request.new
     |> with_method(:post)
@@ -53,12 +49,10 @@ defmodule Streamex.Activities do
     |> handle_response
   end
 
-  @spec update(Feed.t, %{}) :: {:ok, nil} | {:error, String.t}
   def update(%Feed{} = feed, %{} = activity) do
     update(feed, [activity])
   end
 
-  @spec update(Feed.t, [%{}, ...]) :: {:ok, nil} | {:error, String.t}
   def update(%Feed{} = feed, [%{} | _] = activities) do
     Request.new
     |> with_method(:post)
@@ -72,7 +66,6 @@ defmodule Streamex.Activities do
     |> handle_response
   end
 
-  @spec remove(Feed.t, String.t, boolean) :: {:ok, nil} | {:error, String.t}
   def remove(%Feed{} = feed, id, foreign_id \\ false) do
     params = foreign_id && %{"foreign_id" => 1} || %{}
 

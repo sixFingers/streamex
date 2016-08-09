@@ -4,7 +4,6 @@ defmodule Streamex.Client do
   alias Timex.DateTime, as: DateTime
   alias Streamex.Token
 
-  @spec prepare_request(Request.t) :: Request.t
   def prepare_request(%Request{} = req) do
     uri = URI.merge(Config.base_url, req.path)
     query = Map.merge(req.params, %{"api_key" => Config.key}) |> URI.encode_query
@@ -12,7 +11,6 @@ defmodule Streamex.Client do
     %{req | url: to_string(uri)}
   end
 
-  @spec sign_request(Request.t) :: Request.t
   def sign_request(%Request{} = req) do
     case req.token do
       nil -> sign_request_with_key_secret(req, Config.key, Config.secret)
@@ -20,7 +18,6 @@ defmodule Streamex.Client do
     end
   end
 
-  @spec execute_request(Request.t) :: {:ok, any()} | {:error, any()}
   def execute_request(%Request{} = req) do
     request(
       req.method,
@@ -31,10 +28,7 @@ defmodule Streamex.Client do
     )
   end
 
-  @spec parse_response({:error, String.t}) :: {:error, String.t}
   def parse_response({:error, body}), do: {:error, body}
-
-  @spec parse_response({:ok, String.t}) :: {:ok, [...]} | {:ok, %{}}
   def parse_response({:ok, response}) do
     Poison.decode!(response.body)
   end
