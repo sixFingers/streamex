@@ -5,7 +5,6 @@ defmodule Streamex.Token do
 
   @type t :: %__MODULE__{}
 
-  @spec compact(__MODULE__.t, String.t) :: String.t
   def compact(%__MODULE__{} = token, secret) do
     %{resource: token.resource, action: token.action, feed_id: token.feed_id}
     |> token

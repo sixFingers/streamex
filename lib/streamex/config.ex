@@ -1,7 +1,6 @@
 defmodule Streamex.Config do
   @api_url "api.getstream.io/api"
 
-  @spec configure(String.t, String.t, [...]) :: :ok
   def configure(key, secret, opts \\ []) do
     Application.put_env(:streamex, :key, key)
     Application.put_env(:streamex, :secret, secret)
@@ -16,7 +15,6 @@ defmodule Streamex.Config do
     Application.put_env(:streamex, :version, version)
   end
 
-  @spec base_url() :: String.t
   def base_url do
     case region do
       "" -> "https://#{@api_url}/#{version}"
@@ -24,18 +22,13 @@ defmodule Streamex.Config do
     end
   end
 
-  @spec key() :: String.t
   def key, do: Application.get_env(:streamex, :key)
 
-  @spec secret() :: String.t
   def secret, do: Application.get_env(:streamex, :secret)
 
-  @spec region() :: String.t
   def region, do: Application.get_env(:streamex, :region)
 
-  @spec version() :: String.t
   def version, do: Application.get_env(:streamex, :version)
 
-  @spec timeout() :: String.t
   def timeout, do: Application.get_env(:streamex, :timeout)
 end
