@@ -15,12 +15,15 @@ defmodule Streamex.Activity do
   @type t :: %__MODULE__{}
 
   def to_struct(%{} = attrs) do
-    {standard, custom} = Map.split(attrs, Enum.map(Map.keys(%__MODULE__{}), &(Atom.to_string(&1))))
-    custom_fields = if custom == nil, do: %{}, else: custom
-    struct = struct(%__MODULE__{custom_fields: custom_fields})
+    Enum.reduce(attrs, %__MODULE__{}, fn({key, value}, struct) ->
+      atom = String.to_atom(key)
 
-    Enum.reduce Map.to_list(standard), struct, fn {k, v}, acc ->
-      %{acc | String.to_atom(k) => v}
-    end
+      if Map.has_key?(struct, atom) do
+        Map.put(struct, atom, value)
+      else
+        custom_fields = Map.put(struct.custom_fields, key, value)
+        %{struct | custom_fields: custom_fields}
+      end
+    end)
   end
 end
