@@ -1,70 +1,94 @@
 defmodule FeedTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
-  import Streamex.Helpers
-  alias Streamex.{Feed, Config, Follow}
+  alias Streamex.{Feed, Follow, ErrorInput, ErrorFeedNotFound}
 
   doctest Streamex
 
   setup_all do
-    Config.configure("9xup4y9pydw6", "jfw8xukqrp8axd2h5g22r67veys9qajz8aqkbsg25w3dhc6hsr737qb5wnqaywkz")
     ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes")
   end
 
   test "Feed initialization params get validated" do
-    {status_a, _} = Feed.new("user:", "eric")
-    {status_b, _} = Feed.new("user", ":eric")
+    {status_a, error_a} = Feed.new("user:", "eric")
+    {status_b, error_b} = Feed.new("user", ":eric")
     {status_c, _} = Feed.new("user", "eric")
 
     assert status_a == :error
     assert status_b == :error
+    assert error_a == ErrorInput.message
+    assert error_b == ErrorInput.message
     assert status_c == :ok
   end
 
   test "Feed follow request with invalid input returns error" do
-    {_, feed} = Feed.new("user", "eric")
+    use_cassette "feed_post_follow_invalid" do
+      {_, valid_feed} = Feed.new("user", "erika")
+      invalid_feed = %Feed{slug: "user:", user_id: "mark", id: "user:_mark"}
+      {status, error} = Feed.follow(invalid_feed, valid_feed)
 
-    assert Feed.follow(feed, "user:", "jessica") == validate_error
-    assert Feed.follow(feed, "user", ":jessica") == validate_error
+      assert {:error, "GetStreamAPI404"} = {status, error}
+    end
   end
 
   test "Feed follow request with valid input returns ok" do
     use_cassette "feed_post_follow" do
-      {_, feed} = Feed.new("user", "eric")
-      {status, _} = Feed.follow(feed, "user", "jessica")
+      {_, source} = Feed.new("user", "eric")
+      {_, target} = Feed.new("user", "jessica")
+      {status, _} = Feed.follow(source, target)
 
       assert status == :ok
     end
   end
 
-  test "Feed follow batch request with invalid input returns error" do
-    mistyped_a = [{{"user:", "eric"}, {"user", "jessica"}}, {{"user", "eric"}, {"user", "deborah"}}]
-    mistyped_b = [{{"user", "eric"}, {"user", "jessica"}}, {{"user", "eric"}, {"user", ":deborah"}}]
+  test "Feed follow request to inexistent feed returns error" do
+    use_cassette "feed_post_follow_inexistent" do
+      {_, source} = Feed.new("alien", "eric")
+      {_, target} = Feed.new("alien", "jessica")
+      {status, error} = Feed.follow(source, target)
 
-    assert Feed.follow_many(mistyped_a) == validate_error
-    assert Feed.follow_many(mistyped_b) == validate_error
+      assert status == :error
+      assert error == ErrorFeedNotFound.message
+    end
+  end
+
+  test "Feed follow batch request with invalid input returns error" do
+    use_cassette "feed_post_batch_follow_invalid" do
+      {_, valid_feed} = Feed.new("user", "eric")
+      invalid_feed = %Feed{slug: "user:", user_id: "jessica", id: "user:jessica"}
+      {status, error} = Feed.follow_many([{valid_feed, invalid_feed}])
+
+      assert status == :error
+      assert error == ErrorInput.message
+    end
   end
 
   test "Feed follow batch request with valid input returns ok" do
     use_cassette "feed_post_batch_follow" do
-      follows = [{{"user", "eric"}, {"user", "jessica"}}, {{"user", "eric"}, {"user", "deborah"}}]
-      {status, _} = Feed.follow_many(follows)
+      {_, source} = Feed.new("user", "eric")
+      {_, target} = Feed.new("user", "deborah")
+      {status, _} = Feed.follow_many([{source, target}])
 
       assert status == :ok
     end
   end
 
   test "Feed unfollow request with invalid input returns error" do
-    {_, feed} = Feed.new("user", "eric")
+    use_cassette "feed_delete_follow_invalid" do
+      {_, valid_feed} = Feed.new("user", "eric")
+      invalid_feed = %Feed{slug: "user:", user_id: "jessica", id: "user:jessica"}
+      {status, error} = Feed.unfollow(valid_feed, invalid_feed)
 
-    assert Feed.unfollow(feed, "user:", "jessica") == validate_error
-    assert Feed.unfollow(feed, "user", ":jessica") == validate_error
+      assert status == :error
+      assert error == ErrorInput.message
+    end
   end
 
   test "Feed unfollow request with valid input returns ok" do
     use_cassette "feed_delete_follow" do
-      {_, feed} = Feed.new("user", "eric")
-      {status, _} = Feed.unfollow(feed, "user", "jessica")
+      {_, source} = Feed.new("user", "eric")
+      {_, target} = Feed.new("user", "jessica")
+      {status, _} = Feed.unfollow(source, target)
 
       assert status == :ok
     end
@@ -76,7 +100,7 @@ defmodule FeedTest do
       {__, followers} = Feed.followers(feed)
 
       assert Enum.count(followers) == 1
-      assert %Follow{feed_id: "user:jessica"} = Enum.at(followers, 0)
+      assert [%Follow{feed_id: "user:jessica"} | _] = followers
     end
   end
 
@@ -85,7 +109,7 @@ defmodule FeedTest do
       {_, feed} = Feed.new("user", "eric")
       {__, following} = Feed.following(feed)
 
-      assert Enum.count(following) == 2
+      assert Enum.count(following) == 1
     end
   end
 end
