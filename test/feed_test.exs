@@ -1,9 +1,8 @@
 defmodule FeedTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
-  import Streamex.Feed
   import Streamex.Helpers
-  alias Streamex.{Config, Follow}
+  alias Streamex.{Feed, Config, Follow}
 
   doctest Streamex
 
@@ -13,9 +12,9 @@ defmodule FeedTest do
   end
 
   test "Feed initialization params get validated" do
-    {status_a, _} = new("user:", "eric")
-    {status_b, _} = new("user", ":eric")
-    {status_c, _} = new("user", "eric")
+    {status_a, _} = Feed.new("user:", "eric")
+    {status_b, _} = Feed.new("user", ":eric")
+    {status_c, _} = Feed.new("user", "eric")
 
     assert status_a == :error
     assert status_b == :error
@@ -23,16 +22,16 @@ defmodule FeedTest do
   end
 
   test "Feed follow request with invalid input returns error" do
-    {_, feed} = new("user", "eric")
+    {_, feed} = Feed.new("user", "eric")
 
-    assert follow(feed, "user:", "jessica") == validate_error
-    assert follow(feed, "user", ":jessica") == validate_error
+    assert Feed.follow(feed, "user:", "jessica") == validate_error
+    assert Feed.follow(feed, "user", ":jessica") == validate_error
   end
 
   test "Feed follow request with valid input returns ok" do
     use_cassette "feed_post_follow" do
-      {_, feed} = new("user", "eric")
-      {status, _} = follow(feed, "user", "jessica")
+      {_, feed} = Feed.new("user", "eric")
+      {status, _} = Feed.follow(feed, "user", "jessica")
 
       assert status == :ok
     end
@@ -42,30 +41,30 @@ defmodule FeedTest do
     mistyped_a = [{{"user:", "eric"}, {"user", "jessica"}}, {{"user", "eric"}, {"user", "deborah"}}]
     mistyped_b = [{{"user", "eric"}, {"user", "jessica"}}, {{"user", "eric"}, {"user", ":deborah"}}]
 
-    assert follow_many(mistyped_a) == validate_error
-    assert follow_many(mistyped_b) == validate_error
+    assert Feed.follow_many(mistyped_a) == validate_error
+    assert Feed.follow_many(mistyped_b) == validate_error
   end
 
   test "Feed follow batch request with valid input returns ok" do
     use_cassette "feed_post_batch_follow" do
       follows = [{{"user", "eric"}, {"user", "jessica"}}, {{"user", "eric"}, {"user", "deborah"}}]
-      {status, _} = follow_many(follows)
+      {status, _} = Feed.follow_many(follows)
 
       assert status == :ok
     end
   end
 
   test "Feed unfollow request with invalid input returns error" do
-    {_, feed} = new("user", "eric")
+    {_, feed} = Feed.new("user", "eric")
 
-    assert unfollow(feed, "user:", "jessica") == validate_error
-    assert unfollow(feed, "user", ":jessica") == validate_error
+    assert Feed.unfollow(feed, "user:", "jessica") == validate_error
+    assert Feed.unfollow(feed, "user", ":jessica") == validate_error
   end
 
   test "Feed unfollow request with valid input returns ok" do
     use_cassette "feed_delete_follow" do
-      {_, feed} = new("user", "eric")
-      {status, _} = unfollow(feed, "user", "jessica")
+      {_, feed} = Feed.new("user", "eric")
+      {status, _} = Feed.unfollow(feed, "user", "jessica")
 
       assert status == :ok
     end
@@ -73,8 +72,8 @@ defmodule FeedTest do
 
   test "Feed followers return a list of follow structs" do
     use_cassette "feed_get_followers" do
-      {_, feed} = new("user", "eric")
-      {__, followers} = Streamex.Feed.followers(feed)
+      {_, feed} = Feed.new("user", "eric")
+      {__, followers} = Feed.followers(feed)
 
       assert Enum.count(followers) == 1
       assert %Follow{feed_id: "user:jessica"} = Enum.at(followers, 0)
@@ -83,8 +82,8 @@ defmodule FeedTest do
 
   test "Feed followings return a list of follow structs" do
     use_cassette "feed_get_following" do
-      {_, feed} = new("user", "eric")
-      {__, following} = Streamex.Feed.following(feed)
+      {_, feed} = Feed.new("user", "eric")
+      {__, following} = Feed.following(feed)
 
       assert Enum.count(following) == 2
     end
