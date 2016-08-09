@@ -4,8 +4,8 @@ defmodule ConfigTest do
 
   doctest Streamex
 
-  test "client handles empty region" do
-    Application.put_env(:streamex, :region, "")
+  test "Configure with values from environment and no region" do
+    Config.configure()
     assert Config.base_url == "https://api.getstream.io/api/1.0"
   end
 end

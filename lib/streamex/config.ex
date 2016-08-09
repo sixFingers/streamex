@@ -1,5 +1,14 @@
 defmodule Streamex.Config do
   @api_url "api.getstream.io/api"
+  @default_timeout 3000
+  @default_version 1.0
+  @default_region ""
+
+  def configure() do
+    Application.put_env(:streamex, :region, @default_region)
+    Application.put_env(:streamex, :timeout, @default_timeout)
+    Application.put_env(:streamex, :version, @default_version)
+  end
 
   def configure(key, secret, opts \\ []) do
     Application.put_env(:streamex, :key, key)
@@ -8,10 +17,10 @@ defmodule Streamex.Config do
     region = Keyword.get(opts, :region, "")
     Application.put_env(:streamex, :region, region)
 
-    timeout = Keyword.get(opts, :timeout, 3000)
+    timeout = Keyword.get(opts, :timeout, @default_timeout)
     Application.put_env(:streamex, :timeout, timeout)
 
-    version = Keyword.get(opts, :version, 1.0)
+    version = Keyword.get(opts, :version, @default_version)
     Application.put_env(:streamex, :version, version)
   end
 
