@@ -18,7 +18,7 @@ defmodule Streamex.Activities do
     {status, results} = add(feed, [activity])
 
     case status do
-      :ok -> Enum.at(results, 0)
+      :ok -> {status, Enum.at(results, 0)}
       :error -> {status, results}
     end
   end
@@ -107,7 +107,7 @@ defmodule Streamex.Activities do
   end
 
   defp body_create_batch_activities(feeds, activity) do
-    feeds = Enum.map(feeds, fn({slug, user_id}) -> "#{slug}:#{user_id}" end)
+    feeds = Enum.map(feeds, fn(feed) -> Feed.get_follow_target_string(feed) end)
     payload = %{"feeds" => feeds, "activity" => activity}
     Poison.encode!(payload)
   end
