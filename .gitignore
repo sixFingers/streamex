@@ -11,7 +11,8 @@
 /doc
 
 # Configuration
-/config
+/config/*
+!/config/test.exs
 
 # Test coverage
 /cover
