@@ -1,8 +1,7 @@
 defmodule Streamex.Client do
   use HTTPoison.Base
-  alias Streamex.{Request, Config}
-  alias Timex.DateTime, as: DateTime
-  alias Streamex.Token
+  alias Streamex.{Request, Config, Token}
+  alias Timex.DateTime
 
   def prepare_request(%Request{} = req) do
     uri = URI.merge(Config.base_url, req.path)
