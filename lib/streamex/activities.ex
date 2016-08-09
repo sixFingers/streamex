@@ -81,12 +81,13 @@ defmodule Streamex.Activities do
     Keyword.merge(defaults, opts) |> Enum.into(%{})
   end
 
+  def handle_response(%{"exception" => exception}), do: {:error, exception}
   def handle_response(%{"results" => results}), do:
     {:ok, Enum.map(results, &Activity.to_struct(&1))}
   def handle_response(%{"activities" => results}), do:
     {:ok, Enum.map(results, &Activity.to_struct(&1))}
+  def handle_response(%{"removed" => id}), do: {:ok, id}
   def handle_response(%{"duration" => _}), do: {:ok, nil}
-  def handle_response(%{"status_code" => _, "detail" => detail}), do: {:error, detail}
 
   defp endpoint_get(%Feed{} = feed) do
     <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/">>
