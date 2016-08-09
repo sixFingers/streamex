@@ -23,7 +23,6 @@ defmodule Streamex.Feed do
     |> Client.prepare_request
     |> Client.sign_request
     |> Client.execute_request
-    |> Client.parse_response
     |> handle_response
   end
 
@@ -36,7 +35,6 @@ defmodule Streamex.Feed do
     |> Client.prepare_request
     |> Client.sign_request
     |> Client.execute_request
-    |> Client.parse_response
     |> handle_response
   end
 
@@ -51,7 +49,6 @@ defmodule Streamex.Feed do
       |> Client.prepare_request
       |> Client.sign_request
       |> Client.execute_request
-      |> Client.parse_response
       |> handle_response
     else
       validate_error
@@ -68,7 +65,6 @@ defmodule Streamex.Feed do
       |> Client.prepare_request
       |> Client.sign_request
       |> Client.execute_request
-      |> Client.parse_response
       |> handle_response
     else
       validate_error
@@ -86,7 +82,6 @@ defmodule Streamex.Feed do
       |> Client.prepare_request
       |> Client.sign_request
       |> Client.execute_request
-      |> Client.parse_response
       |> handle_response
     else
       validate_error
@@ -97,19 +92,10 @@ defmodule Streamex.Feed do
     "#{target_feed}:#{target_user}"
   end
 
-  # Error response
-  # THIS SHOULD THROW EXCEPTION
-  defp handle_response(%{"status_code" => _, "detail" => detail}), do: {:error, detail}
-
-  # Successful get response
-  defp handle_response(%{"results" => results}) do
-    {:ok, Enum.map(results, &Follow.to_struct(&1))}
-  end
-
-  # Successful post response
-  defp handle_response(_) do
-    {:ok, nil}
-  end
+  def handle_response(%{"results" => results}), do:
+    {:ok, Enum.map(results, &Poison.Decode.decode(&1, as: %Follow{}))}
+  def handle_response(%{"duration" => _}), do: {:ok, nil}
+  def handle_response(%{"status_code" => _, "detail" => detail}), do: {:error, detail}
 
   defp endpoint_get_followers(%__MODULE__{} = feed) do
     <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/followers/">>

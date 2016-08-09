@@ -19,19 +19,12 @@ defmodule Streamex.Client do
   end
 
   def execute_request(%Request{} = req) do
-    request(
-      req.method,
-      req.url,
-      req.body,
-      req.headers,
-      req.options
-    )
+    request(req.method, req.url, req.body, req.headers, req.options)
+    |> parse_response
   end
 
   def parse_response({:error, body}), do: {:error, body}
-  def parse_response({:ok, response}) do
-    Poison.decode!(response.body)
-  end
+  def parse_response({:ok, %{} = r}), do: Poison.decode!(r.body)
 
   defp sign_request_with_token(%Request{} = req, secret) do
     token = Token.compact(req.token, secret)

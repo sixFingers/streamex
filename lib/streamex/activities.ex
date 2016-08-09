@@ -11,7 +11,6 @@ defmodule Streamex.Activities do
     |> Client.prepare_request
     |> Client.sign_request
     |> Client.execute_request
-    |> Client.parse_response
     |> handle_response
   end
 
@@ -33,7 +32,6 @@ defmodule Streamex.Activities do
     |> Client.prepare_request
     |> Client.sign_request
     |> Client.execute_request
-    |> Client.parse_response
     |> handle_response
   end
 
@@ -45,7 +43,6 @@ defmodule Streamex.Activities do
     |> Client.prepare_request
     |> Client.sign_request
     |> Client.execute_request
-    |> Client.parse_response
     |> handle_response
   end
 
@@ -62,7 +59,6 @@ defmodule Streamex.Activities do
     |> Client.prepare_request
     |> Client.sign_request
     |> Client.execute_request
-    |> Client.parse_response
     |> handle_response
   end
 
@@ -77,7 +73,6 @@ defmodule Streamex.Activities do
     |> Client.prepare_request
     |> Client.sign_request
     |> Client.execute_request
-    |> Client.parse_response
     |> handle_response
   end
 
@@ -86,23 +81,12 @@ defmodule Streamex.Activities do
     Keyword.merge(defaults, opts) |> Enum.into(%{})
   end
 
-  defp handle_response(%{"status_code" => _, "detail" => detail}), do: {:error, detail}
-
-  defp handle_response(%{"results" => results}) do
+  def handle_response(%{"results" => results}), do:
     {:ok, Enum.map(results, &Activity.to_struct(&1))}
-  end
-
-  defp handle_response(%{"activities" => results}) do
+  def handle_response(%{"activities" => results}), do:
     {:ok, Enum.map(results, &Activity.to_struct(&1))}
-  end
-
-  defp handle_response(%{"duration" => _}) do
-    {:ok, nil}
-  end
-
-  defp handle_response(%{"removed" => id}) do
-    {:ok, id}
-  end
+  def handle_response(%{"duration" => _}), do: {:ok, nil}
+  def handle_response(%{"status_code" => _, "detail" => detail}), do: {:error, detail}
 
   defp endpoint_get(%Feed{} = feed) do
     <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/">>
