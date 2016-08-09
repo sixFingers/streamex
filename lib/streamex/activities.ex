@@ -62,7 +62,8 @@ defmodule Streamex.Activities do
     |> handle_response
   end
 
-  def remove(%Feed{} = feed, id, foreign_id \\ false) do
+  def remove(%Feed{} = feed, id, opts \\ []) do
+    foreign_id = Keyword.get(opts, :foreign_id, false)
     params = foreign_id && %{"foreign_id" => 1} || %{}
 
     Request.new

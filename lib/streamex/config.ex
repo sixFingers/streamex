@@ -5,10 +5,6 @@ defmodule Streamex.Config do
   @default_region ""
 
   def configure() do
-    # Application.put_env(:streamex, :region, @default_region)
-    # Application.put_env(:streamex, :timeout, @default_timeout)
-    # Application.put_env(:streamex, :version, @default_version)
-
     configure(
       Application.get_env(:streamex, :key, ""),
       Application.get_env(:streamex, :secret, "")

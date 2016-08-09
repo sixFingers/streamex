@@ -118,7 +118,7 @@ defmodule ActivityTest do
   test "Removing an activity by foreign_id returns ok" do
     use_cassette "activities_delete_activity_by_foreign_id" do
       {_, feed} = new("user", "eric")
-      {status, id} = Activities.remove(feed, "tony:elixir", true)
+      {status, id} = Activities.remove(feed, "tony:elixir", foreign_id: true)
 
       assert {:ok, "tony:elixir"} == {status, id}
     end
