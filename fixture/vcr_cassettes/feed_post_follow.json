@@ -3,30 +3,28 @@
     "request": {
       "body": "{\"target\":\"user:jessica\"}",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZm9sbG93ZXIifQ.2QfzuuuamSfRA3owjT2jMDO63blaWDdDCpv1HCQL9Ro",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZm9sbG93ZXIifQ.NAtCL3py0mxh4fW-RuXrYeco3t1Fxsf14_kyhBwQDVs",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/following/?activity_copy_limit=300&api_key=9xup4y9pydw6"
+      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/following/?activity_copy_limit=300&api_key=wtdezwkw7uk3"
     },
     "response": {
-      "body": "{\"duration\": \"24ms\"}",
+      "body": "{\"duration\": \"37ms\"}",
       "headers": {
         "Content-Type": "application/json",
         "Content-Length": "20",
         "Connection": "keep-alive",
         "Allow": "GET, POST, HEAD, OPTIONS",
-        "Date": "Thu, 04 Aug 2016 15:37:46 GMT",
+        "Date": "Tue, 09 Aug 2016 17:17:47 GMT",
         "Server": "nginx",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 52562b8a4340a3ff6b2465b08263aec4.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "Hf47XKAUV8h88j_dMD3zf061PyIpgZrxUxm5UcyvOHIMGxepStOpiQ=="
+        "Via": "1.1 7035adfe06ca45e7cf6c5192076cf266.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "zStAzEh5Gm0LnvPNskzz7Bo9RbsNot98ls6StNk31-w4pk-D8_-VKw=="
       },
       "status_code": 201,
       "type": "ok"

@@ -1,0 +1,31 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InVzZXI6amVzc2ljYSIsInJlc291cmNlIjoiZmVlZCJ9.Uyxjwp1hsvJ8w5L6ZDZGltvkWMKVjSVl349G4q2tV70",
+        "stream-auth-type": "jwt",
+        "content-type": "application/json"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://eu-west-api.getstream.io/api/feed/user:/jessica/?limit=25&offset=0&api_key=wtdezwkw7uk3"
+    },
+    "response": {
+      "body": "{\"exception\": \"GetStreamAPI404\", \"detail\": \"sorry you've hit a 404\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": "68",
+        "Connection": "keep-alive",
+        "Date": "Tue, 09 Aug 2016 17:58:06 GMT",
+        "Server": "nginx",
+        "X-Cache": "Error from cloudfront",
+        "Via": "1.1 3199bad28fcb76e5ee8d85447ef291ef.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "iChIVtIRCfB9dQxP0eCtPUEHNcCtKTnPfDVfCGQmTADc2FRBGUZXUg=="
+      },
+      "status_code": 404,
+      "type": "ok"
+    }
+  }
+]

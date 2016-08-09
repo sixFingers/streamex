@@ -10,21 +10,21 @@
       "method": "delete",
       "options": [],
       "request_body": "",
-      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/d2d6fc2c-5e5a-11e6-8080-80017383369d/?api_key=wtdezwkw7uk3"
+      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/tony:elixir/?api_key=wtdezwkw7uk3&foreign_id=1"
     },
     "response": {
-      "body": "{\"duration\": \"8ms\", \"removed\": \"d2d6fc2c-5e5a-11e6-8080-80017383369d\"}",
+      "body": "{\"duration\": \"8ms\", \"removed\": \"tony:elixir\"}",
       "headers": {
         "Content-Type": "application/json",
-        "Content-Length": "70",
+        "Content-Length": "45",
         "Connection": "keep-alive",
         "Allow": "DELETE, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 18:18:22 GMT",
+        "Date": "Tue, 09 Aug 2016 18:16:36 GMT",
         "Server": "nginx",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 17fbe2e6aa5682781b6ee23bfab1fd28.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "inpmavkUkFFUUKd5wCGM9lV2YJajchous2lLZyVLIZ3I5rvqtesn0g=="
+        "Via": "1.1 67ef07cc068b16f1f266900a193618b3.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "bOJslYm6A_7_KhBQyoLyzz8P5F8QfinlmtZZk4g_xSYw-Ts9KnTVuQ=="
       },
       "status_code": 200,
       "type": "ok"

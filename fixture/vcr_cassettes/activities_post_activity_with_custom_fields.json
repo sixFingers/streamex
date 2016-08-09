@@ -1,32 +1,30 @@
 [
   {
     "request": {
-      "body": "{\"activities\":[{\"verb\":\"like\",\"object\":\"Elixir\",\"custom_field\":\"custom_value\",\"actor\":\"Tony\"}]}",
+      "body": "{\"activities\":[{\"verb\":\"like\",\"object\":\"Elixir\",\"foreign_id\":\"tony:elixir\",\"custom_field\":\"custom_value\",\"actor\":\"Tony\"}]}",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZmVlZCJ9.YKChwNGeudze1rX0mIFI_gFnCFUB74_rTD3X1sa1iL0",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZmVlZCJ9.QVjTm7VsPPOenLT8iOhxZ4jLrfVCG8EzVoohEy2OraQ",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/?api_key=q8v3a7aurm9s"
+      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/?api_key=wtdezwkw7uk3"
     },
     "response": {
-      "body": "{\"activities\": [{\"actor\": \"Tony\", \"custom_field\": \"custom_value\", \"foreign_id\": null, \"id\": \"50f9831c-5b14-11e6-8080-800113716b92\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-05T13:55:49.738166\", \"to\": [], \"verb\": \"like\"}], \"duration\": \"45ms\"}",
+      "body": "{\"activities\": [{\"actor\": \"Tony\", \"custom_field\": \"custom_value\", \"foreign_id\": \"tony:elixir\", \"id\": \"d3082fae-5e5a-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T17:58:06.197547\", \"to\": [], \"verb\": \"like\"}], \"duration\": \"24ms\"}",
       "headers": {
         "Content-Type": "application/json",
-        "Content-Length": "269",
+        "Content-Length": "278",
         "Connection": "keep-alive",
         "Allow": "GET, POST, DELETE, HEAD, OPTIONS",
-        "Date": "Fri, 05 Aug 2016 13:55:49 GMT",
-        "Server": "nginx/1.4.6 (Ubuntu)",
+        "Date": "Tue, 09 Aug 2016 17:58:06 GMT",
+        "Server": "nginx",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 505bf3e965f93ab910511da92d7dc259.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "7lBO_PgwInB-gesg7H-ndnji7Ua859bdReosyltBnJL3Ojo-0j3HEw=="
+        "Via": "1.1 3199bad28fcb76e5ee8d85447ef291ef.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "r4qyKbW8n11g8HReW8JC1jtqPqilyLb4Jc7VyLc6hmUXL0w42DD4uw=="
       },
       "status_code": 201,
       "type": "ok"

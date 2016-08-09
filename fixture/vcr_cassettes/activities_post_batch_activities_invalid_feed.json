@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "{\"feeds\":[\"user:erika\"],\"activity\":{\"verb\":\"like\",\"object\":\"Elixir\",\"foreign_id\":\"tony:elixir\",\"actor\":\"Tony\"}}",
+      "body": "{\"feeds\":[\"user::jessica\"],\"activity\":{\"verb\":\"like\",\"object\":\"Elixir\",\"foreign_id\":\"tony:elixir\",\"actor\":\"Tony\"}}",
       "headers": {
         "X-Api-Key": "wtdezwkw7uk3",
         "Date": "Tue, 09 Aug 16 19:58:04 +0200",
@@ -14,20 +14,20 @@
       "url": "https://eu-west-api.getstream.io/api/feed/add_to_many/?api_key=wtdezwkw7uk3"
     },
     "response": {
-      "body": "{\"duration\": \"19ms\"}",
+      "body": "{\"code\": 4, \"detail\": \"Errors for fields 'feeds'\", \"duration\": \"6ms\", \"exception\": \"InputException\", \"exception_fields\": {\"feeds\": [{\"0\": [\"Invalid value.\"]}]}, \"status_code\": 400}",
       "headers": {
         "Content-Type": "application/json",
-        "Content-Length": "20",
+        "Content-Length": "180",
         "Connection": "keep-alive",
         "Allow": "POST, OPTIONS",
         "Date": "Tue, 09 Aug 2016 17:58:04 GMT",
-        "Server": "nginx/1.4.6 (Ubuntu)",
+        "Server": "nginx",
         "Vary": "Accept",
-        "X-Cache": "Miss from cloudfront",
+        "X-Cache": "Error from cloudfront",
         "Via": "1.1 3199bad28fcb76e5ee8d85447ef291ef.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "8SZXA_TJ7hKPEEMTzt6PA9kERkVA-XRIfzR4jV7pcFBaQKdS0xaytA=="
+        "X-Amz-Cf-Id": "V9-uyWo6udkBFeuBk9yY-KvDrl3OgaDL-VdVpbl7Xi6-ciKZviUznw=="
       },
-      "status_code": 201,
+      "status_code": 400,
       "type": "ok"
     }
   }

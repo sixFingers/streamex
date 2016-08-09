@@ -1,33 +1,31 @@
 [
   {
     "request": {
-      "body": "[{\"target\":\"user:jessica\",\"source\":\"user:eric\"},{\"target\":\"user:deborah\",\"source\":\"user:eric\"}]",
+      "body": "[{\"target\":\"user:deborah\",\"source\":\"user:eric\"}]",
       "headers": {
-        "X-Api-Key": "9xup4y9pydw6",
-        "Date": "Thu, 04 Aug 16 17:46:51 +0200",
-        "Authorization": "Signature keyId=\"9xup4y9pydw6\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"Oxz5ACMDwje9n0enIZAn3CKhm4NRgFQt+K3cZhe7myU=\"",
+        "X-Api-Key": "wtdezwkw7uk3",
+        "Date": "Tue, 09 Aug 16 19:20:17 +0200",
+        "Authorization": "Signature keyId=\"wtdezwkw7uk3\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"Ey/pdjKxjExP4RQ/IqRSUWPxYHB9A6h3SpXe0A853WE=\"",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/follow_many/?activity_copy_limit=300&api_key=9xup4y9pydw6"
+      "url": "https://eu-west-api.getstream.io/api/follow_many/?activity_copy_limit=300&api_key=wtdezwkw7uk3"
     },
     "response": {
-      "body": "{\"duration\": \"11ms\"}",
+      "body": "{\"duration\": \"10ms\"}",
       "headers": {
         "Content-Type": "application/json",
         "Content-Length": "20",
         "Connection": "keep-alive",
         "Allow": "GET, POST, HEAD, OPTIONS",
-        "Date": "Thu, 04 Aug 2016 15:46:52 GMT",
-        "Server": "nginx",
+        "Date": "Tue, 09 Aug 2016 17:20:17 GMT",
+        "Server": "nginx/1.4.6 (Ubuntu)",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 501a2b2908fbd806aaea3a22dce3b5f9.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "hY-kn7qSz0vMQiMArB1EqTQbZEmcXiwoC6IPmgsz4s3UbF28zVITYA=="
+        "Via": "1.1 b003096be8471bdf765c704d0fe7bdf3.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "APX3ssm5OLMI8rilYxc-7jlYR0zg8nTLwxIJ0hVlFoEwtwjRfCmrjQ=="
       },
       "status_code": 201,
       "type": "ok"

@@ -3,16 +3,14 @@
     "request": {
       "body": "",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJkZWxldGUiLCJmZWVkX2lkIjoidXNlcmVyaWMiLCJyZXNvdXJjZSI6ImZvbGxvd2VyIn0.bDpN1Cqpb3ci4wSMqDOu805R8GrJrmUlVMs414iq-Ds",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJkZWxldGUiLCJmZWVkX2lkIjoidXNlcmVyaWMiLCJyZXNvdXJjZSI6ImZvbGxvd2VyIn0.EzC2k5JGGdXC6PSaZOzaoBzifIO5ZhLzLVK9j8nxoyE",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "delete",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/following/user:jessica/?api_key=9xup4y9pydw6"
+      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/following/user:jessica/?api_key=wtdezwkw7uk3"
     },
     "response": {
       "body": "{\"duration\": \"17ms\"}",
@@ -21,12 +19,12 @@
         "Content-Length": "20",
         "Connection": "keep-alive",
         "Allow": "DELETE, OPTIONS",
-        "Date": "Thu, 04 Aug 2016 15:39:57 GMT",
+        "Date": "Tue, 09 Aug 2016 17:23:11 GMT",
         "Server": "nginx",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 5a907351331cc8f5ed11d0a2d0f249d6.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "2SYVf9Rkm-OojDzb4x9c8Vvr4Z0eGwbTVkCm-wLAd4hFqZeRal36UQ=="
+        "Via": "1.1 9522b03bf4aa88045540324b993485bc.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "IlvPqskZd-AiIJKhJNUPQ0P_9niy0LwI3uqfyXGOk8R6qxjjSZmFXA=="
       },
       "status_code": 200,
       "type": "ok"

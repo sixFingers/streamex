@@ -13,18 +13,18 @@
       "url": "https://eu-west-api.getstream.io/api/activities/?api_key=wtdezwkw7uk3"
     },
     "response": {
-      "body": "{\"code\": 4, \"detail\": \"Errors for fields '{'time': [u'This field is required.']}'\", \"duration\": \"8ms\", \"exception\": \"InputException\", \"exception_fields\": [{\"time\": [\"This field is required.\"]}], \"status_code\": 400}",
+      "body": "{\"code\": 4, \"detail\": \"Errors for fields '{'time': [u'This field is required.']}'\", \"duration\": \"9ms\", \"exception\": \"InputException\", \"exception_fields\": [{\"time\": [\"This field is required.\"]}], \"status_code\": 400}",
       "headers": {
         "Content-Type": "application/json",
         "Content-Length": "214",
         "Connection": "keep-alive",
         "Allow": "POST, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 17:58:07 GMT",
-        "Server": "nginx",
+        "Date": "Tue, 09 Aug 2016 18:09:56 GMT",
+        "Server": "nginx/1.4.6 (Ubuntu)",
         "Vary": "Accept",
         "X-Cache": "Error from cloudfront",
-        "Via": "1.1 3199bad28fcb76e5ee8d85447ef291ef.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "cL2-2UjbLnlDtOZEbZ89xi9QUGzSfQD-R0AvKd3kPClwXqHfJRPemg=="
+        "Via": "1.1 eed7d9591f36cd4a3ae68df24cf888c0.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "7ocNDSBQQv9ZmJd-Vr9syhvswMwn0lM8eABmoiWh1PgJntFee65PWA=="
       },
       "status_code": 400,
       "type": "ok"

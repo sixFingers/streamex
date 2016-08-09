@@ -1,0 +1,31 @@
+[
+  {
+    "request": {
+      "body": "{\"target\":\"user:erika\"}",
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyOl9tYXJrIiwicmVzb3VyY2UiOiJmb2xsb3dlciJ9.0wE0vqf5_B37dHvUx3emEyqZaLm2ArNvWcGsw-0FFE4",
+        "stream-auth-type": "jwt",
+        "content-type": "application/json"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://eu-west-api.getstream.io/api/feed/user:/mark/following/?activity_copy_limit=300&api_key=wtdezwkw7uk3"
+    },
+    "response": {
+      "body": "{\"exception\": \"GetStreamAPI404\", \"detail\": \"sorry you've hit a 404\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "Content-Length": "68",
+        "Connection": "keep-alive",
+        "Date": "Tue, 09 Aug 2016 17:14:15 GMT",
+        "Server": "nginx/1.4.6 (Ubuntu)",
+        "X-Cache": "Error from cloudfront",
+        "Via": "1.1 3a1ecc9dcd42c75121657572bf7b2d34.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "BQnNGKqQrtqGGwu65IjYK5_VcLu-aSs0kbRfWtsBPVPNlLLIbFihxA=="
+      },
+      "status_code": 404,
+      "type": "ok"
+    }
+  }
+]

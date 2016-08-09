@@ -3,31 +3,29 @@
     "request": {
       "body": "",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InVzZXJlcmljIiwicmVzb3VyY2UiOiJmb2xsb3dlciJ9.E_WboPQWqt9i7MsfUU_ifIDCh4rxbfUU_2ckPdfvtkg",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InVzZXJlcmljIiwicmVzb3VyY2UiOiJmb2xsb3dlciJ9.9XFeafRxF8o-aecU_JIGLcA2ub93EnAwRXikVWBhU2k",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "get",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/followers/?limit=25&offset=0&api_key=9xup4y9pydw6"
+      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/followers/?limit=25&offset=0&api_key=wtdezwkw7uk3"
     },
     "response": {
-      "body": "{\"duration\": \"11ms\", \"results\": [{\"created_at\": \"2016-08-03T11:47:28.614Z\", \"feed_id\": \"user:jessica\", \"target_id\": \"user:eric\", \"updated_at\": \"2016-08-03T11:47:28.614Z\"}]}",
+      "body": "{\"duration\": \"10ms\", \"results\": [{\"created_at\": \"2016-08-09T17:20:17.787Z\", \"feed_id\": \"user:jessica\", \"target_id\": \"user:eric\", \"updated_at\": \"2016-08-09T17:20:17.787Z\"}]}",
       "headers": {
         "Content-Type": "application/json",
-        "Content-Length": "172",
+        "Content-Length": "35",
         "Connection": "keep-alive",
         "Allow": "GET, HEAD, OPTIONS",
         "Cache-Control": "max-age=0",
-        "Date": "Wed, 03 Aug 2016 11:48:33 GMT",
-        "Server": "nginx",
+        "Date": "Tue, 09 Aug 2016 17:24:27 GMT",
+        "Server": "nginx/1.4.6 (Ubuntu)",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 f1b8c7bb47bd1046d2b618be40e810f4.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "XZFekk_u3Ia6gYK5m6PNdZtcxMKh5xfFSpKIM2r9BhRZH6Rk7LRUyQ=="
+        "Via": "1.1 59987e3cb303881e1409e0a9afbb6146.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "loLY_WWl_s3FPSX_4PIIz7Tshw1ERTCrO3HjC6dGDR4uBk00YNWGCQ=="
       },
       "status_code": 200,
       "type": "ok"

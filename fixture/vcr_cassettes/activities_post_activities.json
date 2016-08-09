@@ -1,32 +1,30 @@
 [
   {
     "request": {
-      "body": "{\"activities\":[{\"verb\":\"like\",\"object\":\"Elixir\",\"actor\":\"Tony\"},{\"verb\":\"dislike\",\"object\":\"PHP\",\"actor\":\"Tony\"}]}",
+      "body": "{\"activities\":[{\"verb\":\"like\",\"object\":\"Ruby\",\"actor\":\"Tony\"},{\"verb\":\"dislike\",\"object\":\"PHP\",\"actor\":\"Tony\"}]}",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZmVlZCJ9.YKChwNGeudze1rX0mIFI_gFnCFUB74_rTD3X1sa1iL0",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyZXJpYyIsInJlc291cmNlIjoiZmVlZCJ9.QVjTm7VsPPOenLT8iOhxZ4jLrfVCG8EzVoohEy2OraQ",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/?api_key=q8v3a7aurm9s"
+      "url": "https://eu-west-api.getstream.io/api/feed/user/eric/?api_key=wtdezwkw7uk3"
     },
     "response": {
-      "body": "{\"activities\": [{\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"5abd2b3e-5b13-11e6-8080-800113716b92\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-05T13:48:56.623187\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"5abe6e7c-5b13-11e6-8080-80014deba60f\", \"object\": \"PHP\", \"origin\": null, \"target\": null, \"time\": \"2016-08-05T13:48:56.631462\", \"to\": [], \"verb\": \"dislike\"}], \"duration\": \"41ms\"}",
+      "body": "{\"activities\": [{\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"d25a7760-5e5a-11e6-8080-80017ce9f8a0\", \"object\": \"Ruby\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T17:58:05.059056\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"d25aa4ba-5e5a-11e6-8080-8000470b1282\", \"object\": \"PHP\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T17:58:05.060217\", \"to\": [], \"verb\": \"dislike\"}], \"duration\": \"28ms\"}",
       "headers": {
         "Content-Type": "application/json",
-        "Content-Length": "438",
+        "Content-Length": "436",
         "Connection": "keep-alive",
         "Allow": "GET, POST, DELETE, HEAD, OPTIONS",
-        "Date": "Fri, 05 Aug 2016 13:48:56 GMT",
+        "Date": "Tue, 09 Aug 2016 17:58:05 GMT",
         "Server": "nginx",
         "Vary": "Accept",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 3a1ecc9dcd42c75121657572bf7b2d34.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "TFV03YAdzHyht7rakow8oEmBwDspw-8rivBJpPV3wRe8YzD9wqElPw=="
+        "Via": "1.1 3199bad28fcb76e5ee8d85447ef291ef.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "kq3tq5JPBuMbxtHNEq1zvjfFmelyf76i6mGG7E8-Fh-3YfrM-1ZeQA=="
       },
       "status_code": 201,
       "type": "ok"
