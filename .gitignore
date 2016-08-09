@@ -12,6 +12,7 @@
 
 # Configuration
 /config/*
+!/config/config.exs
 !/config/test.exs
 
 # Test coverage
