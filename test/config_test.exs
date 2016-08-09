@@ -1,12 +1,8 @@
 defmodule ConfigTest do
   use ExUnit.Case
-  doctest Streamex
-
   alias Streamex.Config
 
-  setup_all do
-    Config.configure("KEY", "SECRET", region: "eu-west")
-  end
+  doctest Streamex
 
   test "client handles empty region" do
     Application.put_env(:streamex, :region, "")

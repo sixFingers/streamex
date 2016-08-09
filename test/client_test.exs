@@ -1,9 +1,9 @@
 defmodule ClientTest do
   use ExUnit.Case
-  doctest Streamex
-
   alias Streamex.{Config, Request, Client}
   alias Joken
+
+  doctest Streamex
 
   setup_all do
     Config.configure("KEY", "SECRET", region: "eu-west")
