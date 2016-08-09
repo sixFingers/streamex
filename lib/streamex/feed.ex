@@ -1,6 +1,6 @@
 defmodule Streamex.Feed do
   import Streamex.Request
-  alias Streamex.{Client, Request, Follow, ErrorNotFound, ErrorInput}
+  alias Streamex.{Client, Request, Follow, ErrorInput}
 
   defstruct slug: nil, user_id: nil, id: nil
 
