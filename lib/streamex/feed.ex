@@ -1,7 +1,6 @@
 defmodule Streamex.Feed do
-  import Streamex.Helpers
   import Streamex.Request
-  alias Streamex.{Client, Request, Follow}
+  alias Streamex.{Client, Request, Follow, ErrorNotFound, ErrorInput}
 
   defstruct slug: nil, user_id: nil, id: nil
 
@@ -10,11 +9,11 @@ defmodule Streamex.Feed do
   def new(slug, user_id) do
     case validate([slug, user_id]) do
       true -> {:ok, %__MODULE__{slug: slug, user_id: user_id, id: "#{slug}#{user_id}"}}
-      false -> validate_error
+      false -> {:error, ErrorInput.message}
     end
   end
 
-  def followers(%__MODULE__{} = feed, opts \\ []) do
+  def followers(feed, opts \\ []) do
     Request.new
     |> with_method(:get)
     |> with_path(endpoint_get_followers(feed))
@@ -96,6 +95,10 @@ defmodule Streamex.Feed do
     {:ok, Enum.map(results, &Poison.Decode.decode(&1, as: %Follow{}))}
   def handle_response(%{"duration" => _}), do: {:ok, nil}
   def handle_response(%{"status_code" => _, "detail" => detail}), do: {:error, detail}
+
+  defp validate([string | t]), do: validate(string) && validate(t)
+  defp validate([]), do: true
+  defp validate(string), do: !Regex.match?(~r/\W/, string)
 
   defp endpoint_get_followers(%__MODULE__{} = feed) do
     <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/followers/">>
