@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.13.0">
-    <title>Streamex.Feed – streamex v0.3.0</title>
+    <title>Streamex.Feed – Streamex v0.3.0</title>
     <link rel="stylesheet" href="dist/app-9c1e3d5aa2.css" />
     
     <script src="dist/sidebar_items.js"></script>
@@ -23,7 +23,7 @@
   <a href="api-reference.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
-        streamex
+        Streamex
       </h1>
       <h2 class="sidebar-projectVersion">
         v0.3.0
@@ -61,9 +61,13 @@
 
 
       <h1>
-        <small class="visible-xs">streamex v0.3.0</small>
+        <small class="visible-xs">Streamex v0.3.0</small>
         Streamex.Feed
         
+        
+          <a href="https://github.com/sixFingers/streamex/blob/master/lib/streamex/feed.ex#L1" title="View Source" class="view-source" rel="help">
+            <i class="icon-code"></i>
+          </a>
         
       </h1>
 
@@ -209,6 +213,10 @@ Returns <code class="inline">{:ok, nil}</code>, or <code class="inline">{:error,
     </a>
     <span class="signature">follow(source, target, opts \\ [])</span>
     
+      <a href="https://github.com/sixFingers/streamex/blob/master/lib/streamex/feed.ex#L110" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
     
   </div>
   
@@ -238,6 +246,10 @@ iex&gt; Feed.follow(source, target)
       <i class="icon-link"></i>
     </a>
     <span class="signature">follow_many(feeds, opts \\ [])</span>
+    
+      <a href="https://github.com/sixFingers/streamex/blob/master/lib/streamex/feed.ex#L144" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
     
     
   </div>
@@ -270,6 +282,10 @@ iex&gt; Feed.follow_many([{source, target}, ...])
     </a>
     <span class="signature">followers(feed, opts \\ [])</span>
     
+      <a href="https://github.com/sixFingers/streamex/blob/master/lib/streamex/feed.ex#L50" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
     
   </div>
   
@@ -295,6 +311,10 @@ Returns <code class="inline">{:ok, followers}</code>, or <code class="inline">{:
       <i class="icon-link"></i>
     </a>
     <span class="signature">following(feed, opts \\ [])</span>
+    
+      <a href="https://github.com/sixFingers/streamex/blob/master/lib/streamex/feed.ex#L78" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
     
     
   </div>
@@ -324,6 +344,10 @@ Returns <code class="inline">{:ok, following}</code>, or <code class="inline">{:
     </a>
     <span class="signature">new(slug, user_id)</span>
     
+      <a href="https://github.com/sixFingers/streamex/blob/master/lib/streamex/feed.ex#L28" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
     
   </div>
   
@@ -346,6 +370,10 @@ iex &gt; Streamex.Feed.new(&quot;user_&quot;, &quot;eric&quot;)
       <i class="icon-link"></i>
     </a>
     <span class="signature">unfollow(source, target, opts \\ [])</span>
+    
+      <a href="https://github.com/sixFingers/streamex/blob/master/lib/streamex/feed.ex#L176" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
     
     
   </div>
