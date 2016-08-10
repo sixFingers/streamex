@@ -1,0 +1,380 @@
+    <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.13.0">
+    <title>Streamex.Activities – streamex v0.3.0</title>
+    <link rel="stylesheet" href="dist/app-9c1e3d5aa2.css" />
+    
+    <script src="dist/sidebar_items.js"></script>
+  </head>
+  <body data-type="modules">
+    <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
+
+    <div class="main">
+<button class="sidebar-toggle">
+  <i class="icon-menu"></i>
+</button>
+<section class="sidebar">
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        streamex
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.3.0
+      </h2>
+    </div>
+    
+  </a>
+
+  <div class="sidebar-search">
+    <i class="icon-search"></i>
+    <input type="text" class="sidebar-searchInput" placeholder="search" autocomplete="off" />
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+      <li><a id="exceptions-list" href="#full-list">Exceptions</a></li>
+    
+
+    
+  </ul>
+
+  <ul id="full-list" class="sidebar-fullList"></ul>
+  <div class="sidebar-noResults"></div>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">streamex v0.3.0</small>
+        Streamex.Activities
+        
+        
+      </h1>
+
+      
+        <section id="moduledoc" class="docstring">
+          <p>The <a href="Streamex.Activities.html#content"><code class="inline">Streamex.Activities</code></a> module defines functions
+for working with feed activities.</p>
+
+        </section>
+      
+
+      
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <i class="icon-link"></i>
+            </a>
+            Summary
+          </h1>
+          
+
+          
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add/2">add(feed, activity)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Adds activities to the given feed.
+Accepts a single <code class="inline">Map</code> or a <code class="inline">List</code> of <code class="inline">Map</code>s.
+Returns <code class="inline">{:ok, activity | activities}</code>, or <code class="inline">{:error, message}</code>
+if something went wrong.
+Activities have a number of required fields.
+Refer to <a href="Streamex.Activity.html"><code class="inline">Streamex.Activity</code></a> for a complete list</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_to_many/2">add_to_many(feeds, activity)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Adds an activity to a <code class="inline">List</code> of feeds.
+Returns <code class="inline">{:ok, nil}</code>, or <code class="inline">{:error, message}</code> if something went wrong.
+Activities have a number of required fields.
+Refer to <a href="Streamex.Activity.html"><code class="inline">Streamex.Activity</code></a> for a complete list</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get/2">get(feed, opts \\ [])</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Lists the given feed’s activities.
+Returns <code class="inline">{:ok, activities}</code>, or <code class="inline">{:error, message}</code> if something went wrong</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#handle_response/1">handle_response(map)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#remove/3">remove(feed, id, opts \\ [])</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Removes activities.
+Accepts an <code class="inline">id</code> or <code class="inline">foreign_id</code> string value.
+Returns <code class="inline">{:ok, removed_id}</code>, or <code class="inline">{:error, message}</code></p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update/2">update(feed, activity)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Updates activities. Accepts a single <code class="inline">Map</code> or a <code class="inline">List</code> of <code class="inline">Map</code>s.
+Returns <code class="inline">{:ok, nil}</code>, or <code class="inline">{:error, message}</code>
+Activities have a number of required fields.
+Refer to <a href="Streamex.Activity.html"><code class="inline">Streamex.Activity</code></a> for a complete list</p>
+</div>
+  
+</div>
+
+  </div>
+
+
+          
+
+          
+
+        </section>
+      
+
+      
+
+      
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <i class="icon-link"></i>
+            </a>
+            Functions
+          </h1>
+          <div class="detail" id="add/2">
+  <div class="detail-header">
+    <a href="#add/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">add(feed, activity)</span>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Adds activities to the given feed.
+Accepts a single <code class="inline">Map</code> or a <code class="inline">List</code> of <code class="inline">Map</code>s.
+Returns <code class="inline">{:ok, activity | activities}</code>, or <code class="inline">{:error, message}</code>
+if something went wrong.
+Activities have a number of required fields.
+Refer to <a href="Streamex.Activity.html"><code class="inline">Streamex.Activity</code></a> for a complete list.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; {_, feed} = Streamex.Feed.new(&quot;user&quot;, &quot;eric&quot;)
+{:ok, %Streamex.Feed{...}}
+
+iex&gt; activity = %{&quot;actor&quot; =&gt; &quot;Tony&quot;, &quot;verb&quot; =&gt; &quot;like&quot;, &quot;object&quot; =&gt; &quot;Elixir&quot;, &quot;foreign_id&quot; =&gt; &quot;tony:1&quot;}
+%{...}
+
+iex&gt; Streamex.Activities.add(feed, activity)
+{:ok, %Streamex.Activity{...}}
+
+iex&gt; activity_b = %{&quot;actor&quot; =&gt; &quot;Anna&quot;, &quot;verb&quot; =&gt; &quot;like&quot;, &quot;object&quot; =&gt; &quot;Hiking&quot;, &quot;foreign_id&quot; =&gt; &quot;anna:1&quot;}
+%{...}
+
+iex&gt; Streamex.Activities.add(feed, [activity, activity_b])
+{:ok, [%Streamex.Activity{...}, %Streamex.Activity{...}]}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="add_to_many/2">
+  <div class="detail-header">
+    <a href="#add_to_many/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">add_to_many(feeds, activity)</span>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Adds an activity to a <code class="inline">List</code> of feeds.
+Returns <code class="inline">{:ok, nil}</code>, or <code class="inline">{:error, message}</code> if something went wrong.
+Activities have a number of required fields.
+Refer to <a href="Streamex.Activity.html"><code class="inline">Streamex.Activity</code></a> for a complete list.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; {_, feed} = Streamex.Feed.new(&quot;user&quot;, &quot;eric&quot;)
+{:ok, %Streamex.Feed{...}}
+
+iex&gt; {_, feed_b} = Streamex.Feed.new(&quot;user&quot;, &quot;deborah&quot;)
+{:ok, %Streamex.Feed{...}}
+
+iex&gt; activity = %{&quot;actor&quot; =&gt; &quot;Tony&quot;, &quot;verb&quot; =&gt; &quot;like&quot;, &quot;object&quot; =&gt; &quot;Elixir&quot;, &quot;foreign_id&quot; =&gt; &quot;tony:1&quot;}
+%{...}
+
+iex&gt; Streamex.Activities.add_to_many([feed, feed_b], activity)
+{:ok, nil}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="get/2">
+  <div class="detail-header">
+    <a href="#get/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">get(feed, opts \\ [])</span>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Lists the given feed’s activities.
+Returns <code class="inline">{:ok, activities}</code>, or <code class="inline">{:error, message}</code> if something went wrong.</p>
+<p>Available options are:</p>
+<ul>
+<li><code class="inline">limit</code> - limits the number of results. Defaults to <code class="inline">25</code>
+</li>
+<li><code class="inline">offset</code> - offsets the results
+</li>
+<li><code class="inline">id_gte</code> - filter the feed on ids greater than or equal to the given value
+</li>
+<li><code class="inline">id_gt</code> - filter the feed on ids greater than the given value
+</li>
+<li><code class="inline">id_lte</code> - filter the feed on ids smaller than or equal to the given value
+</li>
+<li><code class="inline">id_lt</code> - filter the feed on ids smaller than the given value
+</li>
+</ul>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; {_, feed} = Streamex.Feed.new(&quot;user&quot;, &quot;eric&quot;)
+{:ok, %Streamex.Feed{...}}
+
+iex&gt; Streamex.Activities.get(feed)
+{:ok, [%Streamex.Activity{}...]}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="handle_response/1">
+  <div class="detail-header">
+    <a href="#handle_response/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">handle_response(map)</span>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="remove/3">
+  <div class="detail-header">
+    <a href="#remove/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">remove(feed, id, opts \\ [])</span>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Removes activities.
+Accepts an <code class="inline">id</code> or <code class="inline">foreign_id</code> string value.
+Returns <code class="inline">{:ok, removed_id}</code>, or <code class="inline">{:error, message}</code></p>
+<p>Available options are:</p>
+<ul>
+<li><code class="inline">foreign_id</code> - if set to true, removes the activity by <code class="inline">foreign_id</code>
+</li>
+</ul>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; {_, feed} = Streamex.Feed.new(&quot;user&quot;, &quot;eric&quot;)
+{:ok, %Streamex.Feed{...}}
+
+iex&gt; Streamex.Activities.remove(feed, &quot;d2d6fc2c-5e5a-11e6-8080-80017383369d&quot;)
+{:ok, &quot;d2d6fc2c-5e5a-11e6-8080-80017383369d&quot;}
+
+iex&gt; Streamex.Activities.remove(feed, &quot;tony:1&quot;, foreign_id: true)
+{:ok, &quot;tony:1&quot;}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="update/2">
+  <div class="detail-header">
+    <a href="#update/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">update(feed, activity)</span>
+    
+    
+  </div>
+  
+  <section class="docstring">
+    <p>Updates activities. Accepts a single <code class="inline">Map</code> or a <code class="inline">List</code> of <code class="inline">Map</code>s.
+Returns <code class="inline">{:ok, nil}</code>, or <code class="inline">{:error, message}</code>
+Activities have a number of required fields.
+Refer to <a href="Streamex.Activity.html"><code class="inline">Streamex.Activity</code></a> for a complete list.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; {_, feed} = Streamex.Feed.new(&quot;user&quot;, &quot;eric&quot;)
+{:ok, %Streamex.Feed{...}}
+
+iex&gt; activity = %{&quot;actor&quot; =&gt; &quot;Tony&quot;, &quot;verb&quot; =&gt; &quot;like&quot;, &quot;object&quot; =&gt; &quot;Elixir&quot;, &quot;foreign_id&quot; =&gt; &quot;tony:1&quot;, &quot;time&quot; =&gt; &quot;2016-08-09T19:38:12.241758&quot;}
+%{...}
+
+iex&gt; Streamex.Activities.update(feed, activity)
+{:ok, nil}</code></pre>
+
+  </section>
+</div>
+
+        </section>
+      
+
+      
+
+      
+          <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.13.0),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+            </span>
+        </p>
+        <button class="night-mode-toggle" />
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  <script src="dist/app-21f1a20b9e.js"></script>
+  </body>
+</html>
+
