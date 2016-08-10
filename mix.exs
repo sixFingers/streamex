@@ -4,6 +4,9 @@ defmodule Streamex.Mixfile do
   def project do
     [
       app: :streamex,
+      name: "Streamex",
+      source_url: "https://github.com/sixFingers/streamex",
+      homepage_url: "http://sixfingers.github.io/streamex",
       version: "0.3.0",
       elixir: "~> 1.3",
       description: description(),
@@ -29,6 +32,7 @@ defmodule Streamex.Mixfile do
       {:poison, "~> 2.2"},
       {:joken, "~> 1.2"},
       {:timex, "~> 2.2"},
+      {:ex_doc, "~> 0.12", only: :dev},
       {:exvcr, "~> 0.7", only: :test},
       {:excoveralls, "~> 0.5", only: :test}
     ]
@@ -47,7 +51,7 @@ defmodule Streamex.Mixfile do
       licenses: ["MIT"],
       links: %{
         "GitHub" => "https://github.com/sixFingers/streamex",
-        "Docs" => "http://sixfingers.github.io/streamex/"
+        "Docs" => "http://sixfingers.github.io/streamex"
       }
     ]
   end
