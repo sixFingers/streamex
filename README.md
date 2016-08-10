@@ -29,7 +29,7 @@ def application do
 end
 ```
 
-Then setup configuration values in your `config/[env].exs file:
+Then setup configuration values in your `config/[env].exs` file:
 
 ```elixir
 config :streamex, region: "api_region",
