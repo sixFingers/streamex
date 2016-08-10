@@ -1,14 +1,16 @@
 defmodule ConfigTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
   alias Streamex.Config
 
   doctest Streamex
 
-  setup_all do
-    Config.configure()
+  test "Configuration handles empty region" do
+    Config.configure(Config.key, Config.secret, region: "")
+    assert Config.base_url == "https://api.getstream.io/api/1.0"
   end
 
-  test "Configure with values from environment and no region" do
-    assert Config.base_url == "https://api.getstream.io/api/1.0"
+  test "Configuration handles region" do
+    Config.configure(Config.key, Config.secret, region: "us-west")
+    assert Config.base_url == "https://us-west-api.getstream.io/api/1.0"
   end
 end

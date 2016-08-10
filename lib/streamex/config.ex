@@ -7,7 +7,8 @@ defmodule Streamex.Config do
   def configure() do
     configure(
       Application.get_env(:streamex, :key, ""),
-      Application.get_env(:streamex, :secret, "")
+      Application.get_env(:streamex, :secret, ""),
+      region: Application.get_env(:streamex, :region, "")
     )
   end
 
