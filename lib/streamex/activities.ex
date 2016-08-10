@@ -1,8 +1,35 @@
 defmodule Streamex.Activities do
+  @moduledoc """
+  The `Streamex.Activities` module defines functions
+  for working with feed activities.
+  """
+
   import Streamex.Request
   alias Streamex.{Request, Client, Feed, Activity}
 
-  def get(%Feed{} = feed, opts \\ []) do
+  @doc """
+  Lists the given feed's activities.
+  Returns `{:ok, activities}`, or `{:error, message}` if something went wrong.
+
+  Available options are:
+
+    - `limit` - limits the number of results. Defaults to `25`
+    - `offset` - offsets the results
+    - `id_gte` - filter the feed on ids greater than or equal to the given value
+    - `id_gt` - filter the feed on ids greater than the given value
+    - `id_lte` - filter the feed on ids smaller than or equal to the given value
+    - `id_lt` - filter the feed on ids smaller than the given value
+
+  ## Examples
+
+      iex> {_, feed} = Streamex.Feed.new("user", "eric")
+      {:ok, %Streamex.Feed{...}}
+
+      iex> Streamex.Activities.get(feed)
+      {:ok, [%Streamex.Activity{}...]}
+
+  """
+  def get(feed, opts \\ []) do
     Request.new
     |> with_method(:get)
     |> with_path(endpoint_get(feed))
@@ -14,7 +41,33 @@ defmodule Streamex.Activities do
     |> handle_response
   end
 
-  def add(%Feed{} = feed, %{} = activity) do
+  @doc """
+  Adds activities to the given feed.
+  Accepts a single `Map` or a `List` of `Map`s.
+  Returns `{:ok, activity | activities}`, or `{:error, message}`
+  if something went wrong.
+  Activities have a number of required fields.
+  Refer to `Streamex.Activity` for a complete list.
+
+  ## Examples
+
+      iex> {_, feed} = Streamex.Feed.new("user", "eric")
+      {:ok, %Streamex.Feed{...}}
+
+      iex> activity = %{"actor" => "Tony", "verb" => "like", "object" => "Elixir", "foreign_id" => "tony:1"}
+      %{...}
+
+      iex> Streamex.Activities.add(feed, activity)
+      {:ok, %Streamex.Activity{...}}
+
+      iex> activity_b = %{"actor" => "Anna", "verb" => "like", "object" => "Hiking", "foreign_id" => "anna:1"}
+      %{...}
+
+      iex> Streamex.Activities.add(feed, [activity, activity_b])
+      {:ok, [%Streamex.Activity{...}, %Streamex.Activity{...}]}
+
+  """
+  def add(feed, %{} = activity) do
     {status, results} = add(feed, [activity])
 
     case status do
@@ -22,8 +75,7 @@ defmodule Streamex.Activities do
       :error -> {status, results}
     end
   end
-
-  def add(%Feed{} = feed, [%{} | _] = activities) do
+  def add(feed, [%{} | _] = activities) do
     Request.new
     |> with_method(:post)
     |> with_path(endpoint_create(feed))
@@ -35,7 +87,28 @@ defmodule Streamex.Activities do
     |> handle_response
   end
 
-  def add_to_many(%{} = activity, feeds) do
+  @doc """
+  Adds an activity to a `List` of feeds.
+  Returns `{:ok, nil}`, or `{:error, message}` if something went wrong.
+  Activities have a number of required fields.
+  Refer to `Streamex.Activity` for a complete list.
+
+  ## Examples
+
+      iex> {_, feed} = Streamex.Feed.new("user", "eric")
+      {:ok, %Streamex.Feed{...}}
+
+      iex> {_, feed_b} = Streamex.Feed.new("user", "deborah")
+      {:ok, %Streamex.Feed{...}}
+
+      iex> activity = %{"actor" => "Tony", "verb" => "like", "object" => "Elixir", "foreign_id" => "tony:1"}
+      %{...}
+
+      iex> Streamex.Activities.add_to_many([feed, feed_b], activity)
+      {:ok, nil}
+
+  """
+  def add_to_many(feeds, %{} = activity) do
     Request.new
     |> with_method(:post)
     |> with_path(endpoint_add_to_many())
@@ -46,11 +119,28 @@ defmodule Streamex.Activities do
     |> handle_response
   end
 
-  def update(%Feed{} = feed, %{} = activity) do
+  @doc """
+  Updates activities. Accepts a single `Map` or a `List` of `Map`s.
+  Returns `{:ok, nil}`, or `{:error, message}`
+  Activities have a number of required fields.
+  Refer to `Streamex.Activity` for a complete list.
+
+  ## Examples
+
+      iex> {_, feed} = Streamex.Feed.new("user", "eric")
+      {:ok, %Streamex.Feed{...}}
+
+      iex> activity = %{"actor" => "Tony", "verb" => "like", "object" => "Elixir", "foreign_id" => "tony:1", "time" => "2016-08-09T19:38:12.241758"}
+      %{...}
+
+      iex> Streamex.Activities.update(feed, activity)
+      {:ok, nil}
+
+  """
+  def update(feed, %{} = activity) do
     update(feed, [activity])
   end
-
-  def update(%Feed{} = feed, [%{} | _] = activities) do
+  def update(feed, [%{} | _] = activities) do
     Request.new
     |> with_method(:post)
     |> with_path(endpoint_update())
@@ -62,7 +152,28 @@ defmodule Streamex.Activities do
     |> handle_response
   end
 
-  def remove(%Feed{} = feed, id, opts \\ []) do
+  @doc """
+  Removes activities.
+  Accepts an `id` or `foreign_id` string value.
+  Returns `{:ok, removed_id}`, or `{:error, message}`
+
+  Available options are:
+
+    - `foreign_id` - if set to true, removes the activity by `foreign_id`
+
+  ## Examples
+
+      iex> {_, feed} = Streamex.Feed.new("user", "eric")
+      {:ok, %Streamex.Feed{...}}
+
+      iex> Streamex.Activities.remove(feed, "d2d6fc2c-5e5a-11e6-8080-80017383369d")
+      {:ok, "d2d6fc2c-5e5a-11e6-8080-80017383369d"}
+
+      iex> Streamex.Activities.remove(feed, "tony:1", foreign_id: true)
+      {:ok, "tony:1"}
+
+  """
+  def remove(feed, id, opts \\ []) do
     foreign_id = Keyword.get(opts, :foreign_id, false)
     params = foreign_id && %{"foreign_id" => 1} || %{}
 

@@ -1,8 +1,18 @@
 defmodule Streamex.Client do
-  use HTTPoison.Base
+  @moduledoc """
+  The `Streamex.Client` module is not meant to be used directly,
+  although request-related functions are publicly available in case of need.
+  """
+
+  import HTTPoison, only: [request: 5]
   alias Streamex.{Request, Config, Token}
   alias Timex.DateTime
 
+  @doc """
+  Prepares a `Streamex.Request` for execution.
+  Basically finalizes a request url.
+  Returns a `Streamex.Request`.
+  """
   def prepare_request(%Request{} = req) do
     uri = URI.merge(Config.base_url, req.path)
     query = Map.merge(req.params, %{"api_key" => Config.key}) |> URI.encode_query
@@ -10,6 +20,12 @@ defmodule Streamex.Client do
     %{req | url: to_string(uri)}
   end
 
+  @doc """
+  Signs a `Streamex.Request`.
+  If token info are attached to the request, it will
+  be signed with a JWT Token. Otherwise, with a server signature.
+  Returns a `Streamex.Request`.
+  """
   def sign_request(%Request{} = req) do
     case req.token do
       nil -> sign_request_with_key_secret(req, Config.key, Config.secret)
@@ -17,11 +33,16 @@ defmodule Streamex.Client do
     end
   end
 
+  @doc """
+  Executes a `Streamex.Request`.
+  Returns {:ok, json}, or {:error, message} if something went wrong.
+  """
   def execute_request(%Request{} = req) do
     request(req.method, req.url, req.body, req.headers, req.options)
     |> parse_response
   end
 
+  @doc false
   def parse_response({:error, body}), do: {:error, body}
   def parse_response({:ok, %{} = r}), do: Poison.decode!(r.body)
 

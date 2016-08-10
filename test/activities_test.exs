@@ -78,7 +78,7 @@ defmodule ActivityTest do
     use_cassette "activities_post_batch_activities" do
       {_, feed} = Feed.new("user", "erika")
       activity = %{"actor" => "Tony", "verb" => "like", "object" => "Elixir", "foreign_id" => "tony:elixir"}
-      {status, _} = Activities.add_to_many(activity, [feed])
+      {status, _} = Activities.add_to_many([feed], activity)
 
       assert status == :ok
     end
@@ -88,7 +88,7 @@ defmodule ActivityTest do
     use_cassette "activities_post_batch_activities_invalid_feed" do
       feed = %Feed{slug: "user:", user_id: "jessica", id: "user:jessica"}
       activity = %{"actor" => "Tony", "verb" => "like", "object" => "Elixir", "foreign_id" => "tony:elixir"}
-      {status, error} = Activities.add_to_many(activity, [feed])
+      {status, error} = Activities.add_to_many([feed], activity)
 
       assert status == :error
       assert error == ErrorInput.message
