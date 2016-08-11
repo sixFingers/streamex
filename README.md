@@ -4,7 +4,7 @@ Streamex is a [GetStream](https://getstream.io) client library for the Elixir la
 
 ## Documentation
 
-  - [Project page](https//sixfingers.github.io/streamex)
+  - [Project page](https://sixfingers.github.io/streamex)
   - [Hex Docs](https://hexdocs.pm/streamex/0.3.0/api-reference.html)
 
 ## Installation
@@ -39,5 +39,5 @@ config :streamex, region: "api_region",
 
 ## Usage
 
-Refer to [Streamex documentation](https//sixfingers.github.io/streamex).
+Refer to [Streamex documentation](https://sixfingers.github.io/streamex).
 Usage examples may be also found in `/test` folder.
