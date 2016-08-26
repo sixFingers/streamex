@@ -2,12 +2,11 @@ defmodule ActivityTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
   import Streamex.Feed
-  alias Streamex.{Config, Feed, Activity, Activities, ErrorNotFound, ErrorInput}
+  alias Streamex.{Feed, Activity, Activities, ErrorNotFound, ErrorInput}
 
   doctest Streamex
 
   setup_all do
-    Config.configure()
     ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes")
   end
 

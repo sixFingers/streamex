@@ -5,10 +5,6 @@ defmodule ClientTest do
 
   doctest Streamex
 
-  setup_all do
-    Config.configure()
-  end
-
   test "client builds requests with correct full url" do
     Application.put_env(:streamex, :region, "eu-west")
     req = %Request{} |> Request.with_params(%{"parameter" => "value"}) |> Client.prepare_request
