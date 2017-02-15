@@ -6,7 +6,6 @@ defmodule Streamex.Client do
 
   import HTTPoison, only: [request: 5]
   alias Streamex.{Request, Config, Token}
-  alias Timex.DateTime
 
   @doc """
   Prepares a `Streamex.Request` for execution.
@@ -58,7 +57,7 @@ defmodule Streamex.Client do
 
   defp sign_request_with_key_secret(%Request{} = req, key, secret) do
     algoritm = "hmac-sha256"
-    {_, now} = DateTime.local() |> Timex.format("{RFC822}")
+    {_, now} = Timex.local() |> Timex.format("{RFC822}")
 
     api_key_header = {"X-Api-Key", key}
     date_header = {"Date", now}
