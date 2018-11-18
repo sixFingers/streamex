@@ -20,6 +20,7 @@ use Mix.Config
 #
 #     config :logger, level: :info
 #
+config :logger, level: :debug
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
@@ -27,4 +28,6 @@ use Mix.Config
 # Configuration from the imported file will override the ones defined
 # here (which is why it is important to import them last).
 #
-import_config "#{Mix.env}.exs"
+config :streamex, region: "",
+                  key: "8andj8c67ycp",
+                  secret: "6anbcfx3a5awa62ehtmjfnzdn74shg9tcbbwrpfrdmeaf2t5f3pddfsj9ewpjnv7"
