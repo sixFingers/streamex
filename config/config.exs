@@ -4,6 +4,6 @@ use Mix.Config
 
 config :logger, level: :debug
 
-config :streamex, region: System.get_env("GET_STREAM_REGION"),
-                  key: System.get_env("GET_STREAM_KEY") || "8andj8c67ycp",
-                  secret: System.get_env("GET_STREAM_SECRET") || "6anbcfx3a5awa62ehtmjfnzdn74shg9tcbbwrpfrdmeaf2t5f3pddfsj9ewpjnv7"
+config :streamex, region: System.get_env("STREAMIO_REGION"),
+                  key: System.get_env("STREAMIO_KEY") || "8andj8c67ycp",
+                  secret: System.get_env("STREAMIO_SECRET") || "6anbcfx3a5awa62ehtmjfnzdn74shg9tcbbwrpfrdmeaf2t5f3pddfsj9ewpjnv7"
