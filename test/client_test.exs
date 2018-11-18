@@ -7,8 +7,8 @@ defmodule ClientTest do
 
   test "client builds requests with correct full url" do
     Application.put_env(:streamex, :region, "eu-west")
-    req = %Request{} |> Request.with_params(%{"parameter" => "value"}) |> Client.prepare_request
-    assert req.url == "https://eu-west-api.getstream.io/api/1.0?api_key=#{Config.key}&parameter=value"
+    req = Request.new |> Request.with_params(%{"parameter" => "value"}) |> Client.prepare_request
+    assert req.url == "https://eu-west-api.stream-io-api.com/api/v1.0?api_key=#{Config.key}&parameter=value"
   end
 
   test "client correctly signs request with token" do

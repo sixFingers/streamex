@@ -4,18 +4,19 @@ defmodule Streamex.Config do
   for configuring the connection client.
   """
 
-  @api_url "api.getstream.io/api"
   @default_timeout 3000
-  @default_version 1.0
+  @default_version "v1.0"
   @default_region ""
 
   @doc """
   Returns the current client's base api url.
+
+  # TODO: Remove this function
   """
   def base_url do
     case region do
-      "" -> "https://#{@api_url}/#{version}"
-      _ -> "https://#{region}-#{@api_url}/#{version}"
+      "" -> "https://api.stream-io-api.com/api/#{version}"
+      _ -> "https://#{region}-api.stream-io-api.com/api/#{version}"
     end
   end
 

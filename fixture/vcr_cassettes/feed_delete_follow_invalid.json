@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/following/user::jessica/?api_key=8andj8c67ycp"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/user/eric/following/user::jessica/?api_key=8andj8c67ycp"
     },
     "response": {
       "body": "{\"code\": 4, \"detail\": \"Broken feed specification, please specify as flat:42\", \"duration\": \"7ms\", \"exception\": \"InputException\", \"status_code\": 400}",

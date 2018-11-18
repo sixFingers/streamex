@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/?api_key=8andj8c67ycp"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/user/eric/?api_key=8andj8c67ycp"
     },
     "response": {
       "body": "{\"activities\": [{\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"cfaae60e-5e68-11e6-8080-800043f34a24\", \"object\": \"Ruby\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:13.507227\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony\", \"foreign_id\": null, \"id\": \"cfabe3a6-5e68-11e6-8080-80003cc41130\", \"object\": \"PHP\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:13.513719\", \"to\": [], \"verb\": \"dislike\"}], \"duration\": \"38ms\"}",

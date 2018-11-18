@@ -13,7 +13,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/add_to_many/?api_key=8andj8c67ycp"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/add_to_many/?api_key=8andj8c67ycp"
     },
     "response": {
       "body": "{\"code\": 4, \"detail\": \"Errors for fields 'feeds'\", \"duration\": \"7ms\", \"exception\": \"InputException\", \"exception_fields\": {\"feeds\": [{\"0\": [\"Invalid value.\"]}]}, \"status_code\": 400}",

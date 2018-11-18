@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/alien/eric/following/?activity_copy_limit=300&api_key=8andj8c67ycp"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/alien/eric/following/?activity_copy_limit=300&api_key=8andj8c67ycp"
     },
     "response": {
       "body": "{\"code\": 6, \"detail\": \"The following feeds are not configured: 'alien'\", \"duration\": \"8ms\", \"exception\": \"FeedConfigException\", \"status_code\": 400}",

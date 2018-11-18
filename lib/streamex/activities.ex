@@ -137,10 +137,10 @@ defmodule Streamex.Activities do
       {:ok, nil}
 
   """
-  def update(feed, %{} = activity) do
+  def update(feed, activity) when is_map(activity) do
     update(feed, [activity])
   end
-  def update(feed, [%{} | _] = activities) do
+  def update(feed, activities) when is_list(activities) do
     Request.new
     |> with_method(:post)
     |> with_path(endpoint_update())

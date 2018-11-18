@@ -16,7 +16,7 @@ defmodule Streamex.Mixfile do
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         vcr: :test, "vcr.delete": :test, "vcr.check": :test, "vcr.show": :test,
-        "coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test
+        coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test
       ],
       deps: deps()
     ]
@@ -28,13 +28,13 @@ defmodule Streamex.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 0.9.0"},
-      {:poison, "~> 2.2"},
-      {:joken, "~> 1.2"},
-      {:timex, "~> 2.2"},
-      {:ex_doc, "~> 0.12", only: :dev},
-      {:exvcr, "~> 0.7", only: :test},
-      {:excoveralls, "~> 0.5", only: :test}
+      {:httpoison, "~> 1.4"},
+      {:poison, "~> 3.1.0"},
+      {:joken, "~> 1.5"},
+      {:timex, "~> 3.4.2"},
+      {:ex_doc, "~> 0.19.1", only: :dev},
+      {:exvcr, "~> 0.10.3", only: :test},
+      {:excoveralls, "~> 0.10.3", only: :test}
     ]
   end
 

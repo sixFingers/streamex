@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/tony:elixir/?api_key=8andj8c67ycp&foreign_id=1"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/user/eric/tony:elixir/?api_key=8andj8c67ycp&foreign_id=1"
     },
     "response": {
       "body": "{\"duration\": \"10ms\", \"removed\": \"tony:elixir\"}",

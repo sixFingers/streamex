@@ -12,23 +12,40 @@ defmodule Streamex.Request do
   ]
 
   defstruct [
+    host: nil,
     url: "",
-    path: "",
+    path: "/api/v1.0",
     method: :get,
     headers: @default_headers,
     params: %{},
     body: "",
     options: [],
-    token: nil
+    token: nil,
+    version: nil
   ]
 
   @type t :: %__MODULE__{}
 
   @doc """
   Initializes a `Streamex.Request` request.
+
+  Available regions are:
+    * us-east
+    * eu-west
+    * singapore
+
+  For example:
+    `https://api.stream-io-api.com/api/v1.0/`
+    `https://singapore-api.stream-io-api.com/api/v1.0/`
   """
   def new do
-    struct(%__MODULE__{options: default_options})
+    host = case Application.get_env(:streamex, :region, "") do
+      "" -> "https://api.stream-io-api.com"
+      region -> "https://#{region}-api.stream-io-api.com"
+    end
+    version = Application.get_env(:streamex, :version, "v1.0")
+
+    struct(%__MODULE__{host: host, version: version, options: default_options})
   end
 
   @doc """
@@ -42,6 +59,7 @@ defmodule Streamex.Request do
   Sets the `path` field of a `Streamex.Request`
   """
   def with_path(%__MODULE__{} = r, path) do
+    path = "/api/" <> r.version <> "/" <> path
     %{r | path: path}
   end
 
