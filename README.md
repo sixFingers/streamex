@@ -37,6 +37,13 @@ config :streamex, region: "api_region",
                   secret: "api_secret"
 ```
 
+By default it will use these environment variables:
+
+  * `STREAMIO_REGION`
+  * `STREAMIO_KEY`
+  * `STREAMIO_SECRET`
+
+
 ## Usage
 
 Refer to [Streamex documentation](https://sixfingers.github.io/streamex).

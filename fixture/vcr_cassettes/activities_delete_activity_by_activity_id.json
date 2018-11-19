@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/d2d6fc2c-5e5a-11e6-8080-80017383369d/?api_key=8andj8c67ycp"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/user/eric/d2d6fc2c-5e5a-11e6-8080-80017383369d/?api_key=8andj8c67ycp"
     },
     "response": {
       "body": "{\"duration\": \"32ms\", \"removed\": \"d2d6fc2c-5e5a-11e6-8080-80017383369d\"}",
