@@ -8,7 +8,7 @@ defmodule Streamex.Mixfile do
       source_url: "https://github.com/sixFingers/streamex",
       homepage_url: "http://sixfingers.github.io/streamex",
       version: "0.4.0",
-      elixir: "~> 1.5",
+      elixir: "~> 1.7",
       description: description(),
       package: package(),
       build_embedded: Mix.env == :prod,
