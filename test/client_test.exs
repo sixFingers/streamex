@@ -25,15 +25,12 @@ defmodule ClientTest do
     assert token_string !== nil
 
     assert Map.get(headers, "stream-auth-type", nil) == "jwt"
+    
+    claims = Streamex.Token.decompact(token_string, Config.secret)
 
-    token = token_string
-    |> Joken.token
-    |> Joken.with_signer(Joken.hs256(Config.secret))
-    |> Joken.verify
-
-    assert Map.get(token.claims, "resource", nil) == "feed"
-    assert Map.get(token.claims, "action", nil) == "read"
-    assert Map.get(token.claims, "feed_id", nil) == "usereric"
+    assert Map.get(claims, "resource", nil) == "feed"
+    assert Map.get(claims, "action", nil) == "read"
+    assert Map.get(claims, "feed_id", nil) == "usereric"
   end
 
   test "client correctly signs request with key/secret" do

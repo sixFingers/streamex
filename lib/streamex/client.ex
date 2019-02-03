@@ -6,7 +6,6 @@ defmodule Streamex.Client do
 
   import HTTPoison, only: [request: 5]
   alias Streamex.{Request, Config, Token}
-  alias Timex.DateTime
 
   @doc """
   Prepares a `Streamex.Request` for execution.
@@ -42,9 +41,17 @@ defmodule Streamex.Client do
     |> parse_response
   end
 
+  def execute_request_no_decode(%Request{} = req) do
+    request(req.method, req.url, req.body, req.headers, req.options)
+    |> parse_response_no_decode
+  end
+
   @doc false
   def parse_response({:error, body}), do: {:error, body}
   def parse_response({:ok, %{} = r}), do: Poison.decode!(r.body)
+
+  def parse_response_no_decode({:error, body}), do: {:error, body}
+  def parse_response_no_decode({:ok, %{} = r}), do: r.body
 
   defp sign_request_with_token(%Request{} = req, secret) do
     token = Token.compact(req.token, secret)
@@ -58,7 +65,7 @@ defmodule Streamex.Client do
 
   defp sign_request_with_key_secret(%Request{} = req, key, secret) do
     algoritm = "hmac-sha256"
-    {_, now} = DateTime.local() |> Timex.format("{RFC822}")
+    {_, now} = Timex.local() |> Timex.format("{RFC822}")
 
     api_key_header = {"X-Api-Key", key}
     date_header = {"Date", now}
