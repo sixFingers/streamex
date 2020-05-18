@@ -56,6 +56,7 @@ defmodule Streamex.Client do
   defp sign_request_with_token(%Request{} = req, secret) do
     token = Token.compact(req.token, secret)
 
+    IO.inspect {:token, token}
     headers = [
       {"Authorization", token},
       {"stream-auth-type", "jwt"},

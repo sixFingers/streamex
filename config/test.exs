@@ -3,9 +3,14 @@
 use Mix.Config
 
 config :streamex, region: "",
-                  key: "8andj8c67ycp",
-                  secret: "6anbcfx3a5awa62ehtmjfnzdn74shg9tcbbwrpfrdmeaf2t5f3pddfsj9ewpjnv7"
+                  key: "py7b6dkg8fm4",
+                  secret: "4rze5eevh7dsy2ae89nnsn32v4qd7tzjnhtx8qf45hqvax9akrdj9ppg4k4vz2w2"
 
+
+#                   export STREAM_DEV_APP_ID=47380
+# export STREAM_DEV_REGION=us-east
+# export STREAM_DEV_KEY=u2db2meqxtuq
+# export STREAM_DEV_SECRET=gjgdqrfaghqrw9c9mj2fbmbjhar2s2vs7gke9qpnp4a55u4vk9kdzpgrwfqxec8k
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,

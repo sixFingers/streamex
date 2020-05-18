@@ -3,7 +3,7 @@
     "request": {
       "body": "",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJkZWxldGUiLCJmZWVkX2lkIjoidXNlcmVyaWMiLCJyZXNvdXJjZSI6ImZlZWQifQ.Wygs-bxGX-oXRCeFSDgoy6jBvix3CcFEN-7QPTCqwVs",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJkZWxldGUiLCJhdWQiOiJKb2tlbiIsImV4cCI6MTU0OTI0NDg3MSwiZmVlZF9pZCI6InVzZXJlcmljIiwiaWF0IjoxNTQ5MjM3NjcxLCJpc3MiOiJKb2tlbiIsImp0aSI6IjJsdnZ1dDEwNGZkbDE5NGtlNDAwMDBoMiIsIm5iZiI6MTU0OTIzNzY3MSwicmVzb3VyY2UiOiJmZWVkIn0.Ct0XwCv2ULyWLH_0UEiBSRq845mH6YCNwEP3miZ3kpI",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/d2d6fc2c-5e5a-11e6-8080-80017383369d/?api_key=8andj8c67ycp"
+      "url": "https://api.getstream.io/api/feed/user/eric/d2d6fc2c-5e5a-11e6-8080-80017383369d/?api_key=py7b6dkg8fm4"
     },
     "response": {
       "body": "{\"duration\": \"32ms\", \"removed\": \"d2d6fc2c-5e5a-11e6-8080-80017383369d\"}",

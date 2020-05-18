@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/?api_key=8andj8c67ycp"
+      "url": "https://api.getstream.io/api/feed/user/eric/?api_key=py7b6dkg8fm4"
     },
     "response": {
       "body": "{\"activities\": [{\"actor\": \"Tony\", \"foreign_id\": \"tony:elixir\", \"id\": \"cee9cdac-5e68-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:12.241758\", \"to\": [], \"verb\": \"like\"}], \"duration\": \"26ms\"}",

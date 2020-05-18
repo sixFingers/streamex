@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user:/jessica/?limit=25&offset=0&api_key=8andj8c67ycp"
+      "url": "https://api.getstream.io/api/feed/user:/jessica/?limit=25&offset=0&api_key=py7b6dkg8fm4"
     },
     "response": {
       "body": "{\"exception\": \"GetStreamAPI404\", \"detail\": \"sorry you've hit a 404\"}",

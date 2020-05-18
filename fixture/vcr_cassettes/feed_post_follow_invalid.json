@@ -3,7 +3,7 @@
     "request": {
       "body": "{\"target\":\"user:erika\"}",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyOl9tYXJrIiwicmVzb3VyY2UiOiJmb2xsb3dlciJ9.6u1zsTTJynPys3OzC5oFI4zLMn3FbviksKDHskCJLEE",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImF1ZCI6Ikpva2VuIiwiZXhwIjoxNTQ5MjUzMTk1LCJmZWVkX2lkIjoidXNlcjpfbWFyayIsImlhdCI6MTU0OTI0NTk5NSwiaXNzIjoiSm9rZW4iLCJqdGkiOiIybTAwZTFpNjQ3bHNnbjBvc2MwMDAwMDQiLCJuYmYiOjE1NDkyNDU5OTUsInJlc291cmNlIjoiZm9sbG93ZXIifQ.DuYmYHRWmFiu6jB5-rW5080FVr3lwbDOojM7Kbl1A8Y",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user:/mark/following/?activity_copy_limit=300&api_key=8andj8c67ycp"
+      "url": "https://api.getstream.io/api/feed/user:/mark/following/?activity_copy_limit=300&api_key=py7b6dkg8fm4"
     },
     "response": {
       "body": "{\"exception\": \"GetStreamAPI404\", \"detail\": \"sorry you've hit a 404\"}",
