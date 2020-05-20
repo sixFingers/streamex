@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/jessica/followers/?limit=25&offset=0&api_key=8andj8c67ycp"
+      "url": "https://api.getstream.io/api/feed/user/jessica/followers/?limit=25&offset=0&api_key=py7b6dkg8fm4"
     },
     "response": {
       "body": "{\"duration\": \"12ms\", \"results\": [{\"created_at\": \"2016-08-09T19:40:55.087Z\", \"feed_id\": \"user:eric\", \"target_id\": \"user:jessica\", \"updated_at\": \"2016-08-09T19:40:55.087Z\"}]}",

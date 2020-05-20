@@ -76,7 +76,7 @@ defmodule Streamex.Feed do
 
   """
   def following(feed, opts \\ []) do
-    Request.new
+    out = Request.new
     |> with_method(:get)
     |> with_path(endpoint_get_following(feed))
     |> with_token(feed, "follower", "read")
@@ -192,8 +192,7 @@ defmodule Streamex.Feed do
 
   @doc false
   def handle_response(%{"exception" => exception}), do: {:error, exception}
-  def handle_response(%{"results" => results}), do:
-    {:ok, Enum.map(results, &Poison.Decode.decode(&1, as: %Follow{}))}
+  def handle_response(%{"results" => results}), do: {:ok, Enum.map(results, &Follow.from_map/1)}
   def handle_response(%{"duration" => _}), do: {:ok, nil}
 
   defp validate([string | t]), do: validate(string) && validate(t)

@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/activities/?api_key=8andj8c67ycp"
+      "url": "https://api.getstream.io/api/activities/?api_key=py7b6dkg8fm4"
     },
     "response": {
       "body": "{\"code\": 4, \"detail\": \"Errors for fields '{'time': [u'This field is required.']}'\", \"duration\": \"11ms\", \"exception\": \"InputException\", \"exception_fields\": [{\"time\": [\"This field is required.\"]}], \"status_code\": 400}",

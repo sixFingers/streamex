@@ -3,7 +3,7 @@
     "request": {
       "body": "",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InVzZXJlcmljIiwicmVzb3VyY2UiOiJmZWVkIn0.ehYzwgLbXQnWGbYywDuC820JFJcIOsYQmXJH_MFGoEg",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiYXVkIjoiSm9rZW4iLCJleHAiOjE1NDkyNDgyMzMsImZlZWRfaWQiOiJ1c2VyZXJpYyIsImlhdCI6MTU0OTI0MTAzMywiaXNzIjoiSm9rZW4iLCJqdGkiOiIybTAwNTBvamRyajZnOTg3dW8wMDAwNDQiLCJuYmYiOjE1NDkyNDEwMzMsInJlc291cmNlIjoiZmVlZCJ9.wA3JqUPzLHZsx9zTXXTy_QEDIr7gdKytgJuQhTEbaXw",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
@@ -12,7 +12,7 @@
         "connect_timeout": 3000
       },
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/?limit=25&offset=0&api_key=8andj8c67ycp"
+      "url": "https://api.getstream.io/api/feed/user/eric/?limit=25&offset=0&api_key=py7b6dkg8fm4"
     },
     "response": {
       "body": "{\"duration\": \"15ms\", \"next\": \"\", \"results\": [{\"actor\": \"Tony\", \"foreign_id\": \"tony:elixir\", \"id\": \"cee9cdac-5e68-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:12.241758\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony\", \"custom_field\": \"custom_value\", \"foreign_id\": \"tony:elixir\", \"id\": \"ce825654-5e68-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:11.563682\", \"to\": [], \"verb\": \"like\"}]}",

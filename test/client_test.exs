@@ -6,9 +6,9 @@ defmodule ClientTest do
   doctest Streamex
 
   test "client builds requests with correct full url" do
-    Application.put_env(:streamex, :region, "eu-west")
+    # region = Application.put_env(:streamex, :region, "us-west")
     req = %Request{} |> Request.with_params(%{"parameter" => "value"}) |> Client.prepare_request
-    assert req.url == "https://eu-west-api.getstream.io/api/1.0?api_key=#{Config.key}&parameter=value"
+    assert req.url == "https://api.getstream.io/api/1.0?api_key=#{Config.key}&parameter=value"
   end
 
   test "client correctly signs request with token" do
@@ -25,15 +25,12 @@ defmodule ClientTest do
     assert token_string !== nil
 
     assert Map.get(headers, "stream-auth-type", nil) == "jwt"
+    
+    claims = Streamex.Token.decompact(token_string, Config.secret)
 
-    token = token_string
-    |> Joken.token
-    |> Joken.with_signer(Joken.hs256(Config.secret))
-    |> Joken.verify
-
-    assert Map.get(token.claims, "resource", nil) == "feed"
-    assert Map.get(token.claims, "action", nil) == "read"
-    assert Map.get(token.claims, "feed_id", nil) == "usereric"
+    assert Map.get(claims, "resource", nil) == "feed"
+    assert Map.get(claims, "action", nil) == "read"
+    assert Map.get(claims, "feed_id", nil) == "usereric"
   end
 
   test "client correctly signs request with key/secret" do
