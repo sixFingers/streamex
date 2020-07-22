@@ -16,28 +16,23 @@ defmodule Streamex.Token do
   Generates a compact token, with grants for given `Streamex.Token`'s' `resource`, `action` and `feed_id`,
   and signs it with `secret`.
   """
-  def compact(%__MODULE__{} = token, secret) do
-    {:ok, jwt, _} = generate_and_sign(
-      %{"resource" =>  token.resource, "action" =>  token.action, "feed_id" =>  token.feed_id}, 
-      Signer.create("HS256", secret)
-    )
+  def compact(%__MODULE__{} = _token, secret) do
+    {:ok, jwt, _} =
+      generate_and_sign(
+        %{"resource" => "*", "action" => "*", "feed_id" => "*"},
+        Signer.create("HS256", secret)
+      )
+
     jwt
   end
 
   def decompact(token, secret) do
-    {:ok, claims} = verify_and_validate(
-      token,
-      Signer.create("HS256", secret)
-    )
+    {:ok, claims} =
+      verify_and_validate(
+        token,
+        Signer.create("HS256", secret)
+      )
 
     claims
-  end
-
-  def create_user_session_token(user_id, secret) do
-    {:ok, jwt, _} = generate_and_sign(
-      %{"user_id" =>  user_id}, 
-      Signer.create("HS256", secret)
-    )
-    jwt
   end
 end
