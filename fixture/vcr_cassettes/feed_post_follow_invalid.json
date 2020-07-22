@@ -3,28 +3,25 @@
     "request": {
       "body": "{\"target\":\"user:erika\"}",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImF1ZCI6Ikpva2VuIiwiZXhwIjoxNTQ5MjUzMTk1LCJmZWVkX2lkIjoidXNlcjpfbWFyayIsImlhdCI6MTU0OTI0NTk5NSwiaXNzIjoiSm9rZW4iLCJqdGkiOiIybTAwZTFpNjQ3bHNnbjBvc2MwMDAwMDQiLCJuYmYiOjE1NDkyNDU5OTUsInJlc291cmNlIjoiZm9sbG93ZXIifQ.DuYmYHRWmFiu6jB5-rW5080FVr3lwbDOojM7Kbl1A8Y",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwiYXVkIjoiSm9rZW4iLCJleHAiOjE1OTU0MDk0NTksImZlZWRfaWQiOiIqIiwiaWF0IjoxNTk1NDAyMjU5LCJpc3MiOiJKb2tlbiIsImp0aSI6IjJvaTAzcG8wampwNGdoNmxnczAwMDAxNiIsIm5iZiI6MTU5NTQwMjI1OSwicmVzb3VyY2UiOiIqIn0.yiBILTnUoJKs2x_DN99wlAkZYKyz_nPLLf8tvCmvx2A",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user:/mark/following/?activity_copy_limit=300&api_key=py7b6dkg8fm4"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/user:/mark/following/?activity_copy_limit=300&api_key=bxfd3qv7c56c"
     },
     "response": {
-      "body": "{\"exception\": \"GetStreamAPI404\", \"detail\": \"sorry you've hit a 404\"}",
+      "binary": false,
+      "body": "{\"detail\":\"\",\"status_code\":404,\"code\":16,\"exception\":\"DoesNotExistException\",\"duration\":\"0.00ms\"}",
       "headers": {
-        "Content-Type": "application/json",
-        "Content-Length": "68",
+        "Date": "Wed, 22 Jul 2020 07:17:39 GMT",
+        "Content-Type": "text/plain; charset=utf-8",
+        "Content-Length": "97",
         "Connection": "keep-alive",
-        "Date": "Tue, 09 Aug 2016 19:41:57 GMT",
         "Server": "nginx",
-        "X-Cache": "Error from cloudfront",
-        "Via": "1.1 2e54f1e2282ced619ee458e0ab9d0c49.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "rfacx17QI99m6dMwSKavnzeF-KqyPDe-ZH5_yrRd5jmh5cna-aVBjg=="
+        "Access-Control-Allow-Origin": "*"
       },
       "status_code": 404,
       "type": "ok"

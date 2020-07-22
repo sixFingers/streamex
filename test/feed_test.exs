@@ -16,8 +16,8 @@ defmodule FeedTest do
 
     assert status_a == :error
     assert status_b == :error
-    assert error_a == ErrorInput.message
-    assert error_b == ErrorInput.message
+    assert error_a == ErrorInput.message()
+    assert error_b == ErrorInput.message()
     assert status_c == :ok
   end
 
@@ -27,7 +27,7 @@ defmodule FeedTest do
       invalid_feed = %Feed{slug: "user:", user_id: "mark", id: "user:_mark"}
       {status, error} = Feed.follow(invalid_feed, valid_feed)
 
-      assert {:error, "GetStreamAPI404"} = {status, error}
+      assert {:error, "DoesNotExistException"} = {status, error}
     end
   end
 
@@ -48,7 +48,7 @@ defmodule FeedTest do
       {status, error} = Feed.follow(source, target)
 
       assert status == :error
-      assert error == ErrorFeedNotFound.message
+      assert error == ErrorFeedNotFound.message()
     end
   end
 
@@ -59,7 +59,7 @@ defmodule FeedTest do
       {status, error} = Feed.follow_many([{valid_feed, invalid_feed}])
 
       assert status == :error
-      assert error == ErrorInput.message
+      assert error == ErrorInput.message()
     end
   end
 
@@ -80,7 +80,7 @@ defmodule FeedTest do
       {status, error} = Feed.unfollow(valid_feed, invalid_feed)
 
       assert status == :error
-      assert error == ErrorInput.message
+      assert error == ErrorInput.message()
     end
   end
 
@@ -97,7 +97,7 @@ defmodule FeedTest do
   test "Feed followers return a list of follow structs" do
     use_cassette "feed_get_followers" do
       {_, feed} = Feed.new("user", "jessica")
-      {_, followers} = blah = Feed.followers(feed)
+      {_, followers} = Feed.followers(feed)
       assert Enum.count(followers) == 1
 
       assert [%Follow{feed_id: "user:eric"} | _] = followers
@@ -109,7 +109,7 @@ defmodule FeedTest do
       {_, feed} = Feed.new("user", "eric")
       {__, following} = Feed.following(feed)
 
-      assert Enum.count(following) == 1
+      assert Enum.count(following) == 0
     end
   end
 end

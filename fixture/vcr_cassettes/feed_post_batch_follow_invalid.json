@@ -3,31 +3,33 @@
     "request": {
       "body": "[{\"target\":\"user::jessica\",\"source\":\"user:eric\"}]",
       "headers": {
-        "X-Api-Key": "8andj8c67ycp",
-        "Date": "Tue, 09 Aug 16 21:41:56 +0200",
-        "Authorization": "Signature keyId=\"8andj8c67ycp\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"H07L+vP6mGPTdKEz2po1Uy9ZoKd0HjzR9RynwAAaHyI=\"",
+        "X-Api-Key": "bxfd3qv7c56c",
+        "Date": "Wed, 22 Jul 20 16:17:37 +0900",
+        "Authorization": "Signature keyId=\"bxfd3qv7c56c\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"Eu0ul25wFWUYfw3ayicmXdRH6lgn8fUP7/aA4oKJ5ew=\"",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/follow_many/?activity_copy_limit=300&api_key=py7b6dkg8fm4"
+      "url": "https://api.stream-io-api.com/api/v1.0/follow_many/?activity_copy_limit=300&api_key=bxfd3qv7c56c"
     },
     "response": {
-      "body": "{\"code\": 4, \"detail\": \"Errors for fields '{'target': [u'Invalid value.']}'\", \"duration\": \"7ms\", \"exception\": \"InputException\", \"exception_fields\": [{\"target\": [\"Invalid value.\"]}], \"status_code\": 400}",
+      "binary": false,
+      "body": "{\"detail\":\"\\\"user::jessica\\\" is not a valid feed\",\"status_code\":400,\"code\":4,\"exception\":\"InputException\",\"duration\":\"0.13ms\"}",
       "headers": {
-        "Content-Type": "application/json",
-        "Content-Length": "200",
+        "Date": "Wed, 22 Jul 2020 07:17:37 GMT",
+        "Content-Type": "application/json;charset=utf-8",
+        "Content-Length": "126",
         "Connection": "keep-alive",
-        "Allow": "GET, POST, HEAD, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 19:41:56 GMT",
         "Server": "nginx",
-        "Vary": "Accept",
-        "X-Cache": "Error from cloudfront",
-        "Via": "1.1 2e54f1e2282ced619ee458e0ab9d0c49.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "WPG87I6uviL0Yr18SZg-kmbeia-1By4EHOX_z--c6GyFySVvQEHtdQ=="
+        "Access-Control-Allow-Headers": "x-requested-with, content-type, accept, origin, authorization, x-csrftoken, x-stream-client, stream-auth-type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Max-Age": "86400",
+        "Cache-Control": "no-cache",
+        "X-Ratelimit-Limit": "250",
+        "X-Ratelimit-Remaining": "249",
+        "X-Ratelimit-Reset": "1595402280"
       },
       "status_code": 400,
       "type": "ok"

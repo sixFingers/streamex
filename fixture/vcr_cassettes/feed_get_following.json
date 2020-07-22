@@ -3,31 +3,32 @@
     "request": {
       "body": "",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiZmVlZF9pZCI6InVzZXJlcmljIiwicmVzb3VyY2UiOiJmb2xsb3dlciJ9.5Ep31IgT8NHVjYaeIbYmI_QnzicqbUuwmIHIJDNBZ44",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwiYXVkIjoiSm9rZW4iLCJleHAiOjE1OTU0MDk0NTgsImZlZWRfaWQiOiIqIiwiaWF0IjoxNTk1NDAyMjU4LCJpc3MiOiJKb2tlbiIsImp0aSI6IjJvaTAzcG05NWU1OTFxMjVoMDAwMDA2MSIsIm5iZiI6MTU5NTQwMjI1OCwicmVzb3VyY2UiOiIqIn0.ALhvE8hP3kqCr5uaGqkbf8XvxTQ55dP7HS8jg65Mv0Y",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "get",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/following/?limit=25&offset=0&api_key=py7b6dkg8fm4"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/user/eric/following/?limit=25&offset=0&api_key=bxfd3qv7c56c"
     },
     "response": {
-      "body": "{\"duration\": \"14ms\", \"results\": [{\"created_at\": \"2016-08-09T19:38:14.672Z\", \"feed_id\": \"user:eric\", \"target_id\": \"user:deborah\", \"updated_at\": \"2016-08-09T19:38:14.672Z\"}]}",
+      "binary": false,
+      "body": "{\"results\":[],\"duration\":\"2.07ms\"}\n",
       "headers": {
-        "Content-Type": "application/json",
-        "Content-Length": "172",
+        "Date": "Wed, 22 Jul 2020 07:17:39 GMT",
+        "Content-Type": "application/json;charset=utf-8",
+        "Content-Length": "35",
         "Connection": "keep-alive",
-        "Allow": "GET, POST, HEAD, OPTIONS",
-        "Cache-Control": "max-age=0",
-        "Date": "Tue, 09 Aug 2016 19:41:56 GMT",
         "Server": "nginx",
-        "Vary": "Accept",
-        "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 2e54f1e2282ced619ee458e0ab9d0c49.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "r3oLf-c4eJqXHIvRGdMdG_b_LXLP9gwd9qRW4wiEA_lGuiXzteqY0w=="
+        "Access-Control-Allow-Headers": "x-requested-with, content-type, accept, origin, authorization, x-csrftoken, x-stream-client, stream-auth-type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Max-Age": "86400",
+        "Cache-Control": "no-cache",
+        "X-Ratelimit-Limit": "500",
+        "X-Ratelimit-Remaining": "499",
+        "X-Ratelimit-Reset": "1595402280"
       },
       "status_code": 200,
       "type": "ok"
