@@ -178,7 +178,7 @@ defmodule ActivityTest do
         "time" => "2020-07-22T06:04:30.826449"
       }
 
-      {_, activity} = Streamex.Activities.add(feed, original_activity)
+      {_, _activity} = Streamex.Activities.add(feed, original_activity)
 
       updated_activity = %{
         "actor" => "ronnie",
