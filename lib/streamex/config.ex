@@ -5,7 +5,7 @@ defmodule Streamex.Config do
   """
 
   @api_url "api.stream-io-api.com/api"
-  @default_timeout 3000
+  @default_timeout 5000
   @default_version 1.0
   @default_region ""
 
@@ -13,9 +13,9 @@ defmodule Streamex.Config do
   Returns the current client's base api url.
   """
   def base_url do
-    case region do
-      "" -> "https://#{@api_url}/v#{version}/"
-      _ -> "https://#{region}-#{@api_url}/v#{version}/"
+    case region() do
+      "" -> "https://#{@api_url}/v#{version()}/"
+      _ -> "https://#{region()}-#{@api_url}/v#{version()}/"
     end
   end
 
@@ -42,5 +42,5 @@ defmodule Streamex.Config do
   @doc """
   Returns the current client's timeout setting.
   """
-  def timeout, do: Application.get_env(:streamex, :timeout)
+  def timeout, do: Application.get_env(:streamex, :timeout, @default_timeout)
 end

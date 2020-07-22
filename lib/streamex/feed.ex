@@ -28,7 +28,7 @@ defmodule Streamex.Feed do
   def new(slug, user_id) do
     case validate([slug, user_id]) do
       true -> {:ok, %__MODULE__{slug: slug, user_id: user_id, id: "#{slug}#{user_id}"}}
-      false -> {:error, ErrorInput.message}
+      false -> {:error, ErrorInput.message()}
     end
   end
 
@@ -48,14 +48,14 @@ defmodule Streamex.Feed do
 
   """
   def followers(feed, opts \\ []) do
-    Request.new
+    Request.new()
     |> with_method(:get)
     |> with_path(endpoint_get_followers(feed))
     |> with_token(feed, "follower", "read")
     |> with_params(params_get_followers(opts))
-    |> Client.prepare_request
-    |> Client.sign_request
-    |> Client.execute_request
+    |> Client.prepare_request()
+    |> Client.sign_request()
+    |> Client.execute_request()
     |> handle_response
   end
 
@@ -76,14 +76,14 @@ defmodule Streamex.Feed do
 
   """
   def following(feed, opts \\ []) do
-    out = Request.new
+    Request.new()
     |> with_method(:get)
     |> with_path(endpoint_get_following(feed))
     |> with_token(feed, "follower", "read")
     |> with_params(params_get_following(opts))
-    |> Client.prepare_request
-    |> Client.sign_request
-    |> Client.execute_request
+    |> Client.prepare_request()
+    |> Client.sign_request()
+    |> Client.execute_request()
     |> handle_response
   end
 
@@ -108,15 +108,15 @@ defmodule Streamex.Feed do
 
   """
   def follow(source, target, opts \\ []) do
-    Request.new
+    Request.new()
     |> with_method(:post)
     |> with_path(endpoint_create_following(source))
     |> with_token(source, "follower", "write")
     |> with_body(body_create_following(target))
     |> with_params(params_create_following(opts))
-    |> Client.prepare_request
-    |> Client.sign_request
-    |> Client.execute_request
+    |> Client.prepare_request()
+    |> Client.sign_request()
+    |> Client.execute_request()
     |> handle_response
   end
 
@@ -142,14 +142,14 @@ defmodule Streamex.Feed do
 
   """
   def follow_many(feeds, opts \\ []) do
-    Request.new
+    Request.new()
     |> with_method(:post)
     |> with_path(endpoint_create_following_many())
     |> with_body(body_create_following_many(feeds))
     |> with_params(params_create_following_many(opts))
-    |> Client.prepare_request
-    |> Client.sign_request
-    |> Client.execute_request
+    |> Client.prepare_request()
+    |> Client.sign_request()
+    |> Client.execute_request()
     |> handle_response
   end
 
@@ -174,14 +174,14 @@ defmodule Streamex.Feed do
 
   """
   def unfollow(source, target, opts \\ []) do
-    Request.new
+    Request.new()
     |> with_method(:delete)
     |> with_path(endpoint_remove_following(source, target))
     |> with_params(params_remove_following(opts))
     |> with_token(source, "follower", "delete")
-    |> Client.prepare_request
-    |> Client.sign_request
-    |> Client.execute_request
+    |> Client.prepare_request()
+    |> Client.sign_request()
+    |> Client.execute_request()
     |> handle_response
   end
 
@@ -200,11 +200,11 @@ defmodule Streamex.Feed do
   defp validate(string), do: !Regex.match?(~r/\W/, string)
 
   defp endpoint_get_followers(feed) do
-    <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/followers/">>
+    <<"feed/", feed.slug::binary, "/", feed.user_id::binary, "/followers/">>
   end
 
   defp endpoint_get_following(feed) do
-    <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/following/">>
+    <<"feed/", feed.slug::binary, "/", feed.user_id::binary, "/following/">>
   end
 
   defp endpoint_create_following(feed) do
@@ -212,7 +212,8 @@ defmodule Streamex.Feed do
   end
 
   defp endpoint_remove_following(source_feed, target_feed) do
-    <<endpoint_get_following(source_feed) :: binary, get_follow_target_string(target_feed) :: binary, "/">>
+    <<endpoint_get_following(source_feed)::binary, get_follow_target_string(target_feed)::binary,
+      "/">>
   end
 
   defp endpoint_create_following_many() do
@@ -235,7 +236,7 @@ defmodule Streamex.Feed do
 
   defp params_remove_following(opts) do
     keep_history = Keyword.get(opts, :keep_history, false)
-    keep_history && %{"keep_history" => "true"} || %{}
+    (keep_history && %{"keep_history" => "true"}) || %{}
   end
 
   defp params_create_following_many(opts) do
@@ -248,12 +249,13 @@ defmodule Streamex.Feed do
   end
 
   defp body_create_following_many(feeds) do
-    feeds = Enum.map(feeds, fn({source, target}) ->
-      %{
-        "source" => get_follow_target_string(source),
-        "target" => get_follow_target_string(target)
-      }
-    end)
+    feeds =
+      Enum.map(feeds, fn {source, target} ->
+        %{
+          "source" => get_follow_target_string(source),
+          "target" => get_follow_target_string(target)
+        }
+      end)
 
     Poison.encode!(feeds)
   end
