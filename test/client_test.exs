@@ -32,9 +32,9 @@ defmodule ClientTest do
 
     claims = Streamex.Token.decompact(token_string, Config.secret())
 
-    assert Map.get(claims, "resource", nil) == "feed"
-    assert Map.get(claims, "action", nil) == "read"
-    assert Map.get(claims, "feed_id", nil) == "usereric"
+    assert Map.get(claims, "resource", nil) == "*"
+    assert Map.get(claims, "action", nil) == "*"
+    assert Map.get(claims, "feed_id", nil) == "*"
   end
 
   test "client correctly signs request with key/secret" do
