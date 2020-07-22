@@ -11,16 +11,14 @@ defmodule Streamex.Request do
     {"content-type", "application/json"}
   ]
 
-  defstruct [
-    url: "",
-    path: "",
-    method: :get,
-    headers: @default_headers,
-    params: %{},
-    body: "",
-    options: [],
-    token: nil
-  ]
+  defstruct url: "",
+            path: "",
+            method: :get,
+            headers: @default_headers,
+            params: %{},
+            body: "",
+            options: [],
+            token: nil
 
   @type t :: %__MODULE__{}
 
@@ -28,7 +26,7 @@ defmodule Streamex.Request do
   Initializes a `Streamex.Request` request.
   """
   def new do
-    struct(%__MODULE__{options: default_options})
+    struct(%__MODULE__{options: default_options()})
   end
 
   @doc """
@@ -68,7 +66,7 @@ defmodule Streamex.Request do
 
   defp default_options do
     [
-      {:timeout, Config.timeout}
+      {:timeout, Config.timeout()}
     ]
   end
 end
