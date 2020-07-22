@@ -15,7 +15,7 @@ defmodule ActivityTest do
       {_, feed} = new("user", "eric")
       {__, activities} = Streamex.Activities.get(feed)
 
-      assert Enum.count(activities) == 2
+      assert Enum.count(activities) == 9
       assert [%Activity{} | _] = activities
     end
   end
@@ -26,14 +26,21 @@ defmodule ActivityTest do
       {status, error} = Streamex.Activities.get(feed)
 
       assert status == :error
-      assert error == ErrorNotFound.message
+      assert error == ErrorNotFound.message()
     end
   end
 
   test "Adding an activity without custom fields to feed returns an %Activity{}" do
     use_cassette "activities_post_activity" do
       {_, feed} = new("user", "eric")
-      activity = %{"actor" => "Tony", "verb" => "like", "object" => "Elixir", "foreign_id" => "tony:elixir"}
+
+      activity = %{
+        "actor" => "Tony",
+        "verb" => "like",
+        "object" => "Elixir",
+        "foreign_id" => "tony:elixir"
+      }
+
       {_, activity} = Streamex.Activities.add(feed, activity)
 
       assert %Activity{} = activity
@@ -43,7 +50,15 @@ defmodule ActivityTest do
   test "Adding an activity custom fields to feed returns a single activity struct with custom fields" do
     use_cassette "activities_post_activity_with_custom_fields" do
       {_, feed} = new("user", "eric")
-      activity = %{"actor" => "Tony", "verb" => "like", "object" => "Elixir", "foreign_id" => "tony:elixir", "custom_field" => "custom_value"}
+
+      activity = %{
+        "actor" => "Tony",
+        "verb" => "like",
+        "object" => "Elixir",
+        "foreign_id" => "tony:elixir",
+        "custom_field" => "custom_value"
+      }
+
       {_, activity} = Streamex.Activities.add(feed, activity)
 
       assert %Activity{custom_fields: %{"custom_field" => "custom_value"}} = activity
@@ -53,11 +68,18 @@ defmodule ActivityTest do
   test "Adding an activity to invalid feed returns ErrorNotFound" do
     use_cassette "activities_post_activity_invalid_feed" do
       feed = %Feed{slug: "user:", user_id: "jessica", id: "user:jessica"}
-      activity = %{"actor" => "Tony", "verb" => "like", "object" => "Elixir", "foreign_id" => "tony:elixir"}
+
+      activity = %{
+        "actor" => "Tony",
+        "verb" => "like",
+        "object" => "Elixir",
+        "foreign_id" => "tony:elixir"
+      }
+
       {status, error} = Streamex.Activities.add(feed, activity)
 
       assert status == :error
-      assert error == ErrorNotFound.message
+      assert error == ErrorNotFound.message()
     end
   end
 
@@ -76,7 +98,14 @@ defmodule ActivityTest do
   test "Adding an activity to multiple feeds returns ok" do
     use_cassette "activities_post_batch_activities" do
       {_, feed} = Feed.new("user", "erika")
-      activity = %{"actor" => "Tony", "verb" => "like", "object" => "Elixir", "foreign_id" => "tony:elixir"}
+
+      activity = %{
+        "actor" => "Tony",
+        "verb" => "like",
+        "object" => "Elixir",
+        "foreign_id" => "tony:elixir"
+      }
+
       {status, _} = Activities.add_to_many([feed], activity)
 
       assert status == :ok
@@ -86,22 +115,36 @@ defmodule ActivityTest do
   test "Adding an activity to multiple invalid feeds returns ErrorInput" do
     use_cassette "activities_post_batch_activities_invalid_feed" do
       feed = %Feed{slug: "user:", user_id: "jessica", id: "user:jessica"}
-      activity = %{"actor" => "Tony", "verb" => "like", "object" => "Elixir", "foreign_id" => "tony:elixir"}
+
+      activity = %{
+        "actor" => "Tony",
+        "verb" => "like",
+        "object" => "Elixir",
+        "foreign_id" => "tony:elixir"
+      }
+
       {status, error} = Activities.add_to_many([feed], activity)
 
       assert status == :error
-      assert error == ErrorInput.message
+      assert error == ErrorInput.message()
     end
   end
 
   test "Updating an activity without required fields returns ErrorInput" do
     use_cassette "activities_update_activity_missing_field" do
       {_, feed} = new("user", "eric")
-      activity = %{"actor" => "Tony", "verb" => "love", "object" => "Elixir", "foreign_id" => "tony:elixir"}
+
+      activity = %{
+        "actor" => "Tony",
+        "verb" => "love",
+        "object" => "Elixir",
+        "foreign_id" => "tony:elixir"
+      }
+
       {status, error} = Activities.update(feed, activity)
 
       assert status == :error
-      assert error == ErrorInput.message
+      assert error == ErrorInput.message()
     end
   end
 
@@ -120,6 +163,32 @@ defmodule ActivityTest do
       {status, id} = Activities.remove(feed, "tony:elixir", foreign_id: true)
 
       assert {:ok, "tony:elixir"} == {status, id}
+    end
+  end
+
+  test "Can update an activity" do
+    use_cassette "activities_update_existing_activity" do
+      {_, feed} = new("user", "ronnie")
+
+      original_activity = %{
+        "actor" => "ronnie",
+        "verb" => "likes",
+        "object" => "Elixir",
+        "foreign_id" => "ronnie:elixir",
+        "time" => "2020-07-22T06:04:30.826449"
+      }
+
+      {_, activity} = Streamex.Activities.add(feed, original_activity)
+
+      updated_activity = %{
+        "actor" => "ronnie",
+        "verb" => "loves",
+        "object" => "Elixir",
+        "foreign_id" => "ronnie:elixir",
+        "time" => "2020-07-22T06:04:30.826449"
+      }
+
+      {:ok, nil} = Activities.update(feed, updated_activity)
     end
   end
 end

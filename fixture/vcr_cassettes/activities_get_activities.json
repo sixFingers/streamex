@@ -3,31 +3,32 @@
     "request": {
       "body": "",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJyZWFkIiwiYXVkIjoiSm9rZW4iLCJleHAiOjE1NDkyNDgyMzMsImZlZWRfaWQiOiJ1c2VyZXJpYyIsImlhdCI6MTU0OTI0MTAzMywiaXNzIjoiSm9rZW4iLCJqdGkiOiIybTAwNTBvamRyajZnOTg3dW8wMDAwNDQiLCJuYmYiOjE1NDkyNDEwMzMsInJlc291cmNlIjoiZmVlZCJ9.wA3JqUPzLHZsx9zTXXTy_QEDIr7gdKytgJuQhTEbaXw",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwiYXVkIjoiSm9rZW4iLCJleHAiOjE1OTU0MDg5NDIsImZlZWRfaWQiOiIqIiwiaWF0IjoxNTk1NDAxNzQyLCJpc3MiOiJKb2tlbiIsImp0aSI6IjJvaTAycmtxYXAxY2cyaGoyNDAwMDA2NSIsIm5iZiI6MTU5NTQwMTc0MiwicmVzb3VyY2UiOiIqIn0.28hkm-fAzMQLVq8BqIjg7uRyuVD66kmJZJw6RajIGv0",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "get",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user/eric/?limit=25&offset=0&api_key=py7b6dkg8fm4"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/user/eric/?limit=25&offset=0&api_key=bxfd3qv7c56c"
     },
     "response": {
-      "body": "{\"duration\": \"15ms\", \"next\": \"\", \"results\": [{\"actor\": \"Tony\", \"foreign_id\": \"tony:elixir\", \"id\": \"cee9cdac-5e68-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:12.241758\", \"to\": [], \"verb\": \"like\"}, {\"actor\": \"Tony\", \"custom_field\": \"custom_value\", \"foreign_id\": \"tony:elixir\", \"id\": \"ce825654-5e68-11e6-8080-80017383369d\", \"object\": \"Elixir\", \"origin\": null, \"target\": null, \"time\": \"2016-08-09T19:38:11.563682\", \"to\": [], \"verb\": \"like\"}]}",
+      "binary": false,
+      "body": "{\"results\":[{\"actor\":\"Ronnie\",\"foreign_id\":\"ronnie:elixir\",\"id\":\"85feb428-cbe1-11ea-8080-80012ca1bcfb\",\"object\":\"Elixir\",\"origin\":null,\"target\":\"\",\"time\":\"2020-07-22T06:06:46.436356\",\"verb\":\"likes\"},{\"actor\":\"ronnie\",\"foreign_id\":\"ronnie:elixir\",\"id\":\"352a462a-cbe1-11ea-8080-80012ca1bcfb\",\"object\":\"Elixir\",\"origin\":null,\"target\":\"\",\"time\":\"2020-07-22T06:04:30.826449\",\"verb\":\"loves\"},{\"actor\":\"Tony\",\"foreign_id\":\"tony:elixir\",\"id\":\"2f67e01b-cbdf-11ea-acbf-0ad70a8cb32c\",\"object\":\"Elixir\",\"origin\":null,\"target\":\"\",\"time\":\"2020-07-22T05:50:02.170371\",\"verb\":\"like\"},{\"actor\":\"Tony\",\"foreign_id\":\"\",\"id\":\"2c5799c3-cbdf-11ea-acbd-0ad70a8cb32c\",\"object\":\"PHP\",\"origin\":null,\"target\":\"\",\"time\":\"2020-07-22T05:49:57.030547\",\"verb\":\"dislike\"},{\"actor\":\"Tony\",\"foreign_id\":\"\",\"id\":\"2c57997c-cbdf-11ea-acbc-0ad70a8cb32c\",\"object\":\"Ruby\",\"origin\":null,\"target\":\"\",\"time\":\"2020-07-22T05:49:57.030540\",\"verb\":\"like\"},{\"actor\":\"Tony\",\"foreign_id\":\"\",\"id\":\"f5101d6d-cbde-11ea-acba-0ad70a8cb32c\",\"object\":\"PHP\",\"origin\":null,\"target\":\"\",\"time\":\"2020-07-22T05:48:24.287371\",\"verb\":\"dislike\"},{\"actor\":\"Tony\",\"foreign_id\":\"\",\"id\":\"f5101d1c-cbde-11ea-acb9-0ad70a8cb32c\",\"object\":\"Ruby\",\"origin\":null,\"target\":\"\",\"time\":\"2020-07-22T05:48:24.287363\",\"verb\":\"like\"},{\"actor\":\"Tony\",\"foreign_id\":\"\",\"id\":\"51d4b5ae-cbdd-11ea-acb4-0ad70a8cb32c\",\"object\":\"PHP\",\"origin\":null,\"target\":\"\",\"time\":\"2020-07-22T05:36:40.932702\",\"verb\":\"dislike\"},{\"actor\":\"Tony\",\"foreign_id\":\"\",\"id\":\"51d4b56a-cbdd-11ea-acb3-0ad70a8cb32c\",\"object\":\"Ruby\",\"origin\":null,\"target\":\"\",\"time\":\"2020-07-22T05:36:40.932696\",\"verb\":\"like\"}],\"next\":\"\",\"duration\":\"16.56ms\"}\n",
       "headers": {
-        "Content-Type": "application/json",
-        "Content-Length": "497",
+        "Date": "Wed, 22 Jul 2020 07:09:03 GMT",
+        "Content-Type": "application/json;charset=utf-8",
+        "Content-Length": "1621",
         "Connection": "keep-alive",
-        "Allow": "GET, POST, DELETE, HEAD, OPTIONS",
-        "Cache-Control": "max-age=0",
-        "Date": "Tue, 09 Aug 2016 19:38:13 GMT",
-        "Server": "nginx/1.4.6 (Ubuntu)",
-        "Vary": "Accept",
-        "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 5298d14814ac28e02807dcd709261cca.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "WZ44TFWup30YAaC89b5GdtIJKu5iZZBfb4c2CYzP9_TdBloArliT4A=="
+        "Server": "nginx",
+        "Access-Control-Allow-Headers": "x-requested-with, content-type, accept, origin, authorization, x-csrftoken, x-stream-client, stream-auth-type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Max-Age": "86400",
+        "Cache-Control": "no-cache",
+        "X-Ratelimit-Limit": "2000",
+        "X-Ratelimit-Remaining": "1999",
+        "X-Ratelimit-Reset": "1595401800"
       },
       "status_code": 200,
       "type": "ok"

@@ -3,31 +3,33 @@
     "request": {
       "body": "{\"feeds\":[\"user:erika\"],\"activity\":{\"verb\":\"like\",\"object\":\"Elixir\",\"foreign_id\":\"tony:elixir\",\"actor\":\"Tony\"}}",
       "headers": {
-        "X-Api-Key": "8andj8c67ycp",
-        "Date": "Tue, 09 Aug 16 21:38:11 +0200",
-        "Authorization": "Signature keyId=\"8andj8c67ycp\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"tvmxCTKBTqT1V4v/O92ijAsoRMlcS+c4es0oB14wlAM=\"",
+        "X-Api-Key": "bxfd3qv7c56c",
+        "Date": "Wed, 22 Jul 20 16:09:06 +0900",
+        "Authorization": "Signature keyId=\"bxfd3qv7c56c\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"BtH+MGHR0RmaLY0OsLejLB+LxBZ0/iTC7TO09E7K+Mk=\"",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/add_to_many/?api_key=py7b6dkg8fm4"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/add_to_many/?api_key=bxfd3qv7c56c"
     },
     "response": {
-      "body": "{\"duration\": \"25ms\"}",
+      "binary": false,
+      "body": "{\"duration\":\"58.91ms\"}\n",
       "headers": {
-        "Content-Type": "application/json",
-        "Content-Length": "20",
+        "Date": "Wed, 22 Jul 2020 07:09:07 GMT",
+        "Content-Type": "application/json;charset=utf-8",
+        "Content-Length": "23",
         "Connection": "keep-alive",
-        "Allow": "POST, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 19:38:11 GMT",
-        "Server": "nginx/1.4.6 (Ubuntu)",
-        "Vary": "Accept",
-        "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 5298d14814ac28e02807dcd709261cca.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "Fps1zBubhGMhVfQotTf6rhJS_sVnwJclTgLs-EsKWoWYMmg8oHPChw=="
+        "Server": "nginx",
+        "Access-Control-Allow-Headers": "x-requested-with, content-type, accept, origin, authorization, x-csrftoken, x-stream-client, stream-auth-type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Max-Age": "86400",
+        "Cache-Control": "no-cache",
+        "X-Ratelimit-Limit": "120",
+        "X-Ratelimit-Remaining": "119",
+        "X-Ratelimit-Reset": "1595401800"
       },
       "status_code": 201,
       "type": "ok"

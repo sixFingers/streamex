@@ -3,28 +3,25 @@
     "request": {
       "body": "{\"activities\":[{\"verb\":\"like\",\"object\":\"Elixir\",\"foreign_id\":\"tony:elixir\",\"actor\":\"Tony\"}]}",
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiJ3cml0ZSIsImZlZWRfaWQiOiJ1c2VyOmplc3NpY2EiLCJyZXNvdXJjZSI6ImZlZWQifQ.syz5y9Hqw5mi-8GvRcgk8zrprhAAW9JxqbI_1jk_BTs",
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iOiIqIiwiYXVkIjoiSm9rZW4iLCJleHAiOjE1OTU0MDg5NDEsImZlZWRfaWQiOiIqIiwiaWF0IjoxNTk1NDAxNzQxLCJpc3MiOiJKb2tlbiIsImp0aSI6IjJvaTAycmloYzVpbjBoaTJnczAwMDBjMyIsIm5iZiI6MTU5NTQwMTc0MSwicmVzb3VyY2UiOiIqIn0.uEUY8tKNaw8MTpRDMn7o2UAyvIVsGQYGa1S8_nPc7ZM",
         "stream-auth-type": "jwt",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/user:/jessica/?api_key=py7b6dkg8fm4"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/user:/jessica/?api_key=bxfd3qv7c56c"
     },
     "response": {
-      "body": "{\"exception\": \"GetStreamAPI404\", \"detail\": \"sorry you've hit a 404\"}",
+      "binary": false,
+      "body": "{\"detail\":\"\",\"status_code\":404,\"code\":16,\"exception\":\"DoesNotExistException\",\"duration\":\"0.00ms\"}",
       "headers": {
-        "Content-Type": "application/json",
-        "Content-Length": "68",
+        "Date": "Wed, 22 Jul 2020 07:09:02 GMT",
+        "Content-Type": "text/plain; charset=utf-8",
+        "Content-Length": "97",
         "Connection": "keep-alive",
-        "Date": "Tue, 09 Aug 2016 19:38:10 GMT",
         "Server": "nginx",
-        "X-Cache": "Error from cloudfront",
-        "Via": "1.1 5298d14814ac28e02807dcd709261cca.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "Ansd4vTzJFKmu5Um_0e9JDZz5lK3Hos8HmhvncimNZFEojJ6fYtVZA=="
+        "Access-Control-Allow-Origin": "*"
       },
       "status_code": 404,
       "type": "ok"

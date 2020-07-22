@@ -3,31 +3,33 @@
     "request": {
       "body": "{\"feeds\":[\"user::jessica\"],\"activity\":{\"verb\":\"like\",\"object\":\"Elixir\",\"foreign_id\":\"tony:elixir\",\"actor\":\"Tony\"}}",
       "headers": {
-        "X-Api-Key": "8andj8c67ycp",
-        "Date": "Tue, 09 Aug 16 21:38:12 +0200",
-        "Authorization": "Signature keyId=\"8andj8c67ycp\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"4HJ5WW/vcvVGbERxo8dx0sGoGXm/ZbD2W6xaw4O76yY=\"",
+        "X-Api-Key": "bxfd3qv7c56c",
+        "Date": "Wed, 22 Jul 20 16:09:09 +0900",
+        "Authorization": "Signature keyId=\"bxfd3qv7c56c\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"XwhEsWpUb9hK7VZd+RVaGH9IRzgse4lmHjnPKVgu/Zc=\"",
         "content-type": "application/json"
       },
       "method": "post",
-      "options": {
-        "connect_timeout": 3000
-      },
+      "options": [],
       "request_body": "",
-      "url": "https://api.getstream.io/api/feed/add_to_many/?api_key=py7b6dkg8fm4"
+      "url": "https://api.stream-io-api.com/api/v1.0/feed/add_to_many/?api_key=bxfd3qv7c56c"
     },
     "response": {
-      "body": "{\"code\": 4, \"detail\": \"Errors for fields 'feeds'\", \"duration\": \"7ms\", \"exception\": \"InputException\", \"exception_fields\": {\"feeds\": [{\"0\": [\"Invalid value.\"]}]}, \"status_code\": 400}",
+      "binary": false,
+      "body": "{\"detail\":\"\\\"user::jessica\\\" is not a valid feed\",\"status_code\":400,\"code\":4,\"exception\":\"InputException\",\"duration\":\"0.16ms\"}",
       "headers": {
-        "Content-Type": "application/json",
-        "Content-Length": "180",
+        "Date": "Wed, 22 Jul 2020 07:09:10 GMT",
+        "Content-Type": "application/json;charset=utf-8",
+        "Content-Length": "126",
         "Connection": "keep-alive",
-        "Allow": "POST, OPTIONS",
-        "Date": "Tue, 09 Aug 2016 19:38:12 GMT",
-        "Server": "nginx/1.4.6 (Ubuntu)",
-        "Vary": "Accept",
-        "X-Cache": "Error from cloudfront",
-        "Via": "1.1 5298d14814ac28e02807dcd709261cca.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Id": "ahpS8Kr7CrTs8bBeIip1QJnn8mZ4loEp4Z3uEDRKTEbA3NihyEBJrw=="
+        "Server": "nginx",
+        "Access-Control-Allow-Headers": "x-requested-with, content-type, accept, origin, authorization, x-csrftoken, x-stream-client, stream-auth-type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Max-Age": "86400",
+        "Cache-Control": "no-cache",
+        "X-Ratelimit-Limit": "120",
+        "X-Ratelimit-Remaining": "118",
+        "X-Ratelimit-Reset": "1595401800"
       },
       "status_code": 400,
       "type": "ok"

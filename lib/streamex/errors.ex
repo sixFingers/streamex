@@ -1,5 +1,5 @@
 defmodule Streamex.ErrorNotFound do
-  @message "GetStreamAPI404"
+  @message "DoesNotExistException"
 
   defexception message: @message
 
