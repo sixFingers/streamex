@@ -73,13 +73,11 @@ defmodule Streamex.Client do
     date_header = {"Date", now}
     headers_value = "date"
     header_field_string = "#{headers_value}: #{now}"
-    signature = :crypto.hmac(:sha256, secret, header_field_string) |> Base.encode64()
+    signature = :crypto.mac(:hmac, :sha256, secret, header_field_string) |> Base.encode64()
 
     auth_header =
       {"Authorization",
-       "Signature keyId=\"#{key}\",algorithm=\"#{algoritm}\",headers=\"#{headers_value}\",signature=\"#{
-         signature
-       }\""}
+       "Signature keyId=\"#{key}\",algorithm=\"#{algoritm}\",headers=\"#{headers_value}\",signature=\"#{signature}\""}
 
     headers = [api_key_header, date_header, auth_header] ++ req.headers
     %{req | headers: headers}

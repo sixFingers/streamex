@@ -62,7 +62,7 @@ defmodule Streamex.Activity do
   Converts a `Map` of attributes to a `Streamex.Activity` struct.
   """
   def to_struct(%{} = attrs) do
-    Enum.reduce(attrs, %__MODULE__{}, fn({key, value}, struct) ->
+    Enum.reduce(attrs, %__MODULE__{}, fn {key, value}, struct ->
       atom = String.to_atom(key)
 
       if Map.has_key?(struct, atom) do

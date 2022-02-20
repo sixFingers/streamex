@@ -107,7 +107,7 @@ defmodule FeedTest do
   test "Feed followings return a list of follow structs" do
     use_cassette "feed_get_following" do
       {_, feed} = Feed.new("user", "eric")
-      {__, following} = Feed.following(feed)
+      {_, following} = Feed.following(feed)
 
       assert Enum.count(following) == 0
     end

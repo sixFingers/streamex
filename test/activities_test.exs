@@ -13,7 +13,7 @@ defmodule ActivityTest do
   test "Feed activities returns a list of %Activity{}" do
     use_cassette "activities_get_activities" do
       {_, feed} = new("user", "eric")
-      {__, activities} = Streamex.Activities.get(feed)
+      {_, activities} = Streamex.Activities.get(feed)
 
       assert Enum.count(activities) == 9
       assert [%Activity{} | _] = activities
@@ -88,7 +88,7 @@ defmodule ActivityTest do
       {_, feed} = new("user", "eric")
       activity_a = %{"actor" => "Tony", "verb" => "like", "object" => "Ruby"}
       activity_b = %{"actor" => "Tony", "verb" => "dislike", "object" => "PHP"}
-      {__, activities} = Streamex.Activities.add(feed, [activity_a, activity_b])
+      {_, activities} = Streamex.Activities.add(feed, [activity_a, activity_b])
 
       assert Enum.count(activities) == 2
       assert [%Activity{} | _] = activities

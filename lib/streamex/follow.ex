@@ -12,7 +12,8 @@ defmodule Streamex.Follow do
 
   def from_map(m) do
     base = struct(__MODULE__)
-    base 
+
+    base
     |> Map.put(:feed_id, m["feed_id"])
     |> Map.put(:target_id, m["target_id"])
     |> Map.put(:created_at, to_datetime(m["created_at"]))

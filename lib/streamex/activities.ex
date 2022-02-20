@@ -30,14 +30,14 @@ defmodule Streamex.Activities do
 
   """
   def get(feed, opts \\ []) do
-    Request.new
+    Request.new()
     |> with_method(:get)
     |> with_path(endpoint_get(feed))
     |> with_token(feed, "feed", "read")
     |> with_params(activity_get_params(opts))
-    |> Client.prepare_request
-    |> Client.sign_request
-    |> Client.execute_request
+    |> Client.prepare_request()
+    |> Client.sign_request()
+    |> Client.execute_request()
     |> handle_response
   end
 
@@ -75,15 +75,16 @@ defmodule Streamex.Activities do
       :error -> {status, results}
     end
   end
+
   def add(feed, [%{} | _] = activities) do
-    Request.new
+    Request.new()
     |> with_method(:post)
     |> with_path(endpoint_create(feed))
     |> with_token(feed, "feed", "write")
     |> with_body(body_create_update_activities(activities))
-    |> Client.prepare_request
-    |> Client.sign_request
-    |> Client.execute_request
+    |> Client.prepare_request()
+    |> Client.sign_request()
+    |> Client.execute_request()
     |> handle_response
   end
 
@@ -109,13 +110,13 @@ defmodule Streamex.Activities do
 
   """
   def add_to_many(feeds, %{} = activity) do
-    Request.new
+    Request.new()
     |> with_method(:post)
     |> with_path(endpoint_add_to_many())
     |> with_body(body_create_batch_activities(feeds, activity))
-    |> Client.prepare_request
-    |> Client.sign_request
-    |> Client.execute_request
+    |> Client.prepare_request()
+    |> Client.sign_request()
+    |> Client.execute_request()
     |> handle_response
   end
 
@@ -140,15 +141,16 @@ defmodule Streamex.Activities do
   def update(feed, %{} = activity) do
     update(feed, [activity])
   end
+
   def update(feed, [%{} | _] = activities) do
-    Request.new
+    Request.new()
     |> with_method(:post)
     |> with_path(endpoint_update())
     |> with_token(feed, "activities", "write")
     |> with_body(body_create_update_activities(activities))
-    |> Client.prepare_request
-    |> Client.sign_request
-    |> Client.execute_request
+    |> Client.prepare_request()
+    |> Client.sign_request()
+    |> Client.execute_request()
     |> handle_response
   end
 
@@ -175,16 +177,16 @@ defmodule Streamex.Activities do
   """
   def remove(feed, id, opts \\ []) do
     foreign_id = Keyword.get(opts, :foreign_id, false)
-    params = foreign_id && %{"foreign_id" => 1} || %{}
+    params = (foreign_id && %{"foreign_id" => 1}) || %{}
 
-    Request.new
+    Request.new()
     |> with_method(:delete)
     |> with_path(endpoint_remove(feed, id))
     |> with_token(feed, "feed", "delete")
     |> with_params(params)
-    |> Client.prepare_request
-    |> Client.sign_request
-    |> Client.execute_request
+    |> Client.prepare_request()
+    |> Client.sign_request()
+    |> Client.execute_request()
     |> handle_response
   end
 
@@ -194,15 +196,18 @@ defmodule Streamex.Activities do
   end
 
   def handle_response(%{"exception" => exception}), do: {:error, exception}
-  def handle_response(%{"results" => results}), do:
-    {:ok, Enum.map(results, &Activity.to_struct(&1))}
-  def handle_response(%{"activities" => results}), do:
-    {:ok, Enum.map(results, &Activity.to_struct(&1))}
+
+  def handle_response(%{"results" => results}),
+    do: {:ok, Enum.map(results, &Activity.to_struct(&1))}
+
+  def handle_response(%{"activities" => results}),
+    do: {:ok, Enum.map(results, &Activity.to_struct(&1))}
+
   def handle_response(%{"removed" => id}), do: {:ok, id}
   def handle_response(%{"duration" => _}), do: {:ok, nil}
 
   defp endpoint_get(%Feed{} = feed) do
-    <<"feed/", feed.slug :: binary, "/", feed.user_id :: binary, "/">>
+    <<"feed/", feed.slug::binary, "/", feed.user_id::binary, "/">>
   end
 
   defp endpoint_create(%Feed{} = feed) do
@@ -212,7 +217,7 @@ defmodule Streamex.Activities do
   defp endpoint_update(), do: "activities/"
 
   defp endpoint_remove(%Feed{} = feed, id) do
-    <<endpoint_get(feed) :: binary, id :: binary, "/">>
+    <<endpoint_get(feed)::binary, id::binary, "/">>
   end
 
   defp endpoint_add_to_many() do
@@ -220,7 +225,7 @@ defmodule Streamex.Activities do
   end
 
   defp body_create_batch_activities(feeds, activity) do
-    feeds = Enum.map(feeds, fn(feed) -> Feed.get_follow_target_string(feed) end)
+    feeds = Enum.map(feeds, fn feed -> Feed.get_follow_target_string(feed) end)
     payload = %{"feeds" => feeds, "activity" => activity}
     Poison.encode!(payload)
   end
