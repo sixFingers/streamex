@@ -39,7 +39,7 @@ defmodule Streamex.Mixfile do
     [
       {:httpoison, "~> 1.8.0"},
       {:poison, "~> 5.0"},
-      {:joken, "~> 2.4.1"},
+      {:joken, "~> 2.5.0"},
       {:timex, "~> 3.7.6"},
       {:ex_doc, "~> 0.28.0", only: :dev},
       {:exvcr, "~> 0.13.3", only: :test},
