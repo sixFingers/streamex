@@ -42,7 +42,9 @@ defmodule ClientTest do
     headers = req.headers |> Enum.reduce(%{}, fn {k, v}, acc -> Map.update(acc, k, v, & &1) end)
     date = Map.get(headers, "Date", "")
     header_field_string = "date: #{date}"
-    signature = :crypto.mac(:hmac, :sha256, Config.secret(), header_field_string) |> Base.encode64()
+
+    signature =
+      :crypto.mac(:hmac, :sha256, Config.secret(), header_field_string) |> Base.encode64()
 
     auth_header =
       "Signature keyId=\"#{Config.key()}\",algorithm=\"hmac-sha256\",headers=\"date\",signature=\"#{signature}\""

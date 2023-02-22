@@ -37,13 +37,13 @@ defmodule Streamex.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 1.8.0"},
+      {:httpoison, "~> 1.8 or ~> 2.0"},
       {:poison, "~> 5.0"},
-      {:joken, "~> 2.5.0"},
+      {:joken, "~> 2.6.0"},
       {:timex, "~> 3.7.6"},
-      {:ex_doc, "~> 0.28.0", only: :dev},
-      {:exvcr, "~> 0.13.3", only: :test},
-      {:excoveralls, "~> 0.14.4", only: :test}
+      {:ex_doc, "~> 0.29.1", only: :dev},
+      {:exvcr, "~> 0.13.5", only: :test},
+      {:excoveralls, "~> 0.15.3", only: :test}
     ]
   end
 
